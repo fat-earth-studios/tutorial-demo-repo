@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Main Game Setup Tutorial"
+run/main_scene="uid://cap1562eb08js"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
