@@ -22,6 +22,8 @@ window/size/viewport_height=360
 window/size/always_on_top=true
 window/size/window_width_override=1920
 window/size/window_height_override=1080
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [physics]
 
@@ -29,4 +31,5 @@ window/size/window_height_override=1080
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
