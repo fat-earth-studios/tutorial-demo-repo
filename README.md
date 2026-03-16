@@ -65,7 +65,7 @@ These assets are included for demonstration and educational purposes only as par
 
 They are not covered by the MIT license and may not be copied, redistributed, or used in other projects without permission.
 
-See ASSETS_LICENSE.md for details.
+See [ASSETS_LICENSE.md](ASSETS_LICENSE.md) for details.
 
 ## About
 This project is part of my game development and tutorial work under [**Fat Earth Studios**](https://www.youtube.com/@FatEarthStudios).
