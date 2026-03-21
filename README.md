@@ -17,6 +17,9 @@ You can watch the full tutorial here:
 
 *(Link will be added when video is published)*
 
+### Git Cheat Sheet
+* [Git Cheat Sheet](./docs/Git_Cheat_Sheet_Godot.md)
+
 ## Project Structure
 The Godot project used in the tutorial is located here:
 
