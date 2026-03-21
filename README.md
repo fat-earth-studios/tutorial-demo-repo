@@ -15,7 +15,7 @@ The repository contains a small Godot project used throughout the tutorial to de
 ## Tutorial Video
 You can watch the full tutorial here:
 
-*(Link will be added when video is published)*
+[How To Use Git With Godot](https://youtu.be/9yfNX0OdSAw?si=Zy0y8DdWJb68yOdq)
 
 ### Git Cheat Sheet
 * [Git Cheat Sheet](./docs/Git_Cheat_Sheet_Godot.md)

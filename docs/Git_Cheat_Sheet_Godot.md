@@ -14,6 +14,7 @@
 |---------|-------------|
 * From repo page click green 'Code' dropdown button
 * Select `HTTPS` or `SSH` and click "Copy URL to clipboard"
+    * You'll have to use `HTTPS` if you don't have a GitHub account
 * In Git Bash - navigate to desired git folder
     * reccomend `c/Users/<username>/git/`
 * `git clone <url>`
@@ -39,7 +40,7 @@
 | Command | Description |
 |---------|-------------|
 |`git checkout -b <branch-name>` | Create new branch and switch to it |
-|`git checkout <branch-name>`    | Switch back to main branch |
+|`git checkout <branch-name>`    | Switch to specified branch |
 |`git push origin <branch-name>` | Push branch to origin/GitHub |
 
 | Helpful | |
