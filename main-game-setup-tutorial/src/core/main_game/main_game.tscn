@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cap1562eb08js"]
 
-[ext_resource type="Texture2D" uid="uid://duc61yo16movk" path="res://assets/art/enemies/inndour_sheet.png" id="1_3fed5"]
+[ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="1_3fed5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78si8"]
 atlas = ExtResource("1_3fed5")
