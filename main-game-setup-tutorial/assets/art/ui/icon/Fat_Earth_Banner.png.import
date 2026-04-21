@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:main-game-setup-tutorial/assets/art/enemies/inndour_sheet.png.import
-uid="uid://duc61yo16movk"
-path="res://.godot/imported/inndour_sheet.png-36ec03d9e703cddfc1779ee0e8fed1f7.ctex"
-========
-uid="uid://cev8giyohrs1m"
+uid="uid://dir8l7ck1m73u"
 path="res://.godot/imported/Fat_Earth_Banner.png-92453fff750cb02aa5ec3f661cd6fe72.ctex"
->>>>>>>> 0cdf49d0a7151cb69083509e9a68af57d716215c:main-game-setup-tutorial/assets/art/ui/icon/Fat_Earth_Banner.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:main-game-setup-tutorial/assets/art/enemies/inndour_sheet.png.import
-source_file="res://assets/art/enemies/inndour_sheet.png"
-dest_files=["res://.godot/imported/inndour_sheet.png-36ec03d9e703cddfc1779ee0e8fed1f7.ctex"]
-========
 source_file="res://assets/art/ui/icon/Fat_Earth_Banner.png"
 dest_files=["res://.godot/imported/Fat_Earth_Banner.png-92453fff750cb02aa5ec3f661cd6fe72.ctex"]
->>>>>>>> 0cdf49d0a7151cb69083509e9a68af57d716215c:main-game-setup-tutorial/assets/art/ui/icon/Fat_Earth_Banner.png.import
 
 [params]
 
