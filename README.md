@@ -55,18 +55,18 @@ After cloning, open the project in Godot:
 `main-game-setup-tutorial/project.godot`
 
 ## License
+
 ### Code
 The source code in this repository is licensed under the MIT License.
 
-See the LICENSE file for details.
+See the [LICENSE](LICENSE) file for details.
 
 ### Artwork and Assets
+Artwork, music, sound, and other non-code assets are not included under the MIT license and remain the property of Daniel B. Russell. They may not be copied, redistributed, or used in other projects without permission.
 
-Artwork, sprites, textures, audio, and other non-code assets contained in this repository remain the property of Daniel B. Russell.
+You are welcome to download the repository and explore the project for personal learning and evaluation purposes, but please do not reuse those assets in other projects or redistributed works without permission.
 
-These assets are included for demonstration and educational purposes only as part of this tutorial project.
-
-They are not covered by the MIT license and may not be copied, redistributed, or used in other projects without permission.
+If you would like to feature this project, use its assets, or discuss another use case, please contact me.
 
 See [ASSETS_LICENSE.md](ASSETS_LICENSE.md) for details.
 
