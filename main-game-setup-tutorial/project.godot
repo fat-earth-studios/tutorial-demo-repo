@@ -14,6 +14,8 @@ config/name="Main Game Setup Tutorial"
 run/main_scene="uid://cap1562eb08js"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=240
+boot_splash/image="uid://cev8giyohrs1m"
+config/icon="uid://5scpgajbfi0d"
 
 [display]
 
