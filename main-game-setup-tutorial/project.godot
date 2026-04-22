@@ -17,6 +17,10 @@ run/max_fps=240
 boot_splash/image="uid://dir8l7ck1m73u"
 config/icon="uid://5scpgajbfi0d"
 
+[autoload]
+
+Global="*uid://deqdpk17hcujn"
+
 [display]
 
 window/size/viewport_width=640
@@ -27,6 +31,10 @@ window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
 
 [physics]
 
