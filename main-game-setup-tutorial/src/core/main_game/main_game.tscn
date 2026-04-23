@@ -5,12 +5,7 @@
 [node name="MainGame" type="Node" unique_id=160159159]
 script = ExtResource("1_6yl8a")
 
-[node name="World" type="Node2D" parent="." unique_id=137485709]
-
-[node name="LevelLayer" type="Node2D" parent="World" unique_id=196322165]
-unique_name_in_owner = true
-
-[node name="Entities" type="Node2D" parent="World" unique_id=965216185]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2007676567]
 
 [node name="Systems" type="Node" parent="." unique_id=1276464674]
 
@@ -36,3 +31,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="World" type="Node2D" parent="." unique_id=137485709]
+
+[node name="LevelLayer" type="Node2D" parent="World" unique_id=196322165]
+unique_name_in_owner = true
+
+[node name="Entities" type="Node2D" parent="World" unique_id=965216185]

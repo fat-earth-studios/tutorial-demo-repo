@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bk2cu2ameptuy"]
+
+[ext_resource type="Script" uid="uid://d3q2qcdv7c15m" path="res://src/levels/test_level/character_body_2d.gd" id="1_470h1"]
+[ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="2_to11t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv5n0"]
+atlas = ExtResource("2_to11t")
+region = Rect2(64, 83, 64, 44)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_erlm8"]
+radius = 4.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2029180576]
+collision_layer = 2
+script = ExtResource("1_470h1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1844034490]
+scale = Vector2(0.25, 0.25)
+texture = SubResource("AtlasTexture_yv5n0")
+offset = Vector2(0, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=279207566]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_erlm8")
