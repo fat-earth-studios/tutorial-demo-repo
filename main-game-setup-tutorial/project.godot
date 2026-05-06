@@ -23,14 +23,13 @@ Global="*uid://deqdpk17hcujn"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=320
+window/size/viewport_height=180
 window/size/always_on_top=true
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
-window/vsync/vsync_mode=0
 
 [editor_plugins]
 
@@ -38,9 +37,11 @@ enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
 
 [physics]
 
+2d/run_on_separate_thread=true
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+viewport/hdr_2d=true

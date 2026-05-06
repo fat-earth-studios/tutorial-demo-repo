@@ -1,10 +1,8 @@
 extends CharacterBody2D
 ## This is meant to test moving around the level only, this is not the actual character
 
-const SPEED = 100.0
+const SPEED = 80.0
 const JUMP_VELOCITY = -400.0
-
-@onready var sprite_2d : Sprite2D = $Sprite2D
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -22,9 +20,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction_x * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	if absf(velocity.x) > 0.1:
-		sprite_2d.flip_h = velocity.x < 0.0
 
 	var direction_y := Input.get_axis("ui_up", "ui_down")
 	if direction_y:
