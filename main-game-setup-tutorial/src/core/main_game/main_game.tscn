@@ -30,6 +30,7 @@ layer = 10
 
 [node name="HudRoot" type="Control" parent="HudLayer" unique_id=819024193]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
