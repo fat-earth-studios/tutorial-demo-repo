@@ -2,12 +2,19 @@ class_name MainGame
 extends Node
 ## Main entry point for the game. Responsible for setting up the World layers and high level systems
 
-var TEST_LEVEL = load("uid://ctyxyue66gfjy")
-var TEST_LEVEL_02 = load("uid://kikf44gko1yv")
+var TEST_LEVEL    : PackedScene = load("uid://ctyxyue66gfjy")
+var TEST_LEVEL_02 : PackedScene = load("uid://kikf44gko1yv")
 
 var _current_level : Node = null
 
-@onready var level_root: Node2D = %LevelRoot
+# Game World root nodes
+@onready var level_root  : Node2D = %LevelRoot
+@onready var entity_root : Node2D = %EntityRoot
+@onready var effect_root : Node2D = %EffectRoot
+
+# UI Root Nodes
+@onready var hud_root : Control = %HudRoot
+
 
 func _ready() -> void:
 	# Provide access to main game through global script
