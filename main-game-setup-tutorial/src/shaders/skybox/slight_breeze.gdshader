@@ -34,10 +34,10 @@ void fragment() {
 	vec2 distorted_uv = UV + noise * distortion_amount;
 
 	vec2 scroll_uv = distorted_uv; //UV;
-	scroll_uv.x -= sin(TIME * horizontal_scroll_speed);
+	scroll_uv.x -= sin(TIME * horizontal_scroll_speed) / 8.0;
 	scroll_uv.y += TIME * vertical_scroll_speed;
 
-	scroll_uv.x -= sin((distorted_uv.y * wave_scale) + TIME * wave_speed) * wave_strength;
+	scroll_uv.x += sin((distorted_uv.y * wave_scale) + TIME * wave_speed) * wave_strength;
 
 	COLOR = texture(TEXTURE, scroll_uv);
 }

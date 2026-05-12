@@ -174,7 +174,7 @@ func _physics_process(delta: float) -> void:
 	if not target:
 		return
 
-	var target_global_pos = target.global_position
+	var target_global_pos : Vector2 = target.global_position
 
 	var camera_pos_out : Vector2
 
@@ -299,7 +299,6 @@ autoplay = "default"
 frame_progress = 0.8666233
 
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D" unique_id=272479684]
-visible = false
 position = Vector2(0, 10)
 color = Color(1, 0.8392157, 0.27058825, 1)
 texture = SubResource("GradientTexture2D_h7xs6")

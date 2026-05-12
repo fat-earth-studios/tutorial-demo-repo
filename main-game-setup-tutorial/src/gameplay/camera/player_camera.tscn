@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c30h5vs12dmlh"]
+
+[sub_resource type="GDScript" id="GDScript_604w1"]
+script/source = "extends Camera2D
+
+const LERP_WEIGHT : float = 4.0
+const CAMERA_LOOK_AMOUNT : float = 64.0
+
+@export var target : Node2D
+
+func _physics_process(delta: float) -> void:
+	if not target:
+		return
+
+	# Offset value is amount to lead the player
+	var target_camera_offset : Vector2 = Vector2(0.0, -42.0)
+	var target_global_pos    : Vector2 = target.global_position + target_camera_offset
+	target_global_pos += target.camera_look_direction * CAMERA_LOOK_AMOUNT
+
+	var camera_pos_out : Vector2
+
+	camera_pos_out.x = lerpf(self.global_position.x, target_global_pos.x, LERP_WEIGHT * delta)
+	camera_pos_out.y = lerpf(self.global_position.y, target_global_pos.y, LERP_WEIGHT * delta)
+
+	self.global_position = camera_pos_out
+"
+
+[node name="PlayerCamera" type="Camera2D" unique_id=1250976206]
+zoom = Vector2(2, 2)
+process_callback = 0
+script = SubResource("GDScript_604w1")

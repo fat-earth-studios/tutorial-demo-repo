@@ -1,19 +1,35 @@
 [gd_scene format=3 uid="uid://bk2cu2ameptuy"]
 
-[ext_resource type="Script" uid="uid://d3q2qcdv7c15m" path="res://src/levels/test_level/character_body_2d.gd" id="1_470h1"]
+[ext_resource type="Script" uid="uid://d3q2qcdv7c15m" path="res://src/gameplay/player/player_test.gd" id="1_470h1"]
 [ext_resource type="Texture2D" uid="uid://ib10n4tem8sr" path="res://assets/art/characters/ghost_player.png" id="2_470h1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_erlm8"]
 radius = 4.0
+
+[sub_resource type="Gradient" id="Gradient_pd6o7"]
+offsets = PackedFloat32Array(0.15053764, 0.3297491, 0.37275985)
+colors = PackedColorArray(0, 0, 0, 0.90000004, 0, 0, 0, 0.90400004, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wqs45"]
+gradient = SubResource("Gradient_pd6o7")
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=2029180576]
 collision_layer = 2
 script = ExtResource("1_470h1")
 
 [node name="PlayerSprite2D" type="Sprite2D" parent="." unique_id=1828022754]
-position = Vector2(0, -11)
 texture = ExtResource("2_470h1")
+offset = Vector2(0, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=279207566]
+visible = false
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_erlm8")
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=2007242547]
+texture_filter = 2
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_wqs45")

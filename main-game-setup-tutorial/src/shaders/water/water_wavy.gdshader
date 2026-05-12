@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+//uniform sampler2D normal_texture : hint_normal, repeat_enable;
 uniform sampler2D noise_texture : repeat_enable;
 
 uniform float distortion_strength : hint_range(0.0, 0.05) = 0.006;
@@ -29,4 +30,7 @@ void fragment() {
 	vec2 distorted_uv = uv + noise * distortion_strength + ripple;
 
 	COLOR = texture(TEXTURE, distorted_uv);
+
+	// Sample the normal map and apply the above
+	//NORMAL_MAP = texture(normal_texture, distorted_uv).rgb;
 }
