@@ -863,7 +863,6 @@ func update_outline_font():
 	var monospace_outline: bool = get_setting(MONOSPACE_OUTLINE, true)
 	if (monospace_outline):
 		var font: Font = EditorInterface.get_script_editor().get_theme_font(&"source", &"EditorFonts")
-		print(font)
 		outline_container.outline.add_theme_font_override(&"font", font)
 	else:
 		outline_container.outline.remove_theme_font_override(&"font")
