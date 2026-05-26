@@ -8,7 +8,13 @@ const CAMERA_LOOK_AMOUNT : float = 64.0
 
 @export var target : Node2D
 
-func _physics_process(delta: float) -> void:
+#func _process(delta : float) -> void:
+	#_follow_camera_target(delta)
+
+func _physics_process(delta : float) -> void:
+	_follow_camera_target(delta)
+
+func _follow_camera_target(delta : float) -> void:
 	if not target:
 		return
 
@@ -21,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 	camera_pos_out.x = lerpf(self.global_position.x, target_global_pos.x, LERP_WEIGHT * delta)
 	camera_pos_out.y = lerpf(self.global_position.y, target_global_pos.y, LERP_WEIGHT * delta)
+
 
 	self.global_position = camera_pos_out
 "

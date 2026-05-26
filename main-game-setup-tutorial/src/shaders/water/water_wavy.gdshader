@@ -31,6 +31,11 @@ void fragment() {
 
 	COLOR = texture(TEXTURE, distorted_uv);
 
+	vec2 distorted_uv_normal = uv - noise * distortion_strength + ripple;
+
+	vec3 normal = texture(NORMAL_TEXTURE, distorted_uv).rgb;
+
+	NORMAL_MAP = normal;
 	// Sample the normal map and apply the above
 	//NORMAL_MAP = texture(normal_texture, distorted_uv).rgb;
 }

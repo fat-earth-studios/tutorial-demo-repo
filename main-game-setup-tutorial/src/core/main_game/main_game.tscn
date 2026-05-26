@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cap1562eb08js"]
 
 [ext_resource type="Script" uid="uid://dw0qjpkf84asx" path="res://src/core/main_game/main_game.gd" id="1_6yl8a"]
-[ext_resource type="Script" uid="uid://cd4ofgvffh2da" path="res://src/core/main_game/game_display_layer.gd" id="2_6n4xl"]
 [ext_resource type="Script" uid="uid://phpm6t6w3mdr" path="res://src/ui/debug/debug_overlay.gd" id="2_6yl8a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3fed5"]
@@ -14,41 +13,19 @@ outline_color = Color(0, 0, 0, 1)
 process_mode = 3
 script = ExtResource("1_6yl8a")
 
-[node name="GameDisplayLayer" type="Control" parent="." unique_id=617781708]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_6n4xl")
-
-[node name="GameDisplay" type="TextureRect" parent="GameDisplayLayer" unique_id=1224192308]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Systems" type="Node" parent="." unique_id=1276464674]
 process_mode = 3
 
-[node name="WorldViewport" type="SubViewport" parent="." unique_id=24458236]
-unique_name_in_owner = true
-size = Vector2i(640, 360)
-
-[node name="World" type="Node2D" parent="WorldViewport" unique_id=137485709]
+[node name="World" type="Node2D" parent="." unique_id=137485709]
 process_mode = 1
 
-[node name="LevelRoot" type="Node2D" parent="WorldViewport/World" unique_id=196322165]
+[node name="LevelRoot" type="Node2D" parent="World" unique_id=196322165]
 unique_name_in_owner = true
 
-[node name="EntityRoot" type="Node2D" parent="WorldViewport/World" unique_id=965216185]
+[node name="EntityRoot" type="Node2D" parent="World" unique_id=965216185]
 unique_name_in_owner = true
 
-[node name="EffectRoot" type="Node2D" parent="WorldViewport/World" unique_id=1018165254]
+[node name="EffectRoot" type="Node2D" parent="World" unique_id=1018165254]
 unique_name_in_owner = true
 
 [node name="HudLayer" type="CanvasLayer" parent="." unique_id=560793207]

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cnsekqs8nco8e" path="res://assets/art/world/Clouds_Only_Dusk.png" id="3_80iu8"]
 [ext_resource type="Texture2D" uid="uid://8dacv7iepj7k" path="res://assets/art/tilesets/grass_deep_grass_sand.png" id="3_dc1ga"]
 [ext_resource type="PackedScene" uid="uid://bk2cu2ameptuy" path="res://src/gameplay/player/player_test.tscn" id="4_8o13i"]
-[ext_resource type="Texture2D" uid="uid://u0a5vdiyrwg3" path="res://assets/art/world/NORMAL_water_background.png" id="5_507rp"]
+[ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/NORMAL_water_backgroundv2.png" id="6_4sype"]
 [ext_resource type="Texture2D" uid="uid://dsr7e4j4jcqds" path="res://assets/art/tilesets/Decoration_Layer_Tiles.png" id="7_507rp"]
 [ext_resource type="PackedScene" uid="uid://c30h5vs12dmlh" path="res://src/gameplay/camera/player_camera.tscn" id="11_vax7a"]
 
@@ -38,8 +38,8 @@ shader_parameter/wave_speed = 0.08
 shader_parameter/wave_scale = 8.0
 
 [sub_resource type="Gradient" id="Gradient_507rp"]
-offsets = PackedFloat32Array(0.19620253, 0.6772152)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.19620253, 0.33966243, 0.6772152)
+colors = PackedColorArray(1, 1, 1, 1, 0.13157904, 0.13157904, 0.13157904, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vax7a"]
 gradient = SubResource("Gradient_507rp")
@@ -83,7 +83,7 @@ shader_parameter/ripple_scale = 16.0000007125
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vax7a"]
 diffuse_texture = ExtResource("1_5sg3a")
-normal_texture = ExtResource("5_507rp")
+normal_texture = ExtResource("6_4sype")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5sg3a"]
 texture = ExtResource("3_dc1ga")
@@ -290,8 +290,8 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_ephit"]
-offsets = PackedFloat32Array(0.101265825, 0.693038)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0.69000006)
+offsets = PackedFloat32Array(0.13167259, 0.44483986, 0.57651246)
+colors = PackedColorArray(1, 1, 1, 1, 0.18221754, 0.18221754, 0.18221754, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_507rp"]
 gradient = SubResource("Gradient_ephit")
@@ -330,18 +330,17 @@ centered = false
 [node name="Polygon2D" type="Polygon2D" parent="Background" unique_id=526935566]
 self_modulate = Color(1.8247963, 1.8247963, 0, 1)
 light_mask = 0
-texture_filter = 2
 position = Vector2(231, 127)
 antialiased = true
 polygon = PackedVector2Array(-7, 9, -14, 3, -13, -1, -12, -3, -10, -6, -7, -8, -4, -9, 0, -9.5, 4, -9, 7, -8, 10, -6, 12, -3, 13, -1, 14, 3, 10, 9)
 
 [node name="PointLight2D" type="PointLight2D" parent="Background/Polygon2D" unique_id=1252836323]
-position = Vector2(-1.1444092e-05, 71.999985)
-scale = Vector2(0.18750003, 1.1875)
+position = Vector2(-5.722046e-06, -5)
+scale = Vector2(0.24, 1)
 color = Color(1.825, 1.622, 0, 1)
-energy = 1.5
 range_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_vax7a")
+offset = Vector2(0, 64)
 
 [node name="PointLight2D2" type="PointLight2D" parent="Background/Polygon2D" unique_id=866309483]
 position = Vector2(0, 8)
@@ -351,6 +350,7 @@ texture = SubResource("GradientTexture2D_8abq8")
 
 [node name="BackgroundWater" type="Sprite2D" parent="Background" unique_id=791984425]
 light_mask = 2
+texture_filter = 2
 material = SubResource("ShaderMaterial_ephit")
 position = Vector2(-8, 122)
 texture = SubResource("CanvasTexture_vax7a")
@@ -375,6 +375,8 @@ tile_set = SubResource("TileSet_5sg3a")
 [node name="Ground2" type="TileMapLayer" parent="Tilemaps" unique_id=856590609]
 tile_map_data = PackedByteArray("AAADABMAAAAGAAAAAAAgABQAAAAGAAAAAAAmABEAAAAGAAAAAAA=")
 tile_set = SubResource("TileSet_xg6m2")
+collision_enabled = false
+navigation_enabled = false
 
 [node name="Entities" type="Node2D" parent="." unique_id=132771634]
 
@@ -399,7 +401,6 @@ position = Vector2(611.03766, 314.72223)
 
 [node name="PlayerCamera" parent="Entities" unique_id=1250976206 node_paths=PackedStringArray("target") instance=ExtResource("11_vax7a")]
 position = Vector2(630, 274)
-zoom = Vector2(1, 1)
 limit_left = 0
 limit_top = 0
 limit_right = 640
