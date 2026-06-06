@@ -1,13 +1,7 @@
 [gd_scene format=3 uid="uid://cap1562eb08js"]
 
 [ext_resource type="Script" uid="uid://dw0qjpkf84asx" path="res://src/core/main_game/main_game.gd" id="1_6yl8a"]
-[ext_resource type="Script" uid="uid://phpm6t6w3mdr" path="res://src/ui/debug/debug_overlay.gd" id="2_6yl8a"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_3fed5"]
-font_size = 10
-font_color = Color(0, 1, 0, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="PackedScene" uid="uid://bwmhixliuiiqq" path="res://src/debug/debug_text_overlay.tscn" id="2_6yl8a"]
 
 [node name="MainGame" type="Node" unique_id=160159159]
 process_mode = 3
@@ -42,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=767098184]
-process_mode = 3
+process_mode = 2
 layer = 20
 
 [node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=775353493]
@@ -79,33 +73,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DebugOverlay" type="Control" parent="DebugLayer/DebugRoot" unique_id=2136155548]
+[node name="DebugTextOverlay" parent="DebugLayer/DebugRoot" unique_id=1298185809 instance=ExtResource("2_6yl8a")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_6yl8a")
-
-[node name="MarginContainer" type="MarginContainer" parent="DebugLayer/DebugRoot/DebugOverlay" unique_id=454670205]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugLayer/DebugRoot/DebugOverlay/MarginContainer" unique_id=1783568888]
-layout_mode = 2
-
-[node name="FpsLabel" type="Label" parent="DebugLayer/DebugRoot/DebugOverlay/MarginContainer/VBoxContainer" unique_id=1815006766]
-unique_name_in_owner = true
-layout_mode = 2
-text = "FPS: 9,001"
-label_settings = SubResource("LabelSettings_3fed5")
-horizontal_alignment = 2

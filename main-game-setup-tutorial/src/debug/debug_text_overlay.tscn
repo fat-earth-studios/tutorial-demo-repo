@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bwmhixliuiiqq"]
+
+[ext_resource type="Script" uid="uid://cjycsaemy6qvq" path="res://src/debug/debug_overlay.gd" id="1_jv051"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3fed5"]
+font_size = 6
+font_color = Color(0, 1, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6yl8a"]
+line_spacing = 1.0
+paragraph_spacing = -2.0
+font_size = 6
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DebugTextOverlay" type="Control" unique_id=1298185809]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jv051")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1291542351]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=583670815]
+layout_mode = 2
+alignment = 2
+
+[node name="FpsLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1033138755]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.4392157)
+layout_mode = 2
+text = "FPS: 9,001"
+label_settings = SubResource("LabelSettings_3fed5")
+
+[node name="VersionInfo" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1906464445]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 2
+text = "Build: "
+label_settings = SubResource("LabelSettings_6yl8a")
+vertical_alignment = 2
+
+[node name="DebugInfo" type="Label" parent="MarginContainer/VBoxContainer" unique_id=966630422]
+self_modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 2
+text = "Vertical Slice Series
+Developed by Fat Earth Studios"
+label_settings = SubResource("LabelSettings_6yl8a")
+vertical_alignment = 2

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://pjrcbht7pr5a"]
+
+[ext_resource type="Script" uid="uid://cigje5k8cx3r0" path="res://src/levels/level_objects/markers/player_spawn/player_spawn.gd" id="1_hn4pt"]
+[ext_resource type="Texture2D" uid="uid://ib10n4tem8sr" path="res://assets/art/characters/player/ghost_player.png" id="2_mt3ql"]
+
+[sub_resource type="GDScript" id="GDScript_mt3ql"]
+script/source = "@tool
+extends Node2D
+
+
+func _ready() -> void:
+	# These reference visuals should only appear in the editor
+	if not Engine.is_editor_hint():
+		queue_free()
+"
+
+[sub_resource type="Gradient" id="Gradient_mt3ql"]
+offsets = PackedFloat32Array(0.15053764, 0.3297491, 0.37275985)
+colors = PackedColorArray(0, 0, 0, 0.90000004, 0, 0, 0, 0.90400004, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4a7qp"]
+gradient = SubResource("Gradient_mt3ql")
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="PlayerSpawn" type="Marker2D" unique_id=1487922808]
+gizmo_extents = 16.0
+script = ExtResource("1_hn4pt")
+
+[node name="ReferenceVisual" type="Node2D" parent="." unique_id=734166945]
+modulate = Color(1, 1, 1, 0.7764706)
+script = SubResource("GDScript_mt3ql")
+
+[node name="ReferenceSprite" type="Sprite2D" parent="ReferenceVisual" unique_id=1583095868]
+texture = ExtResource("2_mt3ql")
+centered = false
+offset = Vector2(-7, -28)
+
+[node name="ReferenceShadowSprite" type="Sprite2D" parent="ReferenceVisual" unique_id=216446446]
+texture_filter = 2
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_4a7qp")
+centered = false
+offset = Vector2(-32, -16)

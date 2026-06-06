@@ -14,6 +14,8 @@ uniform float wave_strength : hint_range(0.0,  0.5) = 0.003;
 uniform float wave_speed    : hint_range(0.0,  2.0) = 0.08;
 uniform float wave_scale    : hint_range(0.0, 50.0) = 8.0;
 
+uniform bool darken = false;
+
 void vertex() {
 	float t = TIME * breath_speed;
 	vec2 centered = UV - vec2(0.5);
@@ -39,5 +41,11 @@ void fragment() {
 
 	scroll_uv.x += sin((distorted_uv.y * wave_scale) + TIME * wave_speed) * wave_strength;
 
-	COLOR = texture(TEXTURE, scroll_uv);
+	vec4 color = texture(TEXTURE, scroll_uv);
+
+	if (darken) {
+		color.rgb -= vec3(0.2);
+	}
+
+	COLOR = color;
 }
