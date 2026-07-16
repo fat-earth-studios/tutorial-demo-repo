@@ -25,6 +25,11 @@ A practical reference for the Git commands and workflows covered in the Git tuto
 
 * [Git Cheat Sheet](./docs/Git_Cheat_Sheet_Godot.md)
 
+### GDScript Organization Example
+
+A practical reference for organizing GDScript declarations, variables, methods, callbacks, and inner classes, based on Godot’s official GDScript style guide:
+* [GDScript Organization Example](./docs/gdscript_organization_example.gd)
+
 ## Project Structure
 
 The Godot project is located in:
