@@ -13,7 +13,7 @@ var camera_look_direction : Vector2 = Vector2.ZERO
 @onready var player_sprite_2d : Sprite2D = $PlayerSprite2D
 
 func _physics_process(_delta: float) -> void:
-	var input_direction : Vector2 = Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
+	var input_direction : Vector2 = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
 
 	var speed_multiplier : float = 1.0 if not Input.is_action_pressed(&"sprint") else SPRINT_MULTIPLIER_VALUE
 
