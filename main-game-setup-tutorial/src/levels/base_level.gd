@@ -3,7 +3,7 @@ class_name BaseLevel
 extends Node2D
 ## Abstract class for levels
 
-## Provides a player spawn location
+## Provides default global position for player to be placed in level
 @abstract func get_default_player_spawn() -> Vector2
 
 ## Provides the camera used in the level

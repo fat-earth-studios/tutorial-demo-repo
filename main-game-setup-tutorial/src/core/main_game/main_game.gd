@@ -35,40 +35,51 @@ func _input(event: InputEvent) -> void:
 		quit_game()
 
 
-## Called for loading a level scene.
-## NOTE: The input level_scene must extend BaseLevel
-func load_level(level_scene : String) -> void:
-	# Make sure this is called during idle time
-	_deferred_load_level.call_deferred(level_scene)
-
+## Called to quit the application
+## Propagates the close request notification to every node, and then quits the application
 func quit_game() -> void:
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	get_tree().quit()
 
-func _deferred_load_level(level_scene_uid : String) -> void:
-	if _current_level != null:
+
+## Called for loading a level scene.
+## NOTE: The input level_scene must extend BaseLevel
+func load_level(level_scene : String) -> void:
+	# Make sure this is called during idle time
+	_perform_level_load.call_deferred(level_scene)
+
+
+func _perform_level_load(level_scene_uid : String) -> void:
+	if is_instance_valid(_current_level):
 		_current_level.queue_free()
 		_current_level = null
+		# Wait to allow the queued deletion to process so it is out of the scene tree
+		await get_tree().process_frame
 
-	# Allow the old level to finish freeing before adding the new one
-	await get_tree().process_frame
 
 	var new_level_packed : PackedScene =\
-		ResourceLoader.load(level_scene_uid, "PackedScene") as PackedScene
+	ResourceLoader.load(level_scene_uid, "PackedScene") as PackedScene
+
 	if new_level_packed == null:
 		push_error("Could not load level as a packed scene: " + level_scene_uid)
 		return
 
-	_current_level = new_level_packed.instantiate() as BaseLevel
-	if _current_level == null:
-		push_error("Loaded level is not of type Level or does not exist")
+	var new_level : Node = new_level_packed.instantiate()
+
+	if not new_level:
+		push_error("Could not instantiate new level " + level_scene_uid)
 		return
-		# FUTURE (main menu): Should have a fall back scene
+
+	if not new_level is BaseLevel:
+		new_level.queue_free()  # Level must be removed from the tree
+		push_error("Loaded level is not of type BaseLevel " + level_scene_uid)
+		return
+	# FUTURE (main menu): Should have a fall back scene
+
+	_current_level = new_level as BaseLevel
 
 	level_root.add_child(_current_level)
 
-	# Allow level to fully process before accessing it
-	await get_tree().process_frame
 	_place_player_at_level_spawn()
 	_setup_level_camera()
 

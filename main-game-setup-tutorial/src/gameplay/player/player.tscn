@@ -66,6 +66,8 @@ collision_layer = 2
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_k2146")
+metadata/_edit_horizontal_guides_ = [2.0, -27.0]
+metadata/_edit_vertical_guides_ = [6.0, -6.0]
 
 [node name="PlayerSprite2D" type="Sprite2D" parent="." unique_id=1828022754]
 texture = SubResource("CanvasTexture_pd6o7")
