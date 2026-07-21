@@ -27,5 +27,4 @@ func _follow_camera_target(delta : float) -> void:
 	camera_pos_out.x = lerpf(global_position.x, target_global_pos.x, LERP_WEIGHT * delta)
 	camera_pos_out.y = lerpf(global_position.y, target_global_pos.y, LERP_WEIGHT * delta)
 
-
 	global_position = camera_pos_out
