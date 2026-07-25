@@ -71,7 +71,7 @@ func _perform_level_load(level_scene_uid : String) -> void:
 		return
 
 	if not new_level is BaseLevel:
-		new_level.queue_free()  # Level must be removed from the tree
+		new_level.free()  # Level must be freed to avoid unreferenced orphan nodes
 		push_error("Loaded level is not of type BaseLevel " + level_scene_uid)
 		return
 	# FUTURE (main menu): Should have a fall back scene
@@ -91,10 +91,16 @@ func _init_player() -> void:
 		push_error("Could not load player scene: " + PLAYER_SCENE_UID)
 		return
 
-	player = player_scene.instantiate() as Player
-	if player == null:
-		push_error("Loaded player scene does not extend player or DNE: " + PLAYER_SCENE_UID)
+	var player_instance : Node = player_scene.instantiate()
+	if not player_instance:
+		push_error("Could not instantiate player scene " + PLAYER_SCENE_UID)
+
+	if not player_instance is Player:
+		player_instance.free() # Node must be freed to avoid unreferenced orphan nodes
+		push_error("Loaded player scene is not of type Player " + PLAYER_SCENE_UID)
 		return
+
+	player = player_instance as Player
 
 	entity_root.add_child(player)
 
