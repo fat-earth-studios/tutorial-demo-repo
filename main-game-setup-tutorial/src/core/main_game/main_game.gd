@@ -42,8 +42,7 @@ func quit_game() -> void:
 	get_tree().quit()
 
 
-## Called for loading a level scene.
-## NOTE: The input level_scene must extend BaseLevel
+## Loads a level scene that must extend BaseLevel
 func load_level(level_scene : String) -> void:
 	# Make sure this is called during idle time
 	_perform_level_load.call_deferred(level_scene)
@@ -71,7 +70,7 @@ func _perform_level_load(level_scene_uid : String) -> void:
 		push_error("Could not instantiate new level " + level_scene_uid)
 		return
 
-	if not new_level is BaseLevel:
+	if new_level is not BaseLevel:
 		new_level.free()  # Level must be freed to avoid unreferenced orphan nodes
 		push_error("Loaded level is not of type BaseLevel " + level_scene_uid)
 		return
@@ -95,8 +94,9 @@ func _init_player() -> void:
 	var player_instance : Node = player_scene.instantiate()
 	if not player_instance:
 		push_error("Could not instantiate player scene " + PLAYER_SCENE_UID)
+		return
 
-	if not player_instance is Player:
+	if player_instance is not Player:
 		player_instance.free() # Node must be freed to avoid unreferenced orphan nodes
 		push_error("Loaded player scene is not of type Player " + PLAYER_SCENE_UID)
 		return
@@ -128,7 +128,7 @@ func _setup_level_camera() -> void:
 		return
 
 	# FUTURE (camera): Temporary hookup
-	# Will become: camera_system.set_target(player)
+	# NOTE: target variable was added as part of the custom camera script used for the prototype
 	level_camera.target = player
 
 
