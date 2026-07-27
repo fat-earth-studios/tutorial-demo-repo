@@ -57,8 +57,9 @@ func _perform_level_load(level_scene_uid : String) -> void:
 		await get_tree().process_frame
 
 
-	var new_level_packed : PackedScene =\
-	ResourceLoader.load(level_scene_uid, "PackedScene") as PackedScene
+	var new_level_packed : PackedScene = (
+			ResourceLoader.load(level_scene_uid, "PackedScene") as PackedScene
+	)
 
 	if new_level_packed == null:
 		push_error("Could not load level as a packed scene: " + level_scene_uid)
