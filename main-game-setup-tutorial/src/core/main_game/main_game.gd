@@ -76,7 +76,7 @@ func _perform_level_load(level_scene_uid : String) -> void:
 		return
 	# FUTURE (main menu): Should have a fall back scene
 
-	_current_level = new_level as BaseLevel
+	_current_level = new_level
 
 	level_root.add_child(_current_level)
 

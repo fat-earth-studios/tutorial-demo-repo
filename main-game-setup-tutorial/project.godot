@@ -23,7 +23,6 @@ Global="*uid://deqdpk17hcujn"
 
 [debug]
 
-gdscript/warnings/unused_parameter=0
 gdscript/warnings/untyped_declaration=1
 gdscript/warnings/inferred_declaration=1
 
