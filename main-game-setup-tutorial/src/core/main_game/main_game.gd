@@ -79,6 +79,8 @@ func _perform_level_load(level_scene_uid : String) -> void:
 
 	_current_level = new_level
 
+	_current_level.signal_level_transition.connect(_level_transition_signaled)
+
 	level_root.add_child(_current_level)
 
 	_place_player_at_level_spawn()
@@ -135,3 +137,7 @@ func _setup_level_camera() -> void:
 
 func _init_systems() -> void:
 	pass # FUTURE (systems): Will be called to set up high level systems
+
+
+func _level_transition_signaled(string_uid : String) -> void:
+	load_level(string_uid)

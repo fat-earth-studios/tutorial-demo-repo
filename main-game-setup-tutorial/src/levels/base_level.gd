@@ -3,6 +3,8 @@ class_name BaseLevel
 extends Node2D
 ## Abstract class for levels
 
+signal signal_level_transition(scene_uid : String)
+
 ## Provides default global position for player to be placed in level
 @abstract func get_default_player_spawn() -> Vector2
 
