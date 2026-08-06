@@ -5,9 +5,9 @@ extends BaseLevel
 
 ## FUTURE (level): Replace with the actual level implementation.
 
-@onready var player_spawn_marker : PlayerSpawn = $Entities/PlayerSpawn
+@onready var player_spawn_marker: PlayerSpawn = $LevelObjects/PlayerSpawn
 # FUTURE (camera): This will be moved to camera system/manager
-@onready var player_camera : Camera2D = $Entities/PlayerCamera
+@onready var player_camera: Camera2D = $LevelObjects/PlayerCamera
 
 func get_default_player_spawn() -> Vector2:
 	return player_spawn_marker.global_position
