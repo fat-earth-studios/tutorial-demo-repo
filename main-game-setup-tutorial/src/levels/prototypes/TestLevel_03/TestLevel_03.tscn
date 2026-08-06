@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://be8ai3x7gg6h4"]
+
+[ext_resource type="Script" uid="uid://cc3e8vxj6jk4r" path="res://src/levels/prototypes/TestLevel_03/test_level_03.gd" id="1_8l8j1"]
+[ext_resource type="PackedScene" uid="uid://pjrcbht7pr5a" path="res://src/levels/level_objects/markers/player_spawn/player_spawn.tscn" id="2_8pfgo"]
+[ext_resource type="Shader" uid="uid://bhq0cor1xktqi" path="res://src/shaders/water/water_wavy.gdshader" id="2_teurs"]
+[ext_resource type="Texture2D" uid="uid://b2f2gf5nr6cpb" path="res://assets/art/world/backgrounds/water_background.png" id="3_5smxt"]
+[ext_resource type="PackedScene" uid="uid://c30h5vs12dmlh" path="res://src/gameplay/camera/player_camera.tscn" id="3_8pfgo"]
+[ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="4_rm1r4"]
+
+[sub_resource type="Gradient" id="Gradient_507rp"]
+offsets = PackedFloat32Array(0.19620253, 0.56299216, 0.71653545)
+colors = PackedColorArray(1, 1, 1, 1, 0.13157904, 0.13157904, 0.13157904, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_teurs"]
+gradient = SubResource("Gradient_507rp")
+width = 128
+height = 256
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.50427353, 0.094017096)
+fill_to = Vector2(1, 0.54273504)
+
+[sub_resource type="Gradient" id="Gradient_vax7a"]
+offsets = PackedFloat32Array(0, 0.6740506)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5smxt"]
+gradient = SubResource("Gradient_vax7a")
+width = 160
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1tfd6"]
+noise_type = 3
+seed = 13
+offset = Vector3(-208.84, 145.84, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ephit"]
+noise = SubResource("FastNoiseLite_1tfd6")
+seamless = true
+normalize = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbb8o"]
+shader = ExtResource("2_teurs")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ephit")
+shader_parameter/distortion_strength = 0.0030000001425
+shader_parameter/distortion_speed = 0.02000000095
+shader_parameter/noise_scale = 4.0
+shader_parameter/ripple_strength = 0.003
+shader_parameter/ripple_speed = 0.18000000855
+shader_parameter/ripple_scale = 24.0
+shader_parameter/softness = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4ku8y"]
+diffuse_texture = ExtResource("3_5smxt")
+normal_texture = ExtResource("4_rm1r4")
+
+[sub_resource type="Environment" id="Environment_rm1r4"]
+background_mode = 3
+ambient_light_source = 1
+reflected_light_source = 1
+glow_enabled = true
+adjustment_enabled = true
+adjustment_contrast = 1.1
+
+[node name="TestLevel03" type="Node2D" unique_id=712524282]
+script = ExtResource("1_8l8j1")
+
+[node name="Background" type="Node2D" parent="." unique_id=96200570]
+
+[node name="Sun" type="Polygon2D" parent="Background" unique_id=466812735]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1.8247963, 1.8247963, 0, 1)
+light_mask = 0
+texture_filter = 1
+position = Vector2(4, 265)
+antialiased = true
+polygon = PackedVector2Array(-7, 9, -14, 3, -13, -1, -12, -3, -10, -6, -7, -8, -4, -9, 0, -9.5, 4, -9, 7, -8, 10, -6, 12, -3, 13, -1, 14, 3, 10, 9)
+
+[node name="PointLight2D" type="PointLight2D" parent="Background/Sun" unique_id=190115510]
+position = Vector2(-14.000015, -14.999992)
+rotation = -0.6073746
+color = Color(1.825, 1.622, 0, 1)
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_teurs")
+offset = Vector2(0, 124)
+height = 2.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="Background/Sun" unique_id=7923350]
+position = Vector2(-1, -6.999996)
+scale = Vector2(0.76875, 0.609375)
+color = Color(1.8247963, 0.7068057, 0, 1)
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_5smxt")
+height = 1.0
+
+[node name="BackgroundWater" type="Sprite2D" parent="Background" unique_id=232514188]
+light_mask = 6
+material = SubResource("ShaderMaterial_qbb8o")
+position = Vector2(0, 107)
+texture = SubResource("CanvasTexture_4ku8y")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 656, 254)
+
+[node name="LevelObjects" type="Node2D" parent="." unique_id=669238897]
+
+[node name="PlayerSpawn" parent="LevelObjects" unique_id=1487922808 instance=ExtResource("2_8pfgo")]
+position = Vector2(67.77159, 315.7407)
+
+[node name="PlayerCamera" parent="LevelObjects" unique_id=1250976206 instance=ExtResource("3_8pfgo")]
+position = Vector2(67.77159, 315.7407)
+limit_left = 0
+limit_bottom = 360
+
+[node name="TileMaps" type="Node2D" parent="." unique_id=1180305158]
+
+[node name="Environment" type="Node2D" parent="." unique_id=707320520]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=251364811]
+environment = SubResource("Environment_rm1r4")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Environment" unique_id=1400634348]
+color = Color(0.72520626, 0.7261532, 0.48853612, 1)

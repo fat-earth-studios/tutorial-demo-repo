@@ -5,6 +5,7 @@ extends Node
 
 # FUTURE (main menu): Load test level for prototype
 const TEST_LEVEL_02    : String =  "uid://kikf44gko1yv"
+const TEST_LEVEL_03  : String = ("uid://be8ai3x7gg6h4")
 const PLAYER_SCENE_UID : String =  "uid://bk2cu2ameptuy"
 
 var player : Player = null
@@ -24,7 +25,7 @@ var _current_level : BaseLevel = null
 func _ready() -> void:
 	_init_player()
 
-	load_level(TEST_LEVEL_02)
+	load_level(TEST_LEVEL_03)
 
 
 func _input(event: InputEvent) -> void:
