@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dpfexrcp50734" path="res://assets/art/world/tilesets/Tilemap_Ground_Grass_Sand_Dirt.png" id="1_eoh8t"]
 
+[sub_resource type="TileMapPattern" id="TileMapPattern_eoh8t"]
+tile_data = PackedInt32Array(0, 131072, 8, 1, 0, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rm1r4"]
 texture = ExtResource("1_eoh8t")
 1:0/0 = 0
@@ -567,6 +570,7 @@ texture = ExtResource("1_eoh8t")
 9:9/0 = 0
 10:9/0 = 0
 11:9/0 = 0
+0:0/0 = 0
 
 [resource]
 terrain_set_0/mode = 0
@@ -577,3 +581,4 @@ terrain_set_0/terrain_1/color = Color(0.38250437, 0.42748743, 0.6444356, 1)
 terrain_set_0/terrain_2/name = "thick_grass"
 terrain_set_0/terrain_2/color = Color(0.66721606, 0.41158995, 0.0329944, 1)
 sources/0 = SubResource("TileSetAtlasSource_rm1r4")
+pattern_0 = SubResource("TileMapPattern_eoh8t")
