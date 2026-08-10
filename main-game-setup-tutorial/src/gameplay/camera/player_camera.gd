@@ -7,13 +7,18 @@ const LERP_WEIGHT : float = 2.0
 const CAMERA_LOOK_AHEAD_VAL : Vector2 = Vector2(0.0, -8.0)
 const CAMERA_LOOK_AMOUNT    : float =  64.0  ## Value when player input to look ahead
 
+@export_category("DEBUG")
+@export var dont_follow_target : bool = false:
+	set(value):
+		dont_follow_target = value
+
 var target : Node2D = null
 
 func _physics_process(delta : float) -> void:
 	_follow_camera_target(delta)
 
 func _follow_camera_target(delta : float) -> void:
-	if not target:
+	if not target or dont_follow_target:
 		return
 
 	# Offset value is amount to lead the player

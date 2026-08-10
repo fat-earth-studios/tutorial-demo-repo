@@ -25,7 +25,7 @@ var _current_level : BaseLevel = null
 func _ready() -> void:
 	_init_player()
 
-	load_level(TEST_LEVEL_03)
+	load_level(TEST_LEVEL_02)
 
 
 func _input(event: InputEvent) -> void:

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c4qdi5yye4aeq"]
+
+[ext_resource type="Script" uid="uid://7jhhgegii4wr" path="res://src/debug/tools/battleground_capture.gd" id="1_afvar"]
+
+[node name="BattlegroundCapture" type="Node" unique_id=1558490770]
+script = ExtResource("1_afvar")
+
+[node name="CaptureViewport" type="SubViewport" parent="." unique_id=2115458752]
+canvas_item_default_texture_filter = 0
+size = Vector2i(640, 360)
+
+[node name="CaptureCamera" type="Camera2D" parent="CaptureViewport" unique_id=846273946]
+editor_draw_limits = true
+editor_draw_drag_margin = true

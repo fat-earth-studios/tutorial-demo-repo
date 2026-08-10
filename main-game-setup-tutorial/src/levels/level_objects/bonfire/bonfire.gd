@@ -17,7 +17,5 @@ func _update_fire_visual() -> void:
 	if not fire_sprite:
 		return
 
-	if fire_is_out:
-		fire_sprite.visible = false
-	else:
-		fire_sprite.visible = true
+	# Set sprite visibility based on fire out state
+	fire_sprite.visible = not fire_is_out
