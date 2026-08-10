@@ -186,6 +186,7 @@ color = Color(1.353256, 0.9083316, 0, 1)
 energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_507rp")
+height = 5.0
 
 [node name="BaseLight" type="PointLight2D" parent="." unique_id=164926731]
 light_mask = 0

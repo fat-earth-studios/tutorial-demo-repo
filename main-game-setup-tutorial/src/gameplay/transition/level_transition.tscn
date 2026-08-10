@@ -5,4 +5,5 @@
 [node name="LevelTransition" type="Area2D" unique_id=181036827]
 collision_layer = 0
 collision_mask = 2
+monitorable = false
 script = ExtResource("1_cahni")
