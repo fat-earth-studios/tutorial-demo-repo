@@ -5,9 +5,7 @@ const TEST_LEVEL_02 : String =  "uid://kikf44gko1yv"
 
 signal transition_requested(scene_uid : String)
 
-
 var _has_triggered : bool = false
-
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -18,7 +16,13 @@ func _on_body_entered(body : Node2D) -> void:
 		print_debug("Somehow something other than player entered")
 		return
 
-	print_debug("Player entered the body" + TEST_LEVEL_02)
-	_has_triggered = true
+	# Don't let the signal fire twice
+	if _has_triggered:
+		print_debug("The Volume triggered more than once")
+		return
 
+	_has_triggered = true
+	set_deferred(&"monitoring", false)
+
+	print_debug("Player requested transition to: " + TEST_LEVEL_02)
 	transition_requested.emit(TEST_LEVEL_02)

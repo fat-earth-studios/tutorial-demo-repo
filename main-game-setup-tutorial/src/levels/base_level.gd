@@ -5,6 +5,9 @@ extends Node2D
 
 signal signal_level_transition(scene_uid : String)
 
+func _request_level_transition(scene_uid : String) -> void:
+	signal_level_transition.emit(scene_uid)
+
 ## Provides default global position for player to be placed in level
 @abstract func get_default_player_spawn() -> Vector2
 
