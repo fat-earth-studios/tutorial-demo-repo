@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bwehac8qlixsd" path="res://assets/art/world/tilesets/Decoration_Layer_Tiles.png" id="8_umlov"]
 [ext_resource type="Shader" uid="uid://fm2c6ldvfq4p" path="res://src/shaders/battle_scene_projection.gdshader" id="9_umlov"]
 [ext_resource type="Texture2D" uid="uid://deslicp1si767" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff_only.png" id="9_xcxhn"]
+[ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
+[ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ephit"]
 noise_type = 3
@@ -165,6 +167,7 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 
 [node name="BattleScene" type="Node2D" unique_id=283374901]
+metadata/_edit_horizontal_guides_ = [180.0]
 
 [node name="Backdrop" type="Node2D" parent="." unique_id=606939796]
 
@@ -237,12 +240,40 @@ stretch_mode = 3
 
 [node name="BattleActors" type="Node2D" parent="." unique_id=232738802]
 
-[node name="GhostPlayerWalking" type="Sprite2D" parent="BattleActors" unique_id=466231980]
-position = Vector2(383, 221)
+[node name="BattleActor1" type="Sprite2D" parent="BattleActors" unique_id=466231980]
+position = Vector2(404, 166)
 texture = ExtResource("4_1p6mr")
 flip_h = true
 hframes = 9
 frame = 6
+
+[node name="BattleActor2" type="Sprite2D" parent="BattleActors" unique_id=627641816]
+position = Vector2(385, 209)
+texture = ExtResource("4_1p6mr")
+flip_h = true
+hframes = 9
+frame = 6
+
+[node name="BattleActor3" type="Sprite2D" parent="BattleActors" unique_id=393963190]
+position = Vector2(382, 140)
+texture = ExtResource("4_1p6mr")
+flip_h = true
+hframes = 9
+frame = 6
+
+[node name="InndourSheet" type="Sprite2D" parent="BattleActors" unique_id=1538951286]
+self_modulate = Color(0.86663747, 0.827222, 0.78517264, 1)
+position = Vector2(230, 172)
+texture = ExtResource("12_xcxhn")
+hframes = 3
+vframes = 3
+
+[node name="Decorations" type="Node2D" parent="." unique_id=1945664659]
+position = Vector2(261, 171)
+
+[node name="Bonfire" parent="Decorations" unique_id=1121218955 instance=ExtResource("13_bk36e")]
+position = Vector2(59, 10)
+fire_is_out = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=201706541]
 position = Vector2(320, 180)
