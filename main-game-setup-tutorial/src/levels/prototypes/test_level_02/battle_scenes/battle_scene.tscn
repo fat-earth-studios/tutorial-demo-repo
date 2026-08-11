@@ -5,9 +5,9 @@
 [ext_resource type="Shader" uid="uid://bhq0cor1xktqi" path="res://src/shaders/water/water_wavy.gdshader" id="4_xcxhn"]
 [ext_resource type="Texture2D" uid="uid://b2f2gf5nr6cpb" path="res://assets/art/world/backgrounds/water_background.png" id="5_bk36e"]
 [ext_resource type="Texture2D" uid="uid://bi5n4uvjru2g2" path="res://assets/art/world/battle_scenes/mountaintop_battleground_ground.png" id="5_umlov"]
+[ext_resource type="Shader" uid="uid://bfkx21s1mu6wb" path="res://src/levels/prototypes/test_level_02/battle_scenes/battle_scene_projection_transition.gdshader" id="6_dxd7o"]
 [ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="6_u3tai"]
-[ext_resource type="Shader" uid="uid://fm2c6ldvfq4p" path="res://src/shaders/battle_scene_projection.gdshader" id="9_umlov"]
-[ext_resource type="Texture2D" uid="uid://deslicp1si767" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff_only.png" id="9_xcxhn"]
+[ext_resource type="Texture2D" uid="uid://qsfdn2r31eme" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff.png" id="7_dxd7o"]
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
 
@@ -61,14 +61,22 @@ diffuse_texture = ExtResource("5_bk36e")
 normal_texture = ExtResource("6_u3tai")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rh4jv"]
-shader = ExtResource("9_umlov")
-shader_parameter/output_size_px = Vector2(320, 180)
-shader_parameter/topdown_offset_px = Vector2(0, 32)
-shader_parameter/tilt = 1.0
-shader_parameter/horizon_px = 63.182003001145
-shader_parameter/far_width = 1.0
-shader_parameter/depth_curve = 0.5580000146299999
-shader_parameter/horizon_softness_px = 1.5
+shader = ExtResource("6_dxd7o")
+shader_parameter/rect_size_px = Vector2(640, 360)
+shader_parameter/center_x_px = 320.0
+shader_parameter/source_far_y_px = 114.0
+shader_parameter/source_near_y_px = 284.0
+shader_parameter/pixel_snap = true
+shader_parameter/transition = 0.0
+shader_parameter/target_far_y_px = 122.0
+shader_parameter/target_near_y_px = 250.0
+shader_parameter/target_bottom_y_px = 340.0
+shader_parameter/far_width_scale = 0.999999983236
+shader_parameter/near_width_scale = 1.13999998010672
+shader_parameter/bottom_width_scale = 1.21999997831856
+shader_parameter/depth_curve = 0.9
+shader_parameter/target_center_offset_x_px = 0.0
+shader_parameter/edge_softness_px = 0.0
 
 [sub_resource type="Environment" id="Environment_m7pbj"]
 background_mode = 3
@@ -79,7 +87,7 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 
 [node name="BattleScene" type="Node2D" unique_id=283374901]
-metadata/_edit_horizontal_guides_ = [180.0, 270.0, 128.0, 148.0, 236.0]
+metadata/_edit_horizontal_guides_ = [180.0, 128.0, 240.0]
 metadata/_edit_vertical_guides_ = [320.0]
 
 [node name="Backdrop" type="Node2D" parent="." unique_id=606939796]
@@ -126,6 +134,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 656, 254)
 
 [node name="Floor" type="TextureRect" parent="Backdrop" unique_id=1684942494]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("5_umlov")
@@ -139,28 +148,29 @@ offset_top = 90.0
 offset_right = 480.0
 offset_bottom = 270.0
 mouse_filter = 2
-texture = ExtResource("9_xcxhn")
+texture = ExtResource("7_dxd7o")
 expand_mode = 1
 stretch_mode = 3
 
 [node name="BattleActors" type="Node2D" parent="." unique_id=232738802]
+position = Vector2(0, 12)
 
 [node name="BattleActor1" type="Sprite2D" parent="BattleActors" unique_id=466231980]
-position = Vector2(404, 166)
+position = Vector2(393, 167)
 texture = ExtResource("4_1p6mr")
 flip_h = true
 hframes = 9
 frame = 6
 
 [node name="BattleActor2" type="Sprite2D" parent="BattleActors" unique_id=627641816]
-position = Vector2(385, 209)
+position = Vector2(376, 205)
 texture = ExtResource("4_1p6mr")
 flip_h = true
 hframes = 9
 frame = 6
 
 [node name="BattleActor3" type="Sprite2D" parent="BattleActors" unique_id=393963190]
-position = Vector2(382, 140)
+position = Vector2(373, 134)
 texture = ExtResource("4_1p6mr")
 flip_h = true
 hframes = 9
@@ -168,7 +178,8 @@ frame = 6
 
 [node name="InndourSheet" type="Sprite2D" parent="BattleActors" unique_id=1538951286]
 self_modulate = Color(0.86663747, 0.827222, 0.78517264, 1)
-position = Vector2(230, 172)
+position = Vector2(248, 158)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_xcxhn")
 hframes = 3
 vframes = 3
@@ -176,8 +187,7 @@ vframes = 3
 [node name="Decorations" type="Node2D" parent="." unique_id=1945664659]
 
 [node name="Bonfire" parent="Decorations" unique_id=1121218955 instance=ExtResource("13_bk36e")]
-position = Vector2(320, 180)
-fire_is_out = true
+position = Vector2(320, 188)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=201706541]
 position = Vector2(320, 180)
