@@ -1,7 +1,7 @@
 class_name BattleScene
 extends Node2D
 
-const TRANSITION_DURATION : float = 2.0
+const TRANSITION_DURATION : float = 1.0
 
 var _transition_tween : Tween = null
 var _material : ShaderMaterial = null  ## Shader Material used to tild the battle scene
@@ -32,30 +32,40 @@ func play_battle_start_animation() -> void:
 	battle_camera.position.y = 180
 	_set_shader_progress(0.0)
 
-	await get_tree().create_timer(1.0).timeout
 
 	_transition_tween = create_tween()
 	_transition_tween.set_parallel(true)
-	_transition_tween.set_trans(Tween.TRANS_CUBIC)
-	_transition_tween.set_ease(Tween.EASE_IN)
 
-	_transition_tween.tween_method(_set_shader_progress, 0.0, 1.0, TRANSITION_DURATION)
+	# Moving the world
+	_transition_tween.tween_method(
+		_set_shader_progress, 0.0, 1.0, TRANSITION_DURATION
+	).set_trans(Tween.TRANS_LINEAR)
 
+	# Moving the party, closest to camera
 	_transition_tween.tween_property(
 		battle_actors_party, "position:y", -28.0, TRANSITION_DURATION
-	)
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-	_transition_tween.tween_property(
-		battle_actors_enemies, "position:y", -4.0, TRANSITION_DURATION
-	)
 
+
+	# Moving the Bonfire in the Middle
 	_transition_tween.tween_property(
 		bonfire, "position:y", 176.0, TRANSITION_DURATION
-	)
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 
+
+	# Moving the enemies at the end
+	_transition_tween.tween_property(
+		battle_actors_enemies, "position:y", -4.0, TRANSITION_DURATION
+	).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+
+
+
+
+	# Moving the Camera
 	_transition_tween.tween_property(
 		battle_camera, "position:y", 164.0, TRANSITION_DURATION
-	)
+	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 
 	await _transition_tween.finished
 
@@ -65,5 +75,8 @@ func _set_shader_progress(progress : float) -> void:
 	_material.set_shader_parameter("transition", progress)
 
 #func _update_battle_actors(progress : float) -> void:
-	#pass
-	#var actor_progress := clampf(remap(progress, ))
+	#var actor_progress : float = clampf(remap(progress, 0.15, 0.85, 0.0, 1.0), 0.0, 1.0)
+
+
+func _on_button_pressed() -> void:
+	play_battle_start_animation.call_deferred()

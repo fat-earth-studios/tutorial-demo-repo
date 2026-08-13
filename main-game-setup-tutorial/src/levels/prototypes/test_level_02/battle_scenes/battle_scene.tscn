@@ -68,7 +68,7 @@ shader_parameter/center_x_px = 320.0
 shader_parameter/source_far_y_px = 114.0
 shader_parameter/source_near_y_px = 284.0
 shader_parameter/pixel_snap = true
-shader_parameter/transition = 1.0
+shader_parameter/transition = 0.0
 shader_parameter/target_far_y_px = 122.0
 shader_parameter/target_near_y_px = 250.0
 shader_parameter/target_bottom_y_px = 340.0
@@ -190,7 +190,7 @@ frame = 7
 [node name="Decorations" type="Node2D" parent="." unique_id=1945664659]
 y_sort_enabled = true
 
-[node name="Bonfire" parent="Decorations" unique_id=1121218955 instance=ExtResource("13_bk36e")]
+[node name="Bonfire" parent="Decorations" unique_id=290071149 instance=ExtResource("13_bk36e")]
 position = Vector2(320, 188)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=201706541]
@@ -206,3 +206,14 @@ color = Color(0.7254902, 0.7254902, 0.49019608, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1577943360]
 environment = SubResource("Environment_m7pbj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1971302592]
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=1951941891]
+offset_left = 532.0
+offset_top = 10.0
+offset_right = 625.0
+offset_bottom = 41.0
+text = "Do It Again"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
