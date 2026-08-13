@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b144aly8fprew"]
 
 [ext_resource type="Texture2D" uid="uid://c6diady764nkh" path="res://assets/art/world/battle_scenes/mountaintop_battleground_sky.png" id="1_dxd7o"]
+[ext_resource type="Script" uid="uid://bvt6rxuajj5ap" path="res://src/levels/prototypes/test_level_02/battle_scenes/battle_scene.gd" id="1_umlov"]
 [ext_resource type="Texture2D" uid="uid://c425sakfk8uw6" path="res://assets/art/characters/player/ghost_player_walking.png" id="4_1p6mr"]
 [ext_resource type="Shader" uid="uid://bhq0cor1xktqi" path="res://src/shaders/water/water_wavy.gdshader" id="4_xcxhn"]
 [ext_resource type="Texture2D" uid="uid://b2f2gf5nr6cpb" path="res://assets/art/world/backgrounds/water_background.png" id="5_bk36e"]
@@ -87,7 +88,8 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 
 [node name="BattleScene" type="Node2D" unique_id=283374901]
-metadata/_edit_horizontal_guides_ = [180.0, 128.0, 240.0]
+script = ExtResource("1_umlov")
+metadata/_edit_horizontal_guides_ = [180.0]
 metadata/_edit_vertical_guides_ = [320.0]
 
 [node name="Backdrop" type="Node2D" parent="." unique_id=606939796]
@@ -141,7 +143,7 @@ texture = ExtResource("5_umlov")
 
 [node name="BattleArena" type="Node2D" parent="." unique_id=1352551114]
 
-[node name="TextureRect" type="TextureRect" parent="BattleArena" unique_id=1607241256]
+[node name="MainBattleArena" type="TextureRect" parent="BattleArena" unique_id=1607241256]
 material = SubResource("ShaderMaterial_rh4jv")
 offset_left = 160.0
 offset_top = 90.0
@@ -152,39 +154,41 @@ texture = ExtResource("7_dxd7o")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="BattleActors" type="Node2D" parent="." unique_id=232738802]
-position = Vector2(0, 12)
+[node name="BattleActorsParty" type="Node2D" parent="." unique_id=232738802]
 
-[node name="BattleActor1" type="Sprite2D" parent="BattleActors" unique_id=466231980]
-position = Vector2(393, 167)
+[node name="BattleActor1" type="Sprite2D" parent="BattleActorsParty" unique_id=466231980]
+position = Vector2(320, 240)
 texture = ExtResource("4_1p6mr")
 flip_h = true
 hframes = 9
-frame = 6
+frame = 3
 
-[node name="BattleActor2" type="Sprite2D" parent="BattleActors" unique_id=627641816]
-position = Vector2(376, 205)
+[node name="BattleActor2" type="Sprite2D" parent="BattleActorsParty" unique_id=627641816]
+position = Vector2(228, 224)
+texture = ExtResource("4_1p6mr")
+hframes = 9
+frame = 4
+
+[node name="BattleActor3" type="Sprite2D" parent="BattleActorsParty" unique_id=393963190]
+position = Vector2(412, 224)
 texture = ExtResource("4_1p6mr")
 flip_h = true
 hframes = 9
-frame = 6
+frame = 5
 
-[node name="BattleActor3" type="Sprite2D" parent="BattleActors" unique_id=393963190]
-position = Vector2(373, 134)
-texture = ExtResource("4_1p6mr")
-flip_h = true
-hframes = 9
-frame = 6
+[node name="BattleActorsEnemies" type="Node2D" parent="." unique_id=874563004]
 
-[node name="InndourSheet" type="Sprite2D" parent="BattleActors" unique_id=1538951286]
+[node name="InndourSheet" type="Sprite2D" parent="BattleActorsEnemies" unique_id=1538951286]
 self_modulate = Color(0.86663747, 0.827222, 0.78517264, 1)
-position = Vector2(248, 158)
+position = Vector2(320, 122)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_xcxhn")
 hframes = 3
 vframes = 3
+frame = 7
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1945664659]
+y_sort_enabled = true
 
 [node name="Bonfire" parent="Decorations" unique_id=1121218955 instance=ExtResource("13_bk36e")]
 position = Vector2(320, 188)
