@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://d12jrqqe5xuu8"]
+
+[ext_resource type="Shader" uid="uid://c2u60n5doyxmj" path="res://src/shaders/fireball.gdshader" id="1_7bhjk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uviv1"]
+shader = ExtResource("1_7bhjk")
+shader_parameter/ball_center = Vector2(0.5, 1.15)
+shader_parameter/ball_radius = 0.18000000785148
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/animation_speed = 1.5
+shader_parameter/edge_noise_amount = 0.14
+shader_parameter/edge_softness = 0.14400000684
+shader_parameter/brightness = 1.6
+shader_parameter/opacity = 1.0
+shader_parameter/edge_color = Color(1.8247955, 1.6407317, 0.9818398, 1)
+shader_parameter/red_color = Color(0.484613, 0, 0.03916612, 1)
+shader_parameter/orange_color = Color(1, 0.32, 0.01, 1)
+shader_parameter/yellow_color = Color(0.922039, 0.8445396, 1.1551381e-06, 1)
+shader_parameter/core_color = Color(1, 1, 0.82, 1)
+
+[sub_resource type="Animation" id="Animation_7bhjk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/ball_center")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 1.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/aspect_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:material:shader_parameter/ball_radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.18000000785148]
+}
+
+[sub_resource type="Animation" id="Animation_ibq74"]
+resource_name = "fire_up_and_implode"
+length = 4.000001875283011
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/ball_center")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector2(0.5, 1.15), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/aspect_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [0.315, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:material:shader_parameter/ball_radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.116666675, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.54999995, 0.6666667, 0.73333335),
+"transitions": PackedFloat32Array(1, 0.5, 2, 2, 1, 2, 2, 0.5),
+"update": 0,
+"values": [0.18000000785148, 0.3, 0.34100001549897996, 0.28200001269648, 0.3, 0.40000001830148, 0.40000001830148, 0.00999999977648]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g82wr"]
+_data = {
+&"RESET": SubResource("Animation_7bhjk"),
+&"fire_up_and_implode": SubResource("Animation_ibq74")
+}
+
+[node name="HiFireagaraFour" type="Node2D" unique_id=2101529883]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=693997010]
+material = SubResource("ShaderMaterial_uviv1")
+offset_left = -22.0
+offset_top = -43.0
+offset_right = 22.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=965341298]
+libraries/ = SubResource("AnimationLibrary_g82wr")
