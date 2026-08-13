@@ -1,7 +1,7 @@
 class_name BattleScene
 extends Node2D
 
-const TRANSITION_DURATION : float = 1.0
+const TRANSITION_DURATION : float = 0.5
 
 var _transition_tween : Tween = null
 var _material : ShaderMaterial = null  ## Shader Material used to tild the battle scene
@@ -32,6 +32,7 @@ func play_battle_start_animation() -> void:
 	battle_camera.position.y = 180
 	_set_shader_progress(0.0)
 
+	await get_tree().create_timer(0.5).timeout
 
 	_transition_tween = create_tween()
 	_transition_tween.set_parallel(true)
@@ -48,24 +49,27 @@ func play_battle_start_animation() -> void:
 
 
 
-	# Moving the Bonfire in the Middle
+	# BONFIRE - Moving the Bonfire in the Middle
 	_transition_tween.tween_property(
 		bonfire, "position:y", 176.0, TRANSITION_DURATION
-	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 
-	# Moving the enemies at the end
+
+
+
+	# ENEMIES - Moving the enemies at the end
 	_transition_tween.tween_property(
 		battle_actors_enemies, "position:y", -4.0, TRANSITION_DURATION
-	).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT_IN)
 
 
 
 
 	# Moving the Camera
 	_transition_tween.tween_property(
-		battle_camera, "position:y", 164.0, TRANSITION_DURATION
-	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+		battle_camera, "position:y", 164.0, TRANSITION_DURATION * 1.2
+	).set_delay(TRANSITION_DURATION*0.9).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
 	await _transition_tween.finished
 
