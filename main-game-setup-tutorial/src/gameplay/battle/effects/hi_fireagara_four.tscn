@@ -1,15 +1,47 @@
 [gd_scene format=3 uid="uid://d12jrqqe5xuu8"]
 
 [ext_resource type="Shader" uid="uid://ct4vjfhgh8s02" path="res://src/gameplay/battle/effects/shaders/core_fireball.gdshader" id="1_7bhjk"]
+[ext_resource type="Shader" uid="uid://iv8hehtaism3" path="res://src/gameplay/battle/effects/shaders/fireball_corona.gdshader" id="1_ibq74"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7bhjk"]
+shader = ExtResource("1_ibq74")
+shader_parameter/eruption = 1.0
+shader_parameter/compression = 0.0
+shader_parameter/decay = 0.0
+shader_parameter/opacity = 1.0
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/core_radius = 0.19200000842148
+shader_parameter/flame_length = 0.050000002375
+shader_parameter/inner_overlap = 0.84
+shader_parameter/collapsed_inner_radius = 0.018
+shader_parameter/compressed_base_scale = 0.8
+shader_parameter/compressed_length_scale = 0.34
+shader_parameter/edge_softness = 0.01
+shader_parameter/upward_bias = 0.800000038
+shader_parameter/tongue_sharpness = 1.65
+shader_parameter/corona_rotation = -2.21299979904561
+shader_parameter/rotation_speed = 0.16
+shader_parameter/flow_speed = 0.48
+shader_parameter/angular_scale = 4.4
+shader_parameter/body_scale = 8.5
+shader_parameter/warp_strength = 0.6999999843536
+shader_parameter/heat = 0.2650000125875
+shader_parameter/intensity = 1.23999997228352
+shader_parameter/decay_edge_heat = 0.0
+shader_parameter/deep_red = Color(0.28, 0.003, 0.001, 1)
+shader_parameter/red_color = Color(0.95, 0.025, 0.002, 1)
+shader_parameter/orange_color = Color(1, 0.2, 0.006, 1)
+shader_parameter/yellow_color = Color(1, 0.68, 0.035, 1)
+shader_parameter/white_hot_color = Color(0, 0.98400563, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7gsy3"]
 shader = ExtResource("1_7bhjk")
 shader_parameter/aspect_ratio = 1.0
 shader_parameter/radius = 0.31
-shader_parameter/collapsed_radius = 0.035
+shader_parameter/collapsed_radius = 0.0010000000475
 shader_parameter/collapse = 0.0
 shader_parameter/edge_softness = 0.012
-shader_parameter/edge_turbulence = 0.018
+shader_parameter/edge_turbulence = 0.0450000021375
 shader_parameter/opacity = 1.0
 shader_parameter/surface_rotation = 0.0
 shader_parameter/rotation_speed = 0.22
@@ -28,28 +60,56 @@ shader_parameter/white_hot_color = Color(1, 0.97, 0.72, 1)
 shader_parameter/rim_color = Color(1, 0.5, 0.035, 1)
 shader_parameter/glow_width = 0.025
 shader_parameter/glow_strength = 0.28
-shader_parameter/glow_color = Color(1, 0.32, 0.015, 1)
+shader_parameter/glow_color = Color(1, 0.9362209, 0.012920001, 1)
 shader_parameter/dissolve = 0.0
 shader_parameter/dissolve_edge_heat = 0.9
 
 [node name="HiFireagaraFour" type="Node2D" unique_id=2101529883]
 
-[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=2100985128]
-visible = false
+[node name="DELETEME_Debug_Stuff" type="Node2D" parent="." unique_id=166395086]
+
+[node name="ColorRect" type="ColorRect" parent="DELETEME_Debug_Stuff" unique_id=1900939138]
 offset_left = -160.0
-offset_top = -180.0
+offset_top = -184.0
 offset_right = 160.0
-border_color = Color(0, 1, 0, 1)
+color = Color(0.12437358, 0.13571739, 0.20068827, 1)
 metadata/_edit_lock_ = true
 
-[node name="CoreBall" type="ColorRect" parent="." unique_id=1853309541]
-material = SubResource("ShaderMaterial_7gsy3")
-offset_left = -24.0
-offset_top = -48.0
-offset_right = 24.0
-
-[node name="DELETEME_Debug_Camera" type="Camera2D" parent="." unique_id=1022827250]
+[node name="DELETEME_Debug_Camera" type="Camera2D" parent="DELETEME_Debug_Stuff" unique_id=1022827250]
 position = Vector2(-160, -180)
 anchor_mode = 0
 zoom = Vector2(2, 2)
 metadata/_edit_lock_ = true
+
+[node name="FireBall" type="Node2D" parent="." unique_id=1306767581]
+position = Vector2(0, -48)
+
+[node name="FlameCorona" type="ColorRect" parent="FireBall" unique_id=53946814]
+material = SubResource("ShaderMaterial_7bhjk")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CoreBall" type="ColorRect" parent="FireBall" unique_id=1853309541]
+material = SubResource("ShaderMaterial_7gsy3")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
