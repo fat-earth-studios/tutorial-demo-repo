@@ -14,6 +14,7 @@ config/name="Main Game Setup Tutorial"
 config/version="0.1.0"
 run/main_scene="uid://cap1562eb08js"
 config/features=PackedStringArray("4.7", "Forward Plus")
+run/max_fps=240
 boot_splash/image="uid://dir8l7ck1m73u"
 config/icon="uid://4g8iyeg82o76"
 
@@ -35,6 +36,7 @@ window/size/window_width_override=2000
 window/size/window_height_override=1200
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=0
 window/hdr_2d=true
 
 [editor]

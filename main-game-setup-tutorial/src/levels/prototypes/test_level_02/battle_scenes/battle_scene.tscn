@@ -209,11 +209,18 @@ environment = SubResource("Environment_m7pbj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1971302592]
 
-[node name="Button" type="Button" parent="CanvasLayer" unique_id=1951941891]
-offset_left = 532.0
-offset_top = 10.0
-offset_right = 625.0
-offset_bottom = 41.0
+[node name="ButtonPlay" type="Button" parent="CanvasLayer" unique_id=1951941891]
+offset_left = 592.0
+offset_top = 18.0
+offset_right = 685.0
+offset_bottom = 49.0
+scale = Vector2(0.5, 0.5)
 text = "Do It Again"
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[node name="ButtonReset" type="Button" parent="CanvasLayer" unique_id=1333820063]
+offset_left = 593.0
+offset_top = 1.0
+offset_right = 683.0
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+text = "RESET"

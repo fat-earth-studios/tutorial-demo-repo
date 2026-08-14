@@ -352,6 +352,7 @@ tile_set = SubResource("TileSet_5sg3a")
 position = Vector2(320, 192)
 
 [node name="PlayerCamera" parent="LevelObjects" unique_id=1250976206 instance=ExtResource("11_vax7a")]
+visible = false
 position = Vector2(320, 180)
 limit_left = 0
 limit_top = 0
@@ -360,9 +361,11 @@ limit_bottom = 360
 dont_follow_target = true
 
 [node name="PlayerSpawn" parent="LevelObjects" unique_id=1487922808 instance=ExtResource("13_80iu8")]
+visible = false
 position = Vector2(419, 187)
 
 [node name="Marker2D" type="Marker2D" parent="LevelObjects" unique_id=1048705464]
+visible = false
 position = Vector2(320, 180)
 
 [node name="ReferenceRect" type="ReferenceRect" parent="LevelObjects" unique_id=394684171]
