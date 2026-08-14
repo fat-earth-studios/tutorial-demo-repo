@@ -32,17 +32,10 @@ shader_parameter/glow_color = Color(1, 0.32, 0.015, 1)
 shader_parameter/dissolve = 0.0
 shader_parameter/dissolve_edge_heat = 0.9
 
-[sub_resource type="Animation" id="Animation_7bhjk"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g82wr"]
-_data = {
-&"RESET": SubResource("Animation_7bhjk")
-}
-
 [node name="HiFireagaraFour" type="Node2D" unique_id=2101529883]
 
 [node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=2100985128]
+visible = false
 offset_left = -160.0
 offset_top = -180.0
 offset_right = 160.0
@@ -52,8 +45,11 @@ metadata/_edit_lock_ = true
 [node name="CoreBall" type="ColorRect" parent="." unique_id=1853309541]
 material = SubResource("ShaderMaterial_7gsy3")
 offset_left = -24.0
-offset_top = -40.0
+offset_top = -48.0
 offset_right = 24.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=965341298]
-libraries/ = SubResource("AnimationLibrary_g82wr")
+[node name="DELETEME_Debug_Camera" type="Camera2D" parent="." unique_id=1022827250]
+position = Vector2(-160, -180)
+anchor_mode = 0
+zoom = Vector2(2, 2)
+metadata/_edit_lock_ = true

@@ -51,19 +51,45 @@ float hash_21(vec2 point) {
 }
 
 
-float value_noise(vec2 point) {
+vec2 gradient_direction(vec2 cell) {
+	float angle = hash_21(cell) * 6.28318530718;
+	return vec2(cos(angle), sin(angle));
+}
+
+
+float gradient_noise(vec2 point) {
 	vec2 cell = floor(point);
 	vec2 local = fract(point);
-	local = local * local * (3.0 - 2.0 * local);
 
-	float bottom_left = hash_21(cell);
-	float bottom_right = hash_21(cell + vec2(1.0, 0.0));
-	float top_left = hash_21(cell + vec2(0.0, 1.0));
-	float top_right = hash_21(cell + vec2(1.0, 1.0));
+	// Quintic interpolation gives continuous first and second derivatives at
+	// cell boundaries, avoiding the block-like contours of value noise.
+	vec2 blend = local * local * local
+		* (local * (local * 6.0 - 15.0) + 10.0);
 
-	float bottom = mix(bottom_left, bottom_right, local.x);
-	float top = mix(top_left, top_right, local.x);
-	return mix(bottom, top, local.y);
+	float bottom_left = dot(
+		gradient_direction(cell),
+		local
+	);
+	float bottom_right = dot(
+		gradient_direction(cell + vec2(1.0, 0.0)),
+		local - vec2(1.0, 0.0)
+	);
+	float top_left = dot(
+		gradient_direction(cell + vec2(0.0, 1.0)),
+		local - vec2(0.0, 1.0)
+	);
+	float top_right = dot(
+		gradient_direction(cell + vec2(1.0, 1.0)),
+		local - vec2(1.0, 1.0)
+	);
+
+	float bottom = mix(bottom_left, bottom_right, blend.x);
+	float top = mix(top_left, top_right, blend.x);
+	float signed_noise = mix(bottom, top, blend.y);
+
+	// Gradient noise is centered on zero. Remap its practical range so the
+	// existing FBM and fire palette continue to operate around 0.5.
+	return clamp(0.5 + signed_noise * 0.70710678, 0.0, 1.0);
 }
 
 
@@ -76,7 +102,7 @@ float fbm(vec2 point) {
 	);
 
 	for (int octave = 0; octave < 5; octave++) {
-		result += value_noise(point) * amplitude;
+		result += gradient_noise(point) * amplitude;
 		point = octave_rotation * point * 2.03 + vec2(17.13, 9.71);
 		amplitude *= 0.50;
 	}
