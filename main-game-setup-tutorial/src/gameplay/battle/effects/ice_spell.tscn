@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dffhodi2knh0e"]
+
+[ext_resource type="Texture2D" uid="uid://bwoeltdx7rfou" path="res://assets/remove_TEMPORARY/Screenshot 2026-08-15 191447.png" id="1_4md1b"]
+
+[node name="IceSpell" type="Node2D" unique_id=174385664]
+
+[node name="DELETEME_Debug_Stuff" type="Node2D" parent="." unique_id=1278107644]
+position = Vector2(0, 109.055)
+
+[node name="ColorRect" type="ColorRect" parent="DELETEME_Debug_Stuff" unique_id=833196055]
+light_mask = 7
+offset_left = -160.0
+offset_top = -184.0
+offset_right = 160.0
+color = Color(0.12437358, 0.13571739, 0.20068827, 1)
+metadata/_edit_lock_ = true
+
+[node name="DELETEME_Debug_Camera" type="Camera2D" parent="DELETEME_Debug_Stuff" unique_id=935879595]
+position = Vector2(-160, -180)
+anchor_mode = 0
+zoom = Vector2(2, 2)
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="DELETEME_Debug_Stuff" unique_id=1548483881]
+custom_minimum_size = Vector2(320, 180)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -180.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_4md1b")
+expand_mode = 2
