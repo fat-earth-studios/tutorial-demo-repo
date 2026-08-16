@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://d12jrqqe5xuu8"]
 
 [ext_resource type="Shader" uid="uid://ct4vjfhgh8s02" path="res://src/gameplay/battle/effects/shaders/core_fireball.gdshader" id="1_7bhjk"]
+[ext_resource type="Script" uid="uid://ctjnyy80kqmqa" path="res://src/gameplay/battle/effects/hi_fireagara_four.gd" id="1_55drs"]
 [ext_resource type="Texture2D" uid="uid://bwoeltdx7rfou" path="res://assets/remove_TEMPORARY/Screenshot 2026-08-15 191447.png" id="1_fwu8p"]
 [ext_resource type="Shader" uid="uid://iv8hehtaism3" path="res://src/gameplay/battle/effects/shaders/fireball_corona.gdshader" id="1_ibq74"]
 [ext_resource type="Shader" uid="uid://dtae6d3iqmh6q" path="res://src/gameplay/battle/effects/shaders/compression_ring.gdshader" id="4_55drs"]
+[ext_resource type="Shader" uid="uid://drw2y7dditjm8" path="res://src/gameplay/battle/effects/shaders/fire_dome.gdshader" id="6_en2rx"]
+[ext_resource type="Texture2D" uid="uid://crk7rjiswk4t2" path="res://assets/art/spells/Dome_Sprite_Fire.png" id="7_1r3b5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bhjk"]
 shader = ExtResource("1_ibq74")
@@ -22,12 +25,12 @@ shader_parameter/edge_softness = 0.01
 shader_parameter/upward_bias = 0.800000038
 shader_parameter/tongue_sharpness = 1.65
 shader_parameter/corona_rotation = -2.21299979904561
-shader_parameter/rotation_speed = 0.16
+shader_parameter/rotation_speed = 1.1199999079097598
 shader_parameter/flow_speed = 0.48
 shader_parameter/angular_scale = 4.4
 shader_parameter/body_scale = 8.5
 shader_parameter/warp_strength = 0.6999999843536
-shader_parameter/heat = 0.2650000125875
+shader_parameter/heat = 0.0
 shader_parameter/intensity = 1.23999997228352
 shader_parameter/decay_edge_heat = 0.0
 shader_parameter/deep_red = Color(0.28, 0.003, 0.001, 1)
@@ -40,7 +43,7 @@ shader_parameter/white_hot_color = Color(1, 0.95, 0.68, 1)
 shader = ExtResource("1_7bhjk")
 shader_parameter/aspect_ratio = 1.0
 shader_parameter/radius = 0.24600001098648
-shader_parameter/collapsed_radius = 0.0010000000475
+shader_parameter/collapsed_radius = 0.0370000017575
 shader_parameter/collapse = 1.0
 shader_parameter/edge_softness = 0.012
 shader_parameter/edge_turbulence = 0.0450000021375
@@ -50,7 +53,7 @@ shader_parameter/rotation_speed = 0.22
 shader_parameter/flow_speed = 0.90999997965968
 shader_parameter/surface_scale = 3.1
 shader_parameter/warp_strength = 0.7999999821184
-shader_parameter/heat = 0.62
+shader_parameter/heat = 0.0
 shader_parameter/center_heat = 0.29
 shader_parameter/brightness = 3.999999910592
 shader_parameter/rim_strength = 0.3
@@ -76,7 +79,7 @@ shader_parameter/start_radius = 1.0
 shader_parameter/contact_radius = 0.08200000319648
 shader_parameter/collapsed_radius = 0.018
 shader_parameter/aspect_ratio = 1.0
-shader_parameter/ring_half_width = 0.055000002612499994
+shader_parameter/ring_half_width = 0.0050000002375
 shader_parameter/edge_softness = 0.05000000074506
 shader_parameter/distortion_strength = 0.0090000004275
 shader_parameter/distortion_scale = 5.2
@@ -88,8 +91,18 @@ shader_parameter/edge_color = Color(0.4, 0.008, 0.002, 0.6)
 shader_parameter/colored_edge_width = 0.007
 shader_parameter/colored_edge_strength = 0.42
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_en2rx"]
+shader = ExtResource("6_en2rx")
+shader_parameter/speed_px = 175.0
+shader_parameter/phase_px = 0.0
+shader_parameter/expansion = 0.0
+shader_parameter/lower_curve = 0.10000000405148
+shader_parameter/opacity = 0.814000038665
+shader_parameter/edge_softness = 7.0
+
 [sub_resource type="Animation" id="Animation_fwu8p"]
 length = 0.001
+step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -222,6 +235,126 @@ tracks/10/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FireBall/CoreBall:material:shader_parameter/aspect_ratio")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("FireBall/CoreBall:material:shader_parameter/center_heat")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.29]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("FireBall/CoreBall:material:shader_parameter/radius")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.24600001098648]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("FireBall/FlameCorona:material:shader_parameter/rotation_speed")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.1199999079097598]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("FireBall/FlameCorona:material:shader_parameter/warp_strength")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.6999999843536]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("FireBall/CoreBall:material:shader_parameter/heat")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("FireBall/FlameCorona:material:shader_parameter/core_radius")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.155]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/expansion")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/lower_curve")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.10000000405148]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/speed_px")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [175.0]
+}
 
 [sub_resource type="Animation" id="Animation_55drs"]
 resource_name = "explosion"
@@ -234,10 +367,10 @@ tracks/0/path = NodePath("FireBall/CoreBall:material:shader_parameter/collapse")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23333335, 0.43333337, 0.5),
-"transitions": PackedFloat32Array(2, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.23333335, 1.0833334, 1.1333333, 1.2),
+"transitions": PackedFloat32Array(2, 1, 2, 1, 1),
 "update": 0,
-"values": [1.0, 0.0, 0.0, 1.0]
+"values": [1.0, 0.0, 0.0, 1.0, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -246,10 +379,10 @@ tracks/1/path = NodePath("FireBall/CoreBall:material:shader_parameter/opacity")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.23333335),
-"transitions": PackedFloat32Array(2, 1),
+"times": PackedFloat32Array(0, 0.23333335, 1.2, 2),
+"transitions": PackedFloat32Array(2, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.0, 1.0, 1.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -258,10 +391,10 @@ tracks/2/path = NodePath("FireBall/CoreBall:material:shader_parameter/brightness
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.23333335),
-"transitions": PackedFloat32Array(1, 2, 1),
+"times": PackedFloat32Array(0, 0.15, 0.23333335, 0.6666667, 1, 1.1333334, 1.2),
+"transitions": PackedFloat32Array(1, 2, 1, 4.5, 1, 1, 1),
 "update": 0,
-"values": [3.999999910592, 3.999999910592, 1.18]
+"values": [3.999999910592, 3.999999910592, 1.18, 1.1799999999999997, 3.999999910592, 3.999999910592, 0.48999998904752]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -270,10 +403,10 @@ tracks/3/path = NodePath("FireBall:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.23333333, 0.36666667),
-"transitions": PackedFloat32Array(2, 2, 1),
+"times": PackedFloat32Array(0, 0.23333333, 0.41666666, 1),
+"transitions": PackedFloat32Array(2, 0.5, 1, 1),
 "update": 0,
-"values": [0.0, -44.0, -36.0]
+"values": [0.0, -44.0, -38.0, -40.79]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -282,10 +415,10 @@ tracks/4/path = NodePath("FireBall/FlameCorona:material:shader_parameter/compres
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.4166667, 0.5),
-"transitions": PackedFloat32Array(2, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.26666668, 0.4166667, 1, 1.1333333, 1.2),
+"transitions": PackedFloat32Array(2, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [1.0, 0.0, 0.0, 1.0]
+"values": [1.0, 0.0, 0.0, 0.0, 1.0, 0.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -294,10 +427,10 @@ tracks/5/path = NodePath("FireBall/FlameCorona:material:shader_parameter/opacity
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.26666668),
-"transitions": PackedFloat32Array(2, 1),
+"times": PackedFloat32Array(0, 0.26666668, 1.2, 2),
+"transitions": PackedFloat32Array(2, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.0, 1.0, 0.9999999813735467, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -306,10 +439,10 @@ tracks/6/path = NodePath("FireBall/FlameCorona:material:shader_parameter/flame_l
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(2, 1),
 "update": 0,
-"values": [0.0530000025175, 0.18800000893]
+"values": [0.0530000025175, 0.202000009595]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -318,10 +451,10 @@ tracks/7/path = NodePath("FireBall/CollapseRing:material:shader_parameter/opacit
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.9166667, 0.96666664, 1.2),
+"transitions": PackedFloat32Array(1, 2, 2, 1),
 "update": 0,
-"values": [1.0]
+"values": [1.0, 0.0, 1.0, 0.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -330,10 +463,10 @@ tracks/8/path = NodePath("FireBall/CollapseRing:material:shader_parameter/approa
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.36666667, 0.5),
-"transitions": PackedFloat32Array(1, 2, 1),
+"times": PackedFloat32Array(0, 0.9166667, 0.96666664, 1.0833334, 1.1333333),
+"transitions": PackedFloat32Array(1, 2, 2, 2, 1),
 "update": 0,
-"values": [0.0, 0.0, 1.0]
+"values": [0.0, 0.0, 0.114000005415, 0.8190000389025, 1.0]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -342,10 +475,10 @@ tracks/9/path = NodePath("FireBall/FlameCorona:material:shader_parameter/decay")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.4166667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.4166667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.0, 1.0]
+"values": [0.0, 0.0]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -354,10 +487,130 @@ tracks/10/path = NodePath("FireBall/CollapseRing:material:shader_parameter/impac
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0.5, 0.53333336),
+"times": PackedFloat32Array(0.96666664, 1.0833334, 1.1333333),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FireBall/CoreBall:material:shader_parameter/aspect_ratio")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.99999991431732, 1.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("FireBall/CoreBall:material:shader_parameter/center_heat")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.75, 1, 1.1333334, 1.2),
+"transitions": PackedFloat32Array(4.5, 1, 1, 1),
+"update": 0,
+"values": [0.29, 0.80000001192093, 0.8000000119209301, 0.038000001805]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("FireBall/CoreBall:material:shader_parameter/radius")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.75, 1),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [0.24600001098648, 0.33100001502398]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("FireBall/FlameCorona:material:shader_parameter/rotation_speed")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.6666667, 1, 1.0833334, 1.1333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.1199999079097598, 2.9999998658880003, 2.9999998658880003, -6.7056e-08]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("FireBall/FlameCorona:material:shader_parameter/warp_strength")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.6666667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.6999999843536, 0.999999977648]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("FireBall/CoreBall:material:shader_parameter/heat")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.62, 0.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("FireBall/FlameCorona:material:shader_parameter/core_radius")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 1.0833334, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.155, 0.15500000666398, 0.11700000485898]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/expansion")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(1.1333334, 1.9999999),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/lower_curve")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(1.1333334, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.10000000405148, 0.40000000596046]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/speed_px")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(1.1333334, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [75.0, 75.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_en2rx"]
@@ -367,8 +620,10 @@ _data = {
 }
 
 [node name="HiFireagaraFour" type="Node2D" unique_id=2101529883]
+script = ExtResource("1_55drs")
 
 [node name="DELETEME_Debug_Stuff" type="Node2D" parent="." unique_id=166395086]
+position = Vector2(0, 109.055)
 
 [node name="ColorRect" type="ColorRect" parent="DELETEME_Debug_Stuff" unique_id=1900939138]
 light_mask = 7
@@ -391,10 +646,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -115.0
-offset_top = -124.0
-offset_right = 205.0
-offset_bottom = 56.0
+offset_left = -160.0
+offset_top = -180.0
+offset_right = 160.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("1_fwu8p")
@@ -439,14 +693,30 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ExpandingDome" type="Node2D" parent="." unique_id=1829498491]
+[node name="ExpandingDome" type="Node2D" parent="." unique_id=1973087249]
+position = Vector2(0, 56.000004)
+
+[node name="FireDome" type="TextureRect" parent="ExpandingDome" unique_id=204454252]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_en2rx")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -142.0
+offset_right = 240.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_1r3b5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1798243626]
 libraries/ = SubResource("AnimationLibrary_en2rx")
