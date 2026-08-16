@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://d12jrqqe5xuu8"]
 
 [ext_resource type="Shader" uid="uid://ct4vjfhgh8s02" path="res://src/gameplay/battle/effects/shaders/core_fireball.gdshader" id="1_7bhjk"]
+[ext_resource type="Texture2D" uid="uid://bwoeltdx7rfou" path="res://assets/remove_TEMPORARY/Screenshot 2026-08-15 191447.png" id="1_fwu8p"]
 [ext_resource type="Shader" uid="uid://iv8hehtaism3" path="res://src/gameplay/battle/effects/shaders/fireball_corona.gdshader" id="1_ibq74"]
+[ext_resource type="Shader" uid="uid://dtae6d3iqmh6q" path="res://src/gameplay/battle/effects/shaders/compression_ring.gdshader" id="4_55drs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bhjk"]
 shader = ExtResource("1_ibq74")
 shader_parameter/eruption = 1.0
 shader_parameter/compression = 0.0
-shader_parameter/decay = 0.0
-shader_parameter/opacity = 1.0
+shader_parameter/decay = 1.0
+shader_parameter/opacity = 0.0
 shader_parameter/aspect_ratio = 1.0
-shader_parameter/core_radius = 0.19200000842148
-shader_parameter/flame_length = 0.050000002375
+shader_parameter/core_radius = 0.155
+shader_parameter/flame_length = 0.18800000893
 shader_parameter/inner_overlap = 0.84
 shader_parameter/collapsed_inner_radius = 0.018
 shader_parameter/compressed_base_scale = 0.8
@@ -32,25 +34,25 @@ shader_parameter/deep_red = Color(0.28, 0.003, 0.001, 1)
 shader_parameter/red_color = Color(0.95, 0.025, 0.002, 1)
 shader_parameter/orange_color = Color(1, 0.2, 0.006, 1)
 shader_parameter/yellow_color = Color(1, 0.68, 0.035, 1)
-shader_parameter/white_hot_color = Color(0, 0.98400563, 1, 1)
+shader_parameter/white_hot_color = Color(1, 0.95, 0.68, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7gsy3"]
 shader = ExtResource("1_7bhjk")
 shader_parameter/aspect_ratio = 1.0
-shader_parameter/radius = 0.31
+shader_parameter/radius = 0.24600001098648
 shader_parameter/collapsed_radius = 0.0010000000475
-shader_parameter/collapse = 0.0
+shader_parameter/collapse = 1.0
 shader_parameter/edge_softness = 0.012
 shader_parameter/edge_turbulence = 0.0450000021375
-shader_parameter/opacity = 1.0
+shader_parameter/opacity = 0.0
 shader_parameter/surface_rotation = 0.0
 shader_parameter/rotation_speed = 0.22
-shader_parameter/flow_speed = 0.24
+shader_parameter/flow_speed = 0.90999997965968
 shader_parameter/surface_scale = 3.1
-shader_parameter/warp_strength = 0.2
+shader_parameter/warp_strength = 0.7999999821184
 shader_parameter/heat = 0.62
 shader_parameter/center_heat = 0.29
-shader_parameter/brightness = 1.18
+shader_parameter/brightness = 3.999999910592
 shader_parameter/rim_strength = 0.3
 shader_parameter/deep_color = Color(0.18, 0.005, 0.002, 1)
 shader_parameter/red_color = Color(0.82, 0.035, 0.006, 1)
@@ -60,15 +62,316 @@ shader_parameter/white_hot_color = Color(1, 0.97, 0.72, 1)
 shader_parameter/rim_color = Color(1, 0.5, 0.035, 1)
 shader_parameter/glow_width = 0.025
 shader_parameter/glow_strength = 0.28
-shader_parameter/glow_color = Color(1, 0.9362209, 0.012920001, 1)
+shader_parameter/glow_color = Color(1, 0.32, 0.015, 1)
 shader_parameter/dissolve = 0.0
 shader_parameter/dissolve_edge_heat = 0.9
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uviv1"]
+shader = ExtResource("4_55drs")
+shader_parameter/approach = 0.0
+shader_parameter/impact = 1.0
+shader_parameter/opacity = 1.0
+shader_parameter/approach_curve = 0.25
+shader_parameter/start_radius = 1.0
+shader_parameter/contact_radius = 0.08200000319648
+shader_parameter/collapsed_radius = 0.018
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/ring_half_width = 0.055000002612499994
+shader_parameter/edge_softness = 0.05000000074506
+shader_parameter/distortion_strength = 0.0090000004275
+shader_parameter/distortion_scale = 5.2
+shader_parameter/ring_rotation = 0.0
+shader_parameter/rotation_speed = 0.2
+shader_parameter/distortion_speed = 0.28
+shader_parameter/ring_color = Color(0.002, 0.001, 0.003, 0.98)
+shader_parameter/edge_color = Color(0.4, 0.008, 0.002, 0.6)
+shader_parameter/colored_edge_width = 0.007
+shader_parameter/colored_edge_strength = 0.42
+
+[sub_resource type="Animation" id="Animation_fwu8p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireBall/CoreBall:material:shader_parameter/collapse")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireBall/CoreBall:material:shader_parameter/opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FireBall/CoreBall:material:shader_parameter/brightness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.999999910592]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FireBall:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FireBall/FlameCorona:material:shader_parameter/compression")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FireBall/FlameCorona:material:shader_parameter/opacity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FireBall/FlameCorona:material:shader_parameter/flame_length")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.18800000893]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FireBall/CollapseRing:material:shader_parameter/opacity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FireBall/CollapseRing:material:shader_parameter/approach")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FireBall/FlameCorona:material:shader_parameter/decay")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FireBall/CollapseRing:material:shader_parameter/impact")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_55drs"]
+resource_name = "explosion"
+length = 4.000001875283011
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireBall/CoreBall:material:shader_parameter/collapse")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333335, 0.43333337, 0.5),
+"transitions": PackedFloat32Array(2, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireBall/CoreBall:material:shader_parameter/opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333335),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FireBall/CoreBall:material:shader_parameter/brightness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.23333335),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [3.999999910592, 3.999999910592, 1.18]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FireBall:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(2, 2, 1),
+"update": 0,
+"values": [0.0, -44.0, -36.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FireBall/FlameCorona:material:shader_parameter/compression")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.4166667, 0.5),
+"transitions": PackedFloat32Array(2, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FireBall/FlameCorona:material:shader_parameter/opacity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FireBall/FlameCorona:material:shader_parameter/flame_length")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.0530000025175, 0.18800000893]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FireBall/CollapseRing:material:shader_parameter/opacity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FireBall/CollapseRing:material:shader_parameter/approach")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.5),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FireBall/FlameCorona:material:shader_parameter/decay")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.4166667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FireBall/CollapseRing:material:shader_parameter/impact")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.5, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_en2rx"]
+_data = {
+&"RESET": SubResource("Animation_fwu8p"),
+&"explosion": SubResource("Animation_55drs")
+}
 
 [node name="HiFireagaraFour" type="Node2D" unique_id=2101529883]
 
 [node name="DELETEME_Debug_Stuff" type="Node2D" parent="." unique_id=166395086]
 
 [node name="ColorRect" type="ColorRect" parent="DELETEME_Debug_Stuff" unique_id=1900939138]
+light_mask = 7
 offset_left = -160.0
 offset_top = -184.0
 offset_right = 160.0
@@ -81,8 +384,23 @@ anchor_mode = 0
 zoom = Vector2(2, 2)
 metadata/_edit_lock_ = true
 
+[node name="TextureRect" type="TextureRect" parent="DELETEME_Debug_Stuff" unique_id=1036637642]
+custom_minimum_size = Vector2(320, 180)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -124.0
+offset_right = 205.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_fwu8p")
+expand_mode = 2
+
 [node name="FireBall" type="Node2D" parent="." unique_id=1306767581]
-position = Vector2(0, -48)
 
 [node name="FlameCorona" type="ColorRect" parent="FireBall" unique_id=53946814]
 material = SubResource("ShaderMaterial_7bhjk")
@@ -113,3 +431,22 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="CollapseRing" type="ColorRect" parent="FireBall" unique_id=218425955]
+material = SubResource("ShaderMaterial_uviv1")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExpandingDome" type="Node2D" parent="." unique_id=1829498491]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1798243626]
+libraries/ = SubResource("AnimationLibrary_en2rx")
