@@ -99,7 +99,7 @@ shader_parameter/extent_at_one = 0.8
 shader_parameter/speed_px = 75.0
 shader_parameter/phase_px = 0.0
 shader_parameter/lower_curve = 0.10000000405148
-shader_parameter/opacity = 0.814000038665
+shader_parameter/opacity = 0.0
 shader_parameter/edge_softness = 7.0
 
 [sub_resource type="Animation" id="Animation_fwu8p"]
@@ -348,7 +348,7 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("ExpandingDome/ColorRect:self_modulate")
+tracks/20/path = NodePath("ExpandingDome/EndFlash:self_modulate")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -367,7 +367,7 @@ tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.814000038665]
+"values": [0.0]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
@@ -380,6 +380,18 @@ tracks/22/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 56.000004)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("FireBall/CoreBall:material:shader_parameter/dissolve")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_55drs"]
@@ -405,10 +417,10 @@ tracks/1/path = NodePath("FireBall/CoreBall:material:shader_parameter/opacity")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.23333335, 1.2, 2),
-"transitions": PackedFloat32Array(2, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.23333335, 1.2, 1.8166667, 2),
+"transitions": PackedFloat32Array(2, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0, 1.0, 0.0]
+"values": [0.0, 1.0, 1.0, 1.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -420,7 +432,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.23333335, 0.6666667, 1, 1.1333334, 1.2),
 "transitions": PackedFloat32Array(1, 2, 1, 4.5, 1, 1, 1),
 "update": 0,
-"values": [3.999999910592, 3.999999910592, 1.18, 1.1799999999999997, 3.999999910592, 3.999999910592, 0.48999998904752]
+"values": [3.999999910592, 3.999999910592, 1.18, 1.1799999999999995, 3.999999910592, 3.999999910592, 0.48999998904752]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -456,7 +468,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 1.2, 2),
 "transitions": PackedFloat32Array(2, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0, 0.9999999813735467, 0.0]
+"values": [0.0, 1.0, 0.9999999813735468, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -501,10 +513,10 @@ tracks/9/path = NodePath("FireBall/FlameCorona:material:shader_parameter/decay")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.4166667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4166667, 1.45, 1.7333333),
+"transitions": PackedFloat32Array(1, 1, 2, 1),
 "update": 0,
-"values": [0.0, 0.0]
+"values": [0.0, 0.0, 0.0, 1.0]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -525,10 +537,10 @@ tracks/11/path = NodePath("FireBall/CoreBall:material:shader_parameter/aspect_ra
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.23333335),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.23333335, 1.2333333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [3.99999991431732, 1.0]
+"values": [3.99999991431732, 1.0, 1.0]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -549,10 +561,10 @@ tracks/13/path = NodePath("FireBall/CoreBall:material:shader_parameter/radius")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0.75, 1),
-"transitions": PackedFloat32Array(2.5, 1),
+"times": PackedFloat32Array(0.75, 1, 1.2, 1.6),
+"transitions": PackedFloat32Array(2.5, 1, 2, 1),
 "update": 0,
-"values": [0.24600001098648, 0.33100001502398]
+"values": [0.24600001098648, 0.33100001502398, 0.33100001502398, 0.5]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -629,12 +641,12 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("ExpandingDome/ColorRect:self_modulate")
+tracks/20/path = NodePath("ExpandingDome/EndFlash:self_modulate")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
 "times": PackedFloat32Array(0, 1.8, 1.95, 2.0333335, 2.0666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"transitions": PackedFloat32Array(1, 2, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 0.3882353, 0.3882353, 1), Color(1, 0.3882353, 0.3882353, 1), Color(1, 1, 1, 0)]
 }
@@ -645,10 +657,10 @@ tracks/21/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/opac
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0, 1.8000001, 1.95, 2.016667, 2.0333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.21666667, 0.65, 0.9166667, 1.8000001, 1.95, 2.016667, 2.0333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.814000038665, 0.814000038665, 1.0, 1.0, 0.0]
+"values": [0.0, 0.0, 0.0, 0.35987372581897675, 0.814000038665, 1.0, 1.0, 0.0]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
@@ -661,6 +673,18 @@ tracks/22/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 16), Vector2(0, 56)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("FireBall/CoreBall:material:shader_parameter/dissolve")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(1.2, 1.6666666),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_en2rx"]
@@ -703,6 +727,23 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("1_fwu8p")
 expand_mode = 2
+
+[node name="Background" type="Node2D" parent="." unique_id=1721051771]
+visible = false
+
+[node name="BackgroundWarp" type="ColorRect" parent="Background" unique_id=543350335]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -128.0
+offset_right = 256.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.52, 0, 0.043333415, 0.4509804)
 
 [node name="FireBall" type="Node2D" parent="." unique_id=1306767581]
 
@@ -769,7 +810,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("7_1r3b5")
 
-[node name="ColorRect" type="ColorRect" parent="ExpandingDome" unique_id=1049037459]
+[node name="EndFlash" type="ColorRect" parent="ExpandingDome" unique_id=1049037459]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
