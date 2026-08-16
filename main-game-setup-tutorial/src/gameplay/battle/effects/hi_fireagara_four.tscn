@@ -93,9 +93,11 @@ shader_parameter/colored_edge_strength = 0.42
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_en2rx"]
 shader = ExtResource("6_en2rx")
-shader_parameter/speed_px = 175.0
-shader_parameter/phase_px = 0.0
+shader_parameter/scroll_offset_px = 0.0
 shader_parameter/expansion = 0.0
+shader_parameter/extent_at_one = 0.8
+shader_parameter/speed_px = 75.0
+shader_parameter/phase_px = 0.0
 shader_parameter/lower_curve = 0.10000000405148
 shader_parameter/opacity = 0.814000038665
 shader_parameter/edge_softness = 7.0
@@ -334,26 +336,50 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/lower_curve")
+tracks/19/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/scroll_offset_px")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.10000000405148]
+"values": [0.0]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/speed_px")
+tracks/20/path = NodePath("ExpandingDome/ColorRect:self_modulate")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [175.0]
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/opacity")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.814000038665]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("ExpandingDome:position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 56.000004)]
 }
 
 [sub_resource type="Animation" id="Animation_55drs"]
@@ -586,31 +612,55 @@ tracks/18/keys = {
 "times": PackedFloat32Array(1.1333334, 1.9999999),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.0, 1.25]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/lower_curve")
+tracks/19/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/scroll_offset_px")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(1.1333334, 2),
+"times": PackedFloat32Array(1.1333334, 2.6666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.10000000405148, 0.40000000596046]
+"values": [0.0, 160.0]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/speed_px")
+tracks/20/path = NodePath("ExpandingDome/ColorRect:self_modulate")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(1.1333334, 2),
+"times": PackedFloat32Array(0, 1.8, 1.95, 2.0333335, 2.0666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 0.3882353, 0.3882353, 1), Color(1, 0.3882353, 0.3882353, 1), Color(1, 1, 1, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("ExpandingDome/FireDome:material:shader_parameter/opacity")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 1.8000001, 1.95, 2.016667, 2.0333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.814000038665, 0.814000038665, 1.0, 1.0, 0.0]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("ExpandingDome:position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(1.1333334, 1.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [75.0, 75.0]
+"values": [Vector2(0, 16), Vector2(0, 56)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_en2rx"]
@@ -711,12 +761,27 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -240.0
-offset_top = -142.0
-offset_right = 240.0
+offset_left = -160.0
+offset_top = -144.0
+offset_right = 160.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("7_1r3b5")
+
+[node name="ColorRect" type="ColorRect" parent="ExpandingDome" unique_id=1049037459]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -136.0
+offset_right = 184.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1798243626]
 libraries/ = SubResource("AnimationLibrary_en2rx")
