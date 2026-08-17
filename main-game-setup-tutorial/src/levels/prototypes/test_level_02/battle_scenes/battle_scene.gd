@@ -42,6 +42,8 @@ func _ready() -> void:
 	button_reset.pressed.connect(_on_button_reset_pressed)
 	button_fire.pressed.connect(_on_button_fire_pressed)
 
+	hi_fireagara_four.impact_moment.connect(_on_fire_impact)
+
 	play_battle_start_animation()
 
 
@@ -108,6 +110,12 @@ func _on_button_pressed() -> void:
 
 func _on_button_reset_pressed() -> void:
 	_reset_battle_view()
+	# DEBUG
+	bonfire.fire_is_out = false
 
 func _on_button_fire_pressed() -> void:
 	hi_fireagara_four.play_spell_animation()
+
+func _on_fire_impact() -> void:
+	bonfire.fire_is_out = true
+	print_debug("Battle Scene Received Impact")

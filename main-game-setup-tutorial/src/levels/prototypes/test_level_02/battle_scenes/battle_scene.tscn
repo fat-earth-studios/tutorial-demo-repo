@@ -192,9 +192,7 @@ frame = 7
 y_sort_enabled = true
 
 [node name="Bonfire" parent="Decorations" unique_id=290071149 instance=ExtResource("13_bk36e")]
-visible = false
 position = Vector2(320, 188)
-fire_is_out = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=201706541]
 position = Vector2(320, 180)

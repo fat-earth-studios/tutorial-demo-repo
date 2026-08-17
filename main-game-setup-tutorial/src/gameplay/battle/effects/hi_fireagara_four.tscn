@@ -785,6 +785,20 @@ tracks/25/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/26/type = "method"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath(".")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_signal_impact_moment"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_en2rx"]
 _data = {
@@ -941,4 +955,5 @@ grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1798243626]
 libraries/ = SubResource("AnimationLibrary_en2rx")
+autoplay = &"RESET"
 speed_scale = 0.6
