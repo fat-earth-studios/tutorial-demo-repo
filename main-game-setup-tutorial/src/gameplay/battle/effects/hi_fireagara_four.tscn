@@ -142,15 +142,16 @@ hue_variation_min = -2.2351742e-08
 hue_variation_max = 0.18999997
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_en2rx"]
+resource_local_to_scene = true
 shader = ExtResource("6_en2rx")
-shader_parameter/scroll_speed_px = Vector2(0, 75)
+shader_parameter/scroll_speed_px = Vector2(0, 76)
 shader_parameter/expansion = 0.0
 shader_parameter/extent_at_one = 0.8
 shader_parameter/speed_px = 75.0
 shader_parameter/phase_px = 0.0
-shader_parameter/lower_curve = 0.10000000405148
+shader_parameter/lower_curve = 0.30000001355148
 shader_parameter/opacity = 0.0
-shader_parameter/edge_softness = 7.0
+shader_parameter/edge_softness = 12.0
 
 [sub_resource type="Animation" id="Animation_fwu8p"]
 length = 0.001
@@ -722,7 +723,7 @@ tracks/20/keys = {
 "times": PackedFloat32Array(0, 0.21666667, 0.65, 0.9166667, 1.8000001, 1.95, 2.016667, 2.0333335),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.0, 0.35987372581897675, 0.814000038665, 1.0, 1.0, 0.0]
+"values": [0.0, 0.0, 0.0, 0.30000001425, 1.0, 1.0, 1.0, 0.0]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
@@ -908,6 +909,7 @@ process_material = SubResource("ParticleProcessMaterial_bpu6f")
 position = Vector2(0, 56.000004)
 
 [node name="FireDome" type="TextureRect" parent="ExpandingDome" unique_id=204454252]
+light_mask = 0
 texture_repeat = 2
 material = SubResource("ShaderMaterial_en2rx")
 anchors_preset = 7
@@ -915,10 +917,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -184.0
-offset_top = -144.0
-offset_right = 184.0
-offset_bottom = -2.0
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("7_1r3b5")

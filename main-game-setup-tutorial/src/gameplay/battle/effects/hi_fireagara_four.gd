@@ -6,7 +6,9 @@ extends Node2D
 func _ready() -> void:
 	pass
 
+	# DEBUG
 	#await get_tree().create_timer(1.0).timeout
+	#play_spell_animation()
 #
 	#animation_player.play(&"explosion")
 

@@ -192,6 +192,7 @@ frame = 7
 y_sort_enabled = true
 
 [node name="Bonfire" parent="Decorations" unique_id=290071149 instance=ExtResource("13_bk36e")]
+visible = false
 position = Vector2(320, 188)
 fire_is_out = true
 
@@ -209,7 +210,12 @@ color = Color(0.7254902, 0.7254902, 0.49019608, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1577943360]
 environment = SubResource("Environment_m7pbj")
 
-[node name="HiFireagaraFour" parent="Environment" unique_id=2101529883 instance=ExtResource("12_bk36e")]
+[node name="EffectLayer" type="CanvasLayer" parent="." unique_id=733418369]
+follow_viewport_enabled = true
+
+[node name="EffectRoot" type="Node2D" parent="EffectLayer" unique_id=1596927301]
+
+[node name="HiFireagaraFour" parent="EffectLayer/EffectRoot" unique_id=2101529883 instance=ExtResource("12_bk36e")]
 position = Vector2(320, 144)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1971302592]

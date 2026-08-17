@@ -29,8 +29,7 @@ var _transition_tween : Tween = null
 @onready var button_play  : Button = $CanvasLayer/ButtonPlay
 @onready var button_reset : Button = $CanvasLayer/ButtonReset
 @onready var button_fire: Button = $CanvasLayer/ButtonFire
-
-@onready var hi_fireagara_four: SpellBase = $Environment/HiFireagaraFour
+@onready var hi_fireagara_four: SpellBase = $EffectLayer/EffectRoot/HiFireagaraFour
 
 
 func _ready() -> void:
