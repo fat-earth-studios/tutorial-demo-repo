@@ -28,6 +28,9 @@ var _transition_tween : Tween = null
 # DEBUG - Buttons for replaying animation and resetting the view
 @onready var button_play  : Button = $CanvasLayer/ButtonPlay
 @onready var button_reset : Button = $CanvasLayer/ButtonReset
+@onready var button_fire: Button = $CanvasLayer/ButtonFire
+
+@onready var hi_fireagara_four: SpellBase = $Environment/HiFireagaraFour
 
 
 func _ready() -> void:
@@ -38,6 +41,7 @@ func _ready() -> void:
 	# DEBUG
 	button_play.pressed.connect(_on_button_pressed)
 	button_reset.pressed.connect(_on_button_reset_pressed)
+	button_fire.pressed.connect(_on_button_fire_pressed)
 
 	play_battle_start_animation()
 
@@ -105,3 +109,6 @@ func _on_button_pressed() -> void:
 
 func _on_button_reset_pressed() -> void:
 	_reset_battle_view()
+
+func _on_button_fire_pressed() -> void:
+	hi_fireagara_four.play_spell_animation()

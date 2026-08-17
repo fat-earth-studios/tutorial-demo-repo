@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://bfkx21s1mu6wb" path="res://src/levels/prototypes/test_level_02/battle_scenes/battle_scene_projection_transition.gdshader" id="6_dxd7o"]
 [ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="6_u3tai"]
 [ext_resource type="Texture2D" uid="uid://qsfdn2r31eme" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff.png" id="7_dxd7o"]
+[ext_resource type="PackedScene" uid="uid://d12jrqqe5xuu8" path="res://src/gameplay/battle/effects/hi_fireagara_four.tscn" id="12_bk36e"]
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
 
@@ -192,6 +193,7 @@ y_sort_enabled = true
 
 [node name="Bonfire" parent="Decorations" unique_id=290071149 instance=ExtResource("13_bk36e")]
 position = Vector2(320, 188)
+fire_is_out = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=201706541]
 position = Vector2(320, 180)
@@ -206,6 +208,9 @@ color = Color(0.7254902, 0.7254902, 0.49019608, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1577943360]
 environment = SubResource("Environment_m7pbj")
+
+[node name="HiFireagaraFour" parent="Environment" unique_id=2101529883 instance=ExtResource("12_bk36e")]
+position = Vector2(320, 144)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1971302592]
 
@@ -224,3 +229,11 @@ offset_right = 683.0
 offset_bottom = 32.0
 scale = Vector2(0.5, 0.5)
 text = "RESET"
+
+[node name="ButtonFire" type="Button" parent="CanvasLayer" unique_id=76585349]
+offset_left = 594.0
+offset_top = 36.0
+offset_right = 684.0
+offset_bottom = 67.0
+scale = Vector2(0.5, 0.5)
+text = "Explosion"
