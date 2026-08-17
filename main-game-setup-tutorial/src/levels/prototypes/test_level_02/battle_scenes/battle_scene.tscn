@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://bfkx21s1mu6wb" path="res://src/levels/prototypes/test_level_02/battle_scenes/battle_scene_projection_transition.gdshader" id="6_dxd7o"]
 [ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="6_u3tai"]
 [ext_resource type="Texture2D" uid="uid://qsfdn2r31eme" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff.png" id="7_dxd7o"]
+[ext_resource type="Texture2D" uid="uid://bon5bbdlt24ql" path="res://assets/remove_TEMPORARY/mountaintop_battle_ground_after_fire.png" id="9_bk36e"]
 [ext_resource type="PackedScene" uid="uid://d12jrqqe5xuu8" path="res://src/gameplay/battle/effects/hi_fireagara_four.tscn" id="12_bk36e"]
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
@@ -152,6 +153,18 @@ offset_right = 480.0
 offset_bottom = 270.0
 mouse_filter = 2
 texture = ExtResource("7_dxd7o")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="MainBattleArena2" type="TextureRect" parent="BattleArena" unique_id=1732326512]
+visible = false
+material = SubResource("ShaderMaterial_rh4jv")
+offset_left = 160.0
+offset_top = 90.0
+offset_right = 480.0
+offset_bottom = 270.0
+mouse_filter = 2
+texture = ExtResource("9_bk36e")
 expand_mode = 1
 stretch_mode = 3
 

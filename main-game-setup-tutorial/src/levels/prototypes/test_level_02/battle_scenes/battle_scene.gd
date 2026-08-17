@@ -31,6 +31,8 @@ var _transition_tween : Tween = null
 @onready var button_fire: Button = $CanvasLayer/ButtonFire
 @onready var hi_fireagara_four: SpellBase = $EffectLayer/EffectRoot/HiFireagaraFour
 
+# DEBUG
+@onready var main_battle_arena_2: TextureRect = $BattleArena/MainBattleArena2
 
 func _ready() -> void:
 	_arena_shader_material = main_battle_arena.material
@@ -38,6 +40,7 @@ func _ready() -> void:
 		push_error("Material was not found")
 
 	# DEBUG
+	main_battle_arena_2.visible = false
 	button_play.pressed.connect(_on_button_pressed)
 	button_reset.pressed.connect(_on_button_reset_pressed)
 	button_fire.pressed.connect(_on_button_fire_pressed)
@@ -112,10 +115,14 @@ func _on_button_reset_pressed() -> void:
 	_reset_battle_view()
 	# DEBUG
 	bonfire.fire_is_out = false
+	main_battle_arena.visible   = true
+	main_battle_arena_2.visible = false
 
 func _on_button_fire_pressed() -> void:
 	hi_fireagara_four.play_spell_animation()
 
 func _on_fire_impact() -> void:
 	bonfire.fire_is_out = true
+	main_battle_arena.visible   = false
+	main_battle_arena_2.visible = true
 	print_debug("Battle Scene Received Impact")
