@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="6_u3tai"]
 [ext_resource type="Texture2D" uid="uid://qsfdn2r31eme" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff.png" id="7_dxd7o"]
 [ext_resource type="Texture2D" uid="uid://bon5bbdlt24ql" path="res://assets/remove_TEMPORARY/mountaintop_battle_ground_after_fire.png" id="9_bk36e"]
-[ext_resource type="PackedScene" uid="uid://d12jrqqe5xuu8" path="res://src/gameplay/battle/spells/hi_fireagara_four.tscn" id="12_bk36e"]
+[ext_resource type="PackedScene" uid="uid://d12jrqqe5xuu8" path="res://src/gameplay/battle/spells/high_blaze.tscn" id="12_bk36e"]
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
 
@@ -88,6 +88,11 @@ reflected_light_source = 1
 glow_enabled = true
 adjustment_enabled = true
 adjustment_contrast = 1.1
+
+[sub_resource type="LabelSettings" id="LabelSettings_uviv1"]
+font_size = 10
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="BattleScene" type="Node2D" unique_id=283374901]
 script = ExtResource("1_umlov")
@@ -201,6 +206,9 @@ hframes = 3
 vframes = 3
 frame = 7
 
+[node name="MarkerEnemyActor1" type="Marker2D" parent="BattleActorsEnemies" unique_id=481901105]
+position = Vector2(319, 140)
+
 [node name="Decorations" type="Node2D" parent="." unique_id=1945664659]
 y_sort_enabled = true
 
@@ -226,7 +234,7 @@ follow_viewport_enabled = true
 
 [node name="EffectRoot" type="Node2D" parent="EffectLayer" unique_id=1596927301]
 
-[node name="HiFireagaraFour" parent="EffectLayer/EffectRoot" unique_id=2101529883 instance=ExtResource("12_bk36e")]
+[node name="HighBlaze" parent="EffectLayer/EffectRoot" unique_id=2101529883 instance=ExtResource("12_bk36e")]
 position = Vector2(320, 144)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1971302592]
@@ -254,3 +262,17 @@ offset_right = 684.0
 offset_bottom = 67.0
 scale = Vector2(0.5, 0.5)
 text = "Explosion"
+
+[node name="BattleUI" type="CanvasLayer" parent="." unique_id=1330440346]
+follow_viewport_enabled = true
+
+[node name="DamageNumberRoot" type="Node2D" parent="BattleUI" unique_id=1032776495]
+
+[node name="LabelDamageText" type="Label" parent="BattleUI" unique_id=530676480]
+modulate = Color(1, 1, 1, 0)
+offset_left = 308.0
+offset_top = 123.0
+offset_right = 360.0
+offset_bottom = 147.0
+text = "9,001"
+label_settings = SubResource("LabelSettings_uviv1")

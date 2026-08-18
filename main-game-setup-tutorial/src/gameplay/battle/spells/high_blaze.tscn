@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d12jrqqe5xuu8"]
 
 [ext_resource type="Shader" uid="uid://ct4vjfhgh8s02" path="res://src/gameplay/battle/spells/shaders/core_fireball.gdshader" id="1_7bhjk"]
-[ext_resource type="Script" uid="uid://ctjnyy80kqmqa" path="res://src/gameplay/battle/spells/hi_fireagara_four.gd" id="1_55drs"]
+[ext_resource type="Script" uid="uid://ctjnyy80kqmqa" path="res://src/gameplay/battle/spells/high_blaze.gd" id="1_55drs"]
 [ext_resource type="Shader" uid="uid://iv8hehtaism3" path="res://src/gameplay/battle/spells/shaders/fireball_corona.gdshader" id="1_ibq74"]
 [ext_resource type="Shader" uid="uid://c8aa2q21r7y11" path="res://src/gameplay/battle/spells/shaders/screen_haze.gdshader" id="3_pnnph"]
 [ext_resource type="Shader" uid="uid://dtae6d3iqmh6q" path="res://src/gameplay/battle/spells/shaders/compression_ring.gdshader" id="4_55drs"]
@@ -708,7 +708,7 @@ tracks/18/keys = {
 "times": PackedFloat32Array(1.8833333, 3.3333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.25]
+"values": [0.0, 1.2400000589]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
@@ -732,7 +732,7 @@ tracks/20/keys = {
 "times": PackedFloat32Array(0, 1.0666667, 1.5166667, 3, 3.2333333, 3.3333333, 3.3666666),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.30000001425, 1.0, 1.0, 1.0, 0.0]
+"values": [0.0, 0.0, 0.30000001425, 0.70000003325, 1.0, 1.0, 0.0]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
@@ -830,7 +830,7 @@ _data = {
 &"explosion": SubResource("Animation_55drs")
 }
 
-[node name="HiFireagaraFour" type="Node2D" unique_id=2101529883]
+[node name="HighBlaze" type="Node2D" unique_id=2101529883]
 script = ExtResource("1_55drs")
 metadata/_edit_vertical_guides_ = [160.0, -160.0]
 

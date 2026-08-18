@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cny6a4kxbq2gj"
-path="res://.godot/imported/Ice_Spell_NORMAL.png-e06e55f4001a4ce5abfa8169195f5982.ctex"
+uid="uid://d32sp6m8jk4hq"
+path="res://.godot/imported/Ice_Spell_Broken.png-32401a762c1c612da39d0d7289f5303d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/spells/Ice_Spell_NORMAL.png"
-dest_files=["res://.godot/imported/Ice_Spell_NORMAL.png-e06e55f4001a4ce5abfa8169195f5982.ctex"]
+source_file="res://assets/art/spells/Ice_Spell_Broken.png"
+dest_files=["res://.godot/imported/Ice_Spell_Broken.png-32401a762c1c612da39d0d7289f5303d.ctex"]
 
 [params]
 

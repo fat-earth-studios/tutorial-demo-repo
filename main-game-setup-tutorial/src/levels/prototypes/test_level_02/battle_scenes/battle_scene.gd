@@ -17,6 +17,9 @@ var _arena_shader_material : ShaderMaterial = null  ## Shader Material used to t
 
 var _transition_tween : Tween = null
 
+# DEBUG - temp to test impact
+var _DEBUG_dmg_tween : Tween = null
+
 @onready var main_battle_arena     : TextureRect = $BattleArena/MainBattleArena
 
 @onready var battle_actors_party   : Node2D = $BattleActorsParty
@@ -29,10 +32,14 @@ var _transition_tween : Tween = null
 @onready var button_play  : Button = $CanvasLayer/ButtonPlay
 @onready var button_reset : Button = $CanvasLayer/ButtonReset
 @onready var button_fire: Button = $CanvasLayer/ButtonFire
-@onready var hi_fireagara_four: SpellBase = $EffectLayer/EffectRoot/HiFireagaraFour
+@onready var high_blaze: HighBlaze = $EffectLayer/EffectRoot/HighBlaze
 
 # DEBUG
 @onready var main_battle_arena_2: TextureRect = $BattleArena/MainBattleArena2
+
+# DEBUG Hard coded label, need to separate out
+@onready var label_damage_text: Label = $BattleUI/LabelDamageText
+@onready var marker_enemy_actor_1: Marker2D = $BattleActorsEnemies/MarkerEnemyActor1
 
 func _ready() -> void:
 	_arena_shader_material = main_battle_arena.material
@@ -45,7 +52,7 @@ func _ready() -> void:
 	button_reset.pressed.connect(_on_button_reset_pressed)
 	button_fire.pressed.connect(_on_button_fire_pressed)
 
-	hi_fireagara_four.impact_moment.connect(_on_fire_impact)
+	high_blaze.impact_moment.connect(_on_fire_impact)
 
 	play_battle_start_animation()
 
@@ -100,6 +107,32 @@ func _set_shader_progress(progress : float) -> void:
 #func _update_battle_actors(progress : float) -> void:
 	#var actor_progress : float = clampf(remap(progress, 0.15, 0.85, 0.0, 1.0), 0.0, 1.0)
 
+# DEBUG - Move into own component
+func show_damage_text(amount: int, duration: float = 2.0) -> void:
+	if _DEBUG_dmg_tween:
+		_DEBUG_dmg_tween.kill()
+
+
+	var text_position : Vector2 = marker_enemy_actor_1.global_position
+	var text_start_position : Vector2  = text_position - Vector2(0.0, 8.0)
+	var text_end_position_y   : float  = text_position.y
+
+	label_damage_text.text = str(amount)
+	label_damage_text.modulate.a = 1.0
+	label_damage_text.global_position = text_start_position
+
+	_DEBUG_dmg_tween= get_tree().create_tween()
+	_DEBUG_dmg_tween.set_parallel(true)
+	_DEBUG_dmg_tween.tween_property(
+		label_damage_text, 'global_position:y', text_end_position_y, duration
+	).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
+	_DEBUG_dmg_tween.tween_property(
+		label_damage_text, 'modulate:a', 0.0, duration).set_delay(0.5)
+
+
+
+# END DEBUG damage text
 
 func _reset_battle_view() -> void:
 	battle_actors_party.position.y   = 0.0
@@ -119,9 +152,10 @@ func _on_button_reset_pressed() -> void:
 	main_battle_arena_2.visible = false
 
 func _on_button_fire_pressed() -> void:
-	hi_fireagara_four.play_spell_animation()
+	high_blaze.play_spell_animation()
 
 func _on_fire_impact() -> void:
 	bonfire.fire_is_out = true
 	main_battle_arena.visible   = false
 	main_battle_arena_2.visible = true
+	show_damage_text(9001)
