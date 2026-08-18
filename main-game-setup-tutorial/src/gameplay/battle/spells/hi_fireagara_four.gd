@@ -20,5 +20,4 @@ func play_spell_animation() -> void:
 	animation_player.play(&"explosion")
 
 func _signal_impact_moment() -> void:
-	print_debug("Impact happened now")
 	impact_moment.emit()

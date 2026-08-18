@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://d12jrqqe5xuu8"]
 
-[ext_resource type="Shader" uid="uid://ct4vjfhgh8s02" path="res://src/gameplay/battle/effects/shaders/core_fireball.gdshader" id="1_7bhjk"]
-[ext_resource type="Script" uid="uid://ctjnyy80kqmqa" path="res://src/gameplay/battle/effects/hi_fireagara_four.gd" id="1_55drs"]
-[ext_resource type="Texture2D" uid="uid://bwoeltdx7rfou" path="res://assets/remove_TEMPORARY/Screenshot 2026-08-15 191447.png" id="1_fwu8p"]
-[ext_resource type="Shader" uid="uid://iv8hehtaism3" path="res://src/gameplay/battle/effects/shaders/fireball_corona.gdshader" id="1_ibq74"]
-[ext_resource type="Shader" uid="uid://c8aa2q21r7y11" path="res://src/gameplay/battle/effects/shaders/screen_haze.gdshader" id="3_pnnph"]
-[ext_resource type="Shader" uid="uid://dtae6d3iqmh6q" path="res://src/gameplay/battle/effects/shaders/compression_ring.gdshader" id="4_55drs"]
-[ext_resource type="Shader" uid="uid://drw2y7dditjm8" path="res://src/gameplay/battle/effects/shaders/fire_dome.gdshader" id="6_en2rx"]
+[ext_resource type="Shader" uid="uid://ct4vjfhgh8s02" path="res://src/gameplay/battle/spells/shaders/core_fireball.gdshader" id="1_7bhjk"]
+[ext_resource type="Script" uid="uid://ctjnyy80kqmqa" path="res://src/gameplay/battle/spells/hi_fireagara_four.gd" id="1_55drs"]
+[ext_resource type="Shader" uid="uid://iv8hehtaism3" path="res://src/gameplay/battle/spells/shaders/fireball_corona.gdshader" id="1_ibq74"]
+[ext_resource type="Shader" uid="uid://c8aa2q21r7y11" path="res://src/gameplay/battle/spells/shaders/screen_haze.gdshader" id="3_pnnph"]
+[ext_resource type="Shader" uid="uid://dtae6d3iqmh6q" path="res://src/gameplay/battle/spells/shaders/compression_ring.gdshader" id="4_55drs"]
+[ext_resource type="Shader" uid="uid://drw2y7dditjm8" path="res://src/gameplay/battle/spells/shaders/fire_dome.gdshader" id="6_en2rx"]
 [ext_resource type="Texture2D" uid="uid://crk7rjiswk4t2" path="res://assets/art/spells/Dome_Sprite_Fire.png" id="7_1r3b5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tlntq"]
@@ -124,17 +123,15 @@ fill_from = Vector2(0.5, 0.5)
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 1, 1)
 emission_shape = 3
-emission_box_extents = Vector3(24, 48, 1)
+emission_box_extents = Vector3(34, 52, 1)
 direction = Vector3(1, -1, 0)
 initial_velocity_min = 2.0
-initial_velocity_max = 2.0
-gravity = Vector3(0, -1.5, 0)
-linear_accel_min = -2.2351742e-06
+initial_velocity_max = 3.0
+gravity = Vector3(0, -3, 0)
+linear_accel_min = 0.99999774
 linear_accel_max = 3.9999976
 radial_accel_min = -2.0000021
 radial_accel_max = 1.9999977
-damping_min = 1.0
-damping_max = 1.4000001
 scale_min = 0.01
 scale_max = 0.03
 color = Color(1.5720325, 1.5720325, 1.5720325, 1)
@@ -468,6 +465,18 @@ tracks/25/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Particles/GPUParticles2D:self_modulate")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.8247963, 0.60199416, 0.16877277, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_55drs"]
 resource_name = "explosion"
@@ -769,7 +778,7 @@ tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
 "times": PackedFloat32Array(2.0333335, 4),
-"transitions": PackedFloat32Array(2, 1),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [1.0, 0.0]
 }
@@ -780,7 +789,7 @@ tracks/25/path = NodePath("Particles/GPUParticles2D:emitting")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
-"times": PackedFloat32Array(0, 1.1666667, 2.0333335),
+"times": PackedFloat32Array(0, 1.8, 2.0333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -799,6 +808,18 @@ tracks/26/keys = {
 "method": &"_signal_impact_moment"
 }]
 }
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Particles/GPUParticles2D:self_modulate")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0, 3.3333333, 4),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Color(1.8247963, 0.60199416, 0.16877277, 1), Color(1.8247963, 0.60199416, 0.16877277, 1), Color(1.8247963, 0.60124344, 0.1680183, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_en2rx"]
 _data = {
@@ -808,39 +829,7 @@ _data = {
 
 [node name="HiFireagaraFour" type="Node2D" unique_id=2101529883]
 script = ExtResource("1_55drs")
-
-[node name="DELETEME_Debug_Stuff" type="Node2D" parent="." unique_id=166395086]
-visible = false
-position = Vector2(0, 109.055)
-
-[node name="ColorRect" type="ColorRect" parent="DELETEME_Debug_Stuff" unique_id=1900939138]
-light_mask = 7
-offset_left = -160.0
-offset_top = -184.0
-offset_right = 160.0
-color = Color(0.12437358, 0.13571739, 0.20068827, 1)
-metadata/_edit_lock_ = true
-
-[node name="DELETEME_Debug_Camera" type="Camera2D" parent="DELETEME_Debug_Stuff" unique_id=1022827250]
-position = Vector2(-160, -180)
-anchor_mode = 0
-zoom = Vector2(2, 2)
-metadata/_edit_lock_ = true
-
-[node name="TextureRect" type="TextureRect" parent="DELETEME_Debug_Stuff" unique_id=1036637642]
-custom_minimum_size = Vector2(320, 180)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -180.0
-offset_right = 160.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("1_fwu8p")
-expand_mode = 2
+metadata/_edit_vertical_guides_ = [160.0, -160.0]
 
 [node name="Background" type="Node2D" parent="." unique_id=1721051771]
 
@@ -909,12 +898,14 @@ grow_vertical = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Particles" unique_id=433262771]
 self_modulate = Color(1.8247963, 0.60199416, 0.16877277, 1)
-light_mask = 33
+light_mask = 37
 position = Vector2(0, 4)
 emitting = false
-amount = 256
+amount = 328
 texture = SubResource("GradientTexture2D_pnnph")
 lifetime = 4.0
+interp_to_end = 1.0
+explosiveness = 1.0
 randomness = 0.7
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_bpu6f")

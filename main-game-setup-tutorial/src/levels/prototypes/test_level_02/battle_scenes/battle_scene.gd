@@ -125,4 +125,3 @@ func _on_fire_impact() -> void:
 	bonfire.fire_is_out = true
 	main_battle_arena.visible   = false
 	main_battle_arena_2.visible = true
-	print_debug("Battle Scene Received Impact")
