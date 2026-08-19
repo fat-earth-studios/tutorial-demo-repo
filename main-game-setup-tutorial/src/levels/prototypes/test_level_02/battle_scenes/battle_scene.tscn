@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d12jrqqe5xuu8" path="res://src/gameplay/battle/spells/high_blaze.tscn" id="12_bk36e"]
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
+[ext_resource type="PackedScene" uid="uid://dffhodi2knh0e" path="res://src/gameplay/battle/spells/ice_spell.tscn" id="14_u3tai"]
 
 [sub_resource type="Gradient" id="Gradient_t2okm"]
 offsets = PackedFloat32Array(0.19620253, 0.33966243, 0.6772152)
@@ -237,6 +238,9 @@ follow_viewport_enabled = true
 [node name="HighBlaze" parent="EffectLayer/EffectRoot" unique_id=2101529883 instance=ExtResource("12_bk36e")]
 position = Vector2(320, 144)
 
+[node name="IceSpell" parent="EffectLayer/EffectRoot" unique_id=174385664 instance=ExtResource("14_u3tai")]
+position = Vector2(320, 144)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1971302592]
 
 [node name="ButtonPlay" type="Button" parent="CanvasLayer" unique_id=1951941891]
@@ -262,6 +266,15 @@ offset_right = 684.0
 offset_bottom = 67.0
 scale = Vector2(0.5, 0.5)
 text = "Explosion"
+
+[node name="ButtonIce" type="Button" parent="CanvasLayer" unique_id=385391369]
+offset_left = 594.0
+offset_top = 53.0
+offset_right = 684.0
+offset_bottom = 84.0
+scale = Vector2(0.5, 0.5)
+text = "Chill
+"
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=1330440346]
 follow_viewport_enabled = true

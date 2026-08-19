@@ -220,6 +220,7 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 
 [node name="TestLevel_02" type="Node2D" unique_id=1412663455]
+y_sort_enabled = true
 script = ExtResource("1_80iu8")
 
 [node name="BackBackground" type="CanvasLayer" parent="." unique_id=1053035492]
@@ -358,6 +359,7 @@ tile_map_data = PackedByteArray("AAATAA0AAAAHAAMAAAAUAA0AAAAHAAMAAAAVAA0AAAAHAAM
 tile_set = ExtResource("12_t2okm")
 
 [node name="LevelObjects" type="Node2D" parent="." unique_id=132771634]
+y_sort_enabled = true
 
 [node name="Bonfire" parent="LevelObjects" unique_id=1121218955 instance=ExtResource("10_80iu8")]
 position = Vector2(320, 192)
@@ -368,7 +370,6 @@ limit_left = 0
 limit_top = 0
 limit_right = 640
 limit_bottom = 360
-dont_follow_target = true
 
 [node name="PlayerSpawn" parent="LevelObjects" unique_id=1487922808 instance=ExtResource("13_80iu8")]
 position = Vector2(419, 187)

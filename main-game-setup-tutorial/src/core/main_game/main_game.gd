@@ -5,7 +5,7 @@ extends Node
 
 # FUTURE (main menu): Load test level for prototype
 const TEST_LEVEL_02    : String =  "uid://kikf44gko1yv"
-const TEST_LEVEL_03  : String = ("uid://be8ai3x7gg6h4")
+const TEST_LEVEL_03    : String = ("uid://be8ai3x7gg6h4")
 const PLAYER_SCENE_UID : String =  "uid://bk2cu2ameptuy"
 
 var player : Player = null

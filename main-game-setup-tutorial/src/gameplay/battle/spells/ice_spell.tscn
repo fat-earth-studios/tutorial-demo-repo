@@ -4,6 +4,50 @@
 [ext_resource type="Script" uid="uid://cctgrenm8ng0e" path="res://src/gameplay/battle/spells/ice_spell.gd" id="1_c6wv0"]
 [ext_resource type="Texture2D" uid="uid://crq8be2jcuo02" path="res://assets/art/spells/Ice_Spell.png" id="3_kox24"]
 
+[sub_resource type="Gradient" id="Gradient_kox24"]
+offsets = PackedFloat32Array(0, 0.45564517)
+colors = PackedColorArray(1.6852883, 1.6852883, 1.6852883, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4nlp0"]
+gradient = SubResource("Gradient_kox24")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7if1x"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 1, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, -64, 0)
+radial_accel_min = -8.000002
+radial_accel_max = -8.000002
+scale_min = 0.01
+scale_max = 0.049999997
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h42d7"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 1, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, -1, 0)
+spread = 32.0
+initial_velocity_min = 56.6
+initial_velocity_max = 94.34
+gravity = Vector3(0, 98, 0)
+scale_min = 0.01
+scale_max = 0.049999997
+
 [sub_resource type="Animation" id="Animation_kox24"]
 length = 0.001
 tracks/0/type = "value"
@@ -30,9 +74,58 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0.7, 0.7)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Particles/GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Particles/GPUParticles2D2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IceVisual/FullIce:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ScreenFlash/ColorRect:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_7if1x"]
 resource_name = "play_spell"
+length = 3.000001823128946
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -41,7 +134,7 @@ tracks/0/path = NodePath("IceVisual/FullIce:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.53333336, 0.5833333, 0.6666667),
+"times": PackedFloat32Array(0.13333334, 1, 1.05, 1.3333334),
 "transitions": PackedFloat32Array(0.5, 1, 2, 1),
 "update": 0,
 "values": [Vector2(0, -8), Vector2(0, -32), Vector2(0, -32), Vector2(0, 0)]
@@ -53,10 +146,75 @@ tracks/1/path = NodePath("IceVisual/FullIce:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(2, 1),
+"times": PackedFloat32Array(0.13333334, 0.96666664, 2.3666666, 3),
+"transitions": PackedFloat32Array(2, 1, 2, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0.7, 0.7)]
+"values": [Vector2(0, 0), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.4, 0.4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Particles/GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.016666668, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Particles/GPUParticles2D2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.3333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3333334, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_signal_impact_moment"
+}, {
+"args": [],
+"method": &"_emit_spell_animation_finished"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("IceVisual/FullIce:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.3666666, 3),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.83137256), Color(1, 1, 1, 0.83137256), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ScreenFlash/ColorRect:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.2666667, 1.3333334, 1.3666667, 1.4),
+"transitions": PackedFloat32Array(1, 2, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.2509804), Color(1, 1, 1, 0.2509804), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hdqy5"]
@@ -69,6 +227,7 @@ _data = {
 script = ExtResource("1_c6wv0")
 
 [node name="DELETEME_Debug_Stuff" type="Node2D" parent="." unique_id=1278107644]
+visible = false
 position = Vector2(0, 109.055)
 
 [node name="ColorRect" type="ColorRect" parent="DELETEME_Debug_Stuff" unique_id=833196055]
@@ -103,10 +262,50 @@ expand_mode = 2
 [node name="IceVisual" type="Node2D" parent="." unique_id=1852296939]
 
 [node name="FullIce" type="Sprite2D" parent="IceVisual" unique_id=214165888]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 2
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_kox24")
 centered = false
 offset = Vector2(-32, -98)
 
+[node name="Particles" type="Node2D" parent="." unique_id=1171831460]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Particles" unique_id=1190770367]
+emitting = false
+amount = 32
+texture = SubResource("GradientTexture2D_4nlp0")
+lifetime = 4.0
+preprocess = 1.0
+process_material = SubResource("ParticleProcessMaterial_7if1x")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Particles" unique_id=512275212]
+emitting = false
+amount = 64
+texture = SubResource("GradientTexture2D_4nlp0")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_h42d7")
+
+[node name="ScreenFlash" type="Node2D" parent="." unique_id=1129840402]
+
+[node name="ColorRect" type="ColorRect" parent="ScreenFlash" unique_id=1498627904]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -112.0
+offset_right = 208.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.7294118, 1, 1)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=150385808]
 libraries/ = SubResource("AnimationLibrary_hdqy5")
+autoplay = &"RESET"

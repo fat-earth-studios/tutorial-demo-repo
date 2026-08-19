@@ -32,7 +32,10 @@ var _DEBUG_dmg_tween : Tween = null
 @onready var button_play  : Button = $CanvasLayer/ButtonPlay
 @onready var button_reset : Button = $CanvasLayer/ButtonReset
 @onready var button_fire: Button = $CanvasLayer/ButtonFire
-@onready var high_blaze: HighBlaze = $EffectLayer/EffectRoot/HighBlaze
+@onready var button_ice: Button = $CanvasLayer/ButtonIce
+
+@onready var high_blaze  : HighBlaze = $EffectLayer/EffectRoot/HighBlaze
+@onready var chill_spell : IceSpell = $EffectLayer/EffectRoot/IceSpell
 
 # DEBUG
 @onready var main_battle_arena_2: TextureRect = $BattleArena/MainBattleArena2
@@ -51,8 +54,10 @@ func _ready() -> void:
 	button_play.pressed.connect(_on_button_pressed)
 	button_reset.pressed.connect(_on_button_reset_pressed)
 	button_fire.pressed.connect(_on_button_fire_pressed)
+	button_ice.pressed.connect(_on_button_chill_pressed)
 
 	high_blaze.impact_moment.connect(_on_fire_impact)
+	chill_spell.impact_moment.connect(_on_chill_impact)
 
 	play_battle_start_animation()
 
@@ -159,3 +164,11 @@ func _on_fire_impact() -> void:
 	main_battle_arena.visible   = false
 	main_battle_arena_2.visible = true
 	show_damage_text(9001)
+
+
+func _on_button_chill_pressed() -> void:
+	chill_spell.play_spell_animation()
+
+func _on_chill_impact() -> void:
+	bonfire.fire_is_out = true
+	show_damage_text(1006)
