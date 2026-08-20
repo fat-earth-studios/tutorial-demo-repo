@@ -11,6 +11,7 @@ const PLAYER_SCENE_UID : String =  "uid://bk2cu2ameptuy"
 var player : Player = null
 
 var _current_level : BaseLevel = null
+var _current_battle : Node2D
 
 # Game World root nodes
 @onready var level_root  : Node2D = %LevelRoot
@@ -140,4 +141,41 @@ func _init_systems() -> void:
 
 
 func _level_transition_signaled(string_uid : String) -> void:
-	load_level(string_uid)
+	#load_level(string_uid)
+	print_debug("Main Game sees requested transition")
+	_load_battle(string_uid)
+
+
+func _load_battle(battle_scene_uid : String) -> void:
+	if is_instance_valid(_current_level):
+		_current_level.queue_free()
+		_current_level = null
+		# Wait to allow the queued deletion to process so it is out of the scene tree
+		await get_tree().process_frame
+
+
+	var new_level_packed : PackedScene = (
+			ResourceLoader.load(battle_scene_uid, "PackedScene") as PackedScene
+	)
+
+	if new_level_packed == null:
+		push_error("Could not load level as a packed scene: " + battle_scene_uid)
+		return
+
+	var new_level : Node = new_level_packed.instantiate()
+
+	if not new_level:
+		push_error("Could not instantiate new level " + battle_scene_uid)
+		return
+
+	#if new_level is not BaseLevel:
+		#new_level.free()  # Level must be freed to avoid unreferenced orphan nodes
+		#push_error("Loaded level is not of type BaseLevel " + level_scene_uid)
+		#return
+	# FUTURE (main menu): Should have a fall back scene
+
+	_current_battle = new_level
+
+	#_current_level.signal_level_transition.connect(_level_transition_signaled)
+
+	level_root.add_child(_current_battle)

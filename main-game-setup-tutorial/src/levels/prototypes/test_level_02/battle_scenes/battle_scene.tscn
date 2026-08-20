@@ -6,9 +6,9 @@
 [ext_resource type="Shader" uid="uid://bhq0cor1xktqi" path="res://src/shaders/water/water_wavy.gdshader" id="4_xcxhn"]
 [ext_resource type="Texture2D" uid="uid://b2f2gf5nr6cpb" path="res://assets/art/world/backgrounds/water_background.png" id="5_bk36e"]
 [ext_resource type="Texture2D" uid="uid://bi5n4uvjru2g2" path="res://assets/art/world/battle_scenes/mountaintop_battleground_ground.png" id="5_umlov"]
-[ext_resource type="Shader" uid="uid://bfkx21s1mu6wb" path="res://src/levels/prototypes/test_level_02/battle_scenes/battle_scene_projection_transition.gdshader" id="6_dxd7o"]
 [ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="6_u3tai"]
 [ext_resource type="Texture2D" uid="uid://qsfdn2r31eme" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff.png" id="7_dxd7o"]
+[ext_resource type="Material" uid="uid://c7qp2lblqpptu" path="res://src/levels/prototypes/test_level_02/battle_scenes/mountain_battle_transition_material.tres" id="7_i2lgo"]
 [ext_resource type="Texture2D" uid="uid://bon5bbdlt24ql" path="res://assets/remove_TEMPORARY/mountaintop_battle_ground_after_fire.png" id="9_bk36e"]
 [ext_resource type="PackedScene" uid="uid://dorauxdy2itut" path="res://src/gameplay/battle/actors/battle_actor_party.tscn" id="11_i2lgo"]
 [ext_resource type="PackedScene" uid="uid://d12jrqqe5xuu8" path="res://src/gameplay/battle/spells/high_blaze.tscn" id="12_bk36e"]
@@ -64,24 +64,6 @@ shader_parameter/softness = 1.0
 [sub_resource type="CanvasTexture" id="CanvasTexture_bk36e"]
 diffuse_texture = ExtResource("5_bk36e")
 normal_texture = ExtResource("6_u3tai")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rh4jv"]
-shader = ExtResource("6_dxd7o")
-shader_parameter/rect_size_px = Vector2(640, 360)
-shader_parameter/center_x_px = 320.0
-shader_parameter/source_far_y_px = 114.0
-shader_parameter/source_near_y_px = 284.0
-shader_parameter/pixel_snap = true
-shader_parameter/transition = 0.0
-shader_parameter/target_far_y_px = 122.0
-shader_parameter/target_near_y_px = 250.0
-shader_parameter/target_bottom_y_px = 340.0
-shader_parameter/far_width_scale = 0.999999983236
-shader_parameter/near_width_scale = 1.13999998010672
-shader_parameter/bottom_width_scale = 1.21999997831856
-shader_parameter/depth_curve = 0.9
-shader_parameter/target_center_offset_x_px = 0.0
-shader_parameter/edge_softness_px = 0.0
 
 [sub_resource type="Environment" id="Environment_m7pbj"]
 background_mode = 3
@@ -154,7 +136,7 @@ texture = ExtResource("5_umlov")
 [node name="BattleArena" type="Node2D" parent="." unique_id=1352551114]
 
 [node name="MainBattleArena" type="TextureRect" parent="BattleArena" unique_id=1607241256]
-material = SubResource("ShaderMaterial_rh4jv")
+material = ExtResource("7_i2lgo")
 offset_left = 160.0
 offset_top = 90.0
 offset_right = 480.0
@@ -166,7 +148,7 @@ stretch_mode = 3
 
 [node name="MainBattleArena2" type="TextureRect" parent="BattleArena" unique_id=1732326512]
 visible = false
-material = SubResource("ShaderMaterial_rh4jv")
+material = ExtResource("7_i2lgo")
 offset_left = 160.0
 offset_top = 90.0
 offset_right = 480.0

@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c30h5vs12dmlh" path="res://src/gameplay/camera/player_camera.tscn" id="11_vax7a"]
 [ext_resource type="TileSet" uid="uid://6hqjjt254g6r" path="res://assets/art/world/tilesets/data/ground_tiles.tres" id="12_t2okm"]
 [ext_resource type="PackedScene" uid="uid://pjrcbht7pr5a" path="res://src/levels/level_objects/markers/player_spawn/player_spawn.tscn" id="13_80iu8"]
+[ext_resource type="PackedScene" uid="uid://ngtueyqgsujj" path="res://src/gameplay/transition/level_transition.tscn" id="16_rh4jv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ephit"]
 noise_type = 3
@@ -219,9 +220,13 @@ glow_enabled = true
 adjustment_enabled = true
 adjustment_contrast = 1.1
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uviv1"]
+
 [node name="TestLevel_02" type="Node2D" unique_id=1412663455]
 y_sort_enabled = true
 script = ExtResource("1_80iu8")
+metadata/_edit_horizontal_guides_ = [270.0, -55.0]
+metadata/_edit_vertical_guides_ = [320.0]
 
 [node name="BackBackground" type="CanvasLayer" parent="." unique_id=1053035492]
 layer = -100
@@ -366,10 +371,10 @@ position = Vector2(320, 192)
 
 [node name="PlayerCamera" parent="LevelObjects" unique_id=1250976206 instance=ExtResource("11_vax7a")]
 position = Vector2(320, 180)
-limit_left = 0
-limit_top = 0
-limit_right = 640
-limit_bottom = 360
+limit_left = 160
+limit_top = 90
+limit_right = 480
+limit_bottom = 270
 
 [node name="PlayerSpawn" parent="LevelObjects" unique_id=1487922808 instance=ExtResource("13_80iu8")]
 position = Vector2(419, 187)
@@ -379,11 +384,10 @@ visible = false
 position = Vector2(320, 180)
 
 [node name="ReferenceRect" type="ReferenceRect" parent="LevelObjects" unique_id=394684171]
-visible = false
-offset_left = 159.0
-offset_top = 108.0
-offset_right = 479.0
-offset_bottom = 288.0
+offset_left = 160.0
+offset_top = 90.0
+offset_right = 480.0
+offset_bottom = 270.0
 border_color = Color(0, 1, 0, 1)
 
 [node name="Environment" type="Node2D" parent="." unique_id=1922590553]
@@ -397,3 +401,9 @@ color = Color(0.72520626, 0.7261532, 0.48853612, 1)
 [node name="CanvasModulateNight" type="CanvasModulate" parent="Environment" unique_id=1104640719]
 visible = false
 color = Color(0.42672014, 0.42672014, 0.42672014, 1)
+
+[node name="LevelTransition" parent="Environment" unique_id=181036827 instance=ExtResource("16_rh4jv")]
+position = Vector2(320, 202)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/LevelTransition" unique_id=1988770662]
+shape = SubResource("RectangleShape2D_uviv1")

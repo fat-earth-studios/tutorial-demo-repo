@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c7qp2lblqpptu"]
+
+[ext_resource type="Shader" uid="uid://bfkx21s1mu6wb" path="res://src/levels/prototypes/test_level_02/battle_scenes/battle_scene_projection_transition.gdshader" id="1_1eq0q"]
+
+[resource]
+shader = ExtResource("1_1eq0q")
+shader_parameter/rect_size_px = Vector2(640, 360)
+shader_parameter/center_x_px = 320.0
+shader_parameter/source_far_y_px = 114.0
+shader_parameter/source_near_y_px = 284.0
+shader_parameter/pixel_snap = true
+shader_parameter/transition = 0.0
+shader_parameter/target_far_y_px = 122.0
+shader_parameter/target_near_y_px = 250.0
+shader_parameter/target_bottom_y_px = 340.0
+shader_parameter/far_width_scale = 0.999999983236
+shader_parameter/near_width_scale = 1.13999998010672
+shader_parameter/bottom_width_scale = 1.21999997831856
+shader_parameter/depth_curve = 0.9
+shader_parameter/target_center_offset_x_px = 0.0
+shader_parameter/edge_softness_px = 0.0

@@ -2,6 +2,7 @@ class_name LevelTransition
 extends Area2D
 
 const TEST_LEVEL_02 : String =  "uid://kikf44gko1yv"
+const BATTLE_SCENE : String = "uid://b144aly8fprew"
 
 signal transition_requested(scene_uid : String)
 
@@ -24,5 +25,5 @@ func _on_body_entered(body : Node2D) -> void:
 	_has_triggered = true
 	set_deferred(&"monitoring", false)
 
-	print_debug("Player requested transition to: " + TEST_LEVEL_02)
-	transition_requested.emit(TEST_LEVEL_02)
+	print_debug("Player requested transition to: " + BATTLE_SCENE)
+	transition_requested.emit(BATTLE_SCENE)
