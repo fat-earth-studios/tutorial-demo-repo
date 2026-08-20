@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="6_u3tai"]
 [ext_resource type="Texture2D" uid="uid://qsfdn2r31eme" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff.png" id="7_dxd7o"]
 [ext_resource type="Texture2D" uid="uid://bon5bbdlt24ql" path="res://assets/remove_TEMPORARY/mountaintop_battle_ground_after_fire.png" id="9_bk36e"]
+[ext_resource type="PackedScene" uid="uid://dorauxdy2itut" path="res://src/gameplay/battle/actors/battle_actor_party.tscn" id="11_i2lgo"]
 [ext_resource type="PackedScene" uid="uid://d12jrqqe5xuu8" path="res://src/gameplay/battle/spells/high_blaze.tscn" id="12_bk36e"]
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
@@ -96,6 +97,7 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [node name="BattleScene" type="Node2D" unique_id=283374901]
+y_sort_enabled = true
 script = ExtResource("1_umlov")
 metadata/_edit_horizontal_guides_ = [180.0]
 metadata/_edit_vertical_guides_ = [320.0]
@@ -175,8 +177,10 @@ expand_mode = 1
 stretch_mode = 3
 
 [node name="BattleActorsParty" type="Node2D" parent="." unique_id=232738802]
+y_sort_enabled = true
 
 [node name="BattleActor1" type="Sprite2D" parent="BattleActorsParty" unique_id=466231980]
+visible = false
 position = Vector2(320, 240)
 texture = ExtResource("4_1p6mr")
 flip_h = true
@@ -196,7 +200,11 @@ flip_h = true
 hframes = 9
 frame = 5
 
+[node name="BattleActorParty1" parent="BattleActorsParty" unique_id=845992210 instance=ExtResource("11_i2lgo")]
+position = Vector2(320, 253)
+
 [node name="BattleActorsEnemies" type="Node2D" parent="." unique_id=874563004]
+y_sort_enabled = true
 
 [node name="InndourSheet" type="Sprite2D" parent="BattleActorsEnemies" unique_id=1538951286]
 self_modulate = Color(0.86663747, 0.827222, 0.78517264, 1)

@@ -25,24 +25,26 @@ var _DEBUG_dmg_tween : Tween = null
 @onready var battle_actors_party   : Node2D = $BattleActorsParty
 @onready var battle_actors_enemies : Node2D = $BattleActorsEnemies
 
+@onready var battle_actor_party_1 : BattleActorParty = $BattleActorsParty/BattleActorParty1
+
 @onready var bonfire       : Bonfire  = $Decorations/Bonfire
 @onready var battle_camera : Camera2D = $Camera2D
 
 # DEBUG - Buttons for replaying animation and resetting the view
 @onready var button_play  : Button = $CanvasLayer/ButtonPlay
 @onready var button_reset : Button = $CanvasLayer/ButtonReset
-@onready var button_fire: Button = $CanvasLayer/ButtonFire
-@onready var button_ice: Button = $CanvasLayer/ButtonIce
+@onready var button_fire  : Button = $CanvasLayer/ButtonFire
+@onready var button_ice   : Button = $CanvasLayer/ButtonIce
 
 @onready var high_blaze  : HighBlaze = $EffectLayer/EffectRoot/HighBlaze
-@onready var chill_spell : IceSpell = $EffectLayer/EffectRoot/IceSpell
+@onready var chill_spell : IceSpell  = $EffectLayer/EffectRoot/IceSpell
 
 # DEBUG
 @onready var main_battle_arena_2: TextureRect = $BattleArena/MainBattleArena2
 
 # DEBUG Hard coded label, need to separate out
-@onready var label_damage_text: Label = $BattleUI/LabelDamageText
-@onready var marker_enemy_actor_1: Marker2D = $BattleActorsEnemies/MarkerEnemyActor1
+@onready var label_damage_text    : Label    = $BattleUI/LabelDamageText
+@onready var marker_enemy_actor_1 : Marker2D = $BattleActorsEnemies/MarkerEnemyActor1
 
 func _ready() -> void:
 	_arena_shader_material = main_battle_arena.material
@@ -51,12 +53,12 @@ func _ready() -> void:
 
 	# DEBUG
 	main_battle_arena_2.visible = false
-	button_play.pressed.connect(_on_button_pressed)
+	button_play.pressed. connect(_on_button_pressed      )
 	button_reset.pressed.connect(_on_button_reset_pressed)
-	button_fire.pressed.connect(_on_button_fire_pressed)
-	button_ice.pressed.connect(_on_button_chill_pressed)
+	button_fire.pressed. connect(_on_button_fire_pressed )
+	button_ice.pressed.  connect(_on_button_chill_pressed)
 
-	high_blaze.impact_moment.connect(_on_fire_impact)
+	high_blaze.impact_moment. connect(_on_fire_impact )
 	chill_spell.impact_moment.connect(_on_chill_impact)
 
 	play_battle_start_animation()
@@ -157,18 +159,40 @@ func _on_button_reset_pressed() -> void:
 	main_battle_arena_2.visible = false
 
 func _on_button_fire_pressed() -> void:
-	high_blaze.play_spell_animation()
+	_perform_spell_action.call_deferred(&"spell_blaze")
+	#high_blaze.play_spell_animation()
 
 func _on_fire_impact() -> void:
-	bonfire.fire_is_out = true
+	bonfire.fire_is_out = false
 	main_battle_arena.visible   = false
 	main_battle_arena_2.visible = true
 	show_damage_text(9001)
 
 
 func _on_button_chill_pressed() -> void:
-	chill_spell.play_spell_animation()
+	_perform_spell_action.call_deferred(&"spell_chill")
+	#chill_spell.play_spell_animation()
 
 func _on_chill_impact() -> void:
 	bonfire.fire_is_out = true
 	show_damage_text(1006)
+
+
+func _perform_spell_action(spell_name : StringName) -> void:
+	battle_actor_party_1.play_start_spell_animation()
+	await battle_actor_party_1.start_spell_complete
+
+	var selected_spell : SpellBase
+	match spell_name:
+		&"spell_blaze":
+			selected_spell = high_blaze
+		&"spell_chill":
+			selected_spell = chill_spell
+		_:
+			selected_spell = null
+
+	if selected_spell:
+		selected_spell.play_spell_animation()
+		await selected_spell.spell_animation_finished
+
+	battle_actor_party_1.play_end_spell_animation()

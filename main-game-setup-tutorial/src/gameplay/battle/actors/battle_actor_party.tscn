@@ -1,0 +1,223 @@
+[gd_scene format=3 uid="uid://dorauxdy2itut"]
+
+[ext_resource type="Texture2D" uid="uid://cplu1syhqrvml" path="res://assets/art/characters/player/ghost_player_sprite_sheet.png" id="1_3jubu"]
+[ext_resource type="Script" uid="uid://c8g42gs3jv0y1" path="res://src/gameplay/battle/actors/battle_actor_party.gd" id="1_t65uy"]
+
+[sub_resource type="Gradient" id="Gradient_3jubu"]
+offsets = PackedFloat32Array(0, 0.67484665)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uviv1"]
+gradient = SubResource("Gradient_3jubu")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_t65uy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/ActorSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/CastGlow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/CastGlow:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3jubu"]
+resource_name = "cast_spell_end"
+length = 0.2666683472411707
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -8), Vector2(0, -4), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/ActorSprites:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [9, 5, 3]
+}
+
+[sub_resource type="Animation" id="Animation_78rei"]
+resource_name = "cast_spell_start"
+length = 1.1666683941798286
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/ActorSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(0, 1, 0),
+"update": 1,
+"values": [4, 5, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/CastGlow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1.1666667),
+"transitions": PackedFloat32Array(0, 0, 0),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, -8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/CastGlow:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2666667, 0.46666667, 1.0666667, 1.1666667),
+"transitions": PackedFloat32Array(0, 2, 1, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_signal_start_spell_complete"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_apiw4"]
+resource_name = "idle"
+length = 0.01666833420265466
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/ActorSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/CastGlow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_euaph"]
+_data = {
+&"RESET": SubResource("Animation_t65uy"),
+&"cast_spell_end": SubResource("Animation_3jubu"),
+&"cast_spell_start": SubResource("Animation_78rei"),
+&"idle": SubResource("Animation_apiw4")
+}
+
+[node name="BattleActorParty" type="Node2D" unique_id=845992210]
+script = ExtResource("1_t65uy")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=537819578]
+
+[node name="CastGlow" type="Sprite2D" parent="Visuals" unique_id=1478302941]
+visible = false
+self_modulate = Color(1.6201918, 1.358662, 0.9476866, 1)
+light_mask = 0
+texture_filter = 2
+texture = SubResource("GradientTexture2D_uviv1")
+centered = false
+offset = Vector2(-32, -54)
+
+[node name="ActorSprites" type="Sprite2D" parent="Visuals" unique_id=413894266]
+texture = ExtResource("1_3jubu")
+centered = false
+offset = Vector2(-8, -26)
+hframes = 10
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1164157331]
+libraries/ = SubResource("AnimationLibrary_euaph")
+autoplay = &"RESET"
