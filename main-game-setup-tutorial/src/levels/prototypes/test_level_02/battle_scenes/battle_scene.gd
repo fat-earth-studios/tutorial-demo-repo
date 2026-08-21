@@ -61,6 +61,8 @@ func _ready() -> void:
 	high_blaze.impact_moment. connect(_on_fire_impact )
 	chill_spell.impact_moment.connect(_on_chill_impact)
 
+	await get_tree().create_timer(1.0).timeout
+
 	play_battle_start_animation()
 
 
