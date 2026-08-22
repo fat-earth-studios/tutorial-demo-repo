@@ -28,14 +28,13 @@ var _DEBUG_dmg_tween : Tween = null
 @onready var battle_actor_party_1 : BattleActorParty = $BattleActorsParty/BattleActorParty1
 
 @onready var bonfire       : Bonfire  = $Decorations/Bonfire
-@onready var battle_camera : Camera2D = $Camera2D
+@onready var battle_camera : Camera2D = $BattleCamera
 
 # DEBUG - Buttons for replaying animation and resetting the view
-@onready var button_play  : Button = $CanvasLayer/ButtonPlay
-@onready var button_reset : Button = $CanvasLayer/ButtonReset
-@onready var button_fire  : Button = $CanvasLayer/ButtonFire
-@onready var button_ice   : Button = $CanvasLayer/ButtonIce
-
+@onready var button_play  : Button = %ButtonPlay
+@onready var button_reset : Button = %ButtonReset
+@onready var button_fire  : Button = %ButtonFire
+@onready var button_ice   : Button = %ButtonIce
 @onready var high_blaze  : HighBlaze = $EffectLayer/EffectRoot/HighBlaze
 @onready var chill_spell : IceSpell  = $EffectLayer/EffectRoot/IceSpell
 
@@ -81,26 +80,33 @@ func play_battle_start_animation() -> void:
 		_set_shader_progress, 0.0, 1.0, WORLD_TRANSITION_DURATION
 	).set_trans(Tween.TRANS_LINEAR)
 
+	var current_party_position_y : float = battle_actors_party.position.y
+	var target_party_position_y  : float = current_party_position_y - 28.0
+
 	# Moving the party, closest to camera
 	_transition_tween.tween_property(
-		battle_actors_party, "position:y", -28.0, WORLD_TRANSITION_DURATION
+		battle_actors_party, "position:y", target_party_position_y, WORLD_TRANSITION_DURATION
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	# BONFIRE - Moving the Bonfire in the Middle
 	_transition_tween.tween_property(
-		bonfire, "position:y", 176.0, WORLD_TRANSITION_DURATION
+		bonfire, "position:y", 84.0, WORLD_TRANSITION_DURATION
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+
+	var current_enemies_pos_y : float = battle_actors_enemies.position.y
+	var final_enemies_pos_y   : float = current_enemies_pos_y - 4.0
 
 	# ENEMIES - Moving the enemies at the end
 	_transition_tween.tween_property(
-		battle_actors_enemies, "position:y", -4.0, WORLD_TRANSITION_DURATION
+		battle_actors_enemies, "position:y", final_enemies_pos_y, WORLD_TRANSITION_DURATION
 	).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT_IN)
 
 
 	# CAMERA - Delay set to avoid apparent object movement during start of transition
 	#          Duration is a bit longer for cinematic purposes
 	_transition_tween.tween_property(
-		battle_camera, "position:y", 164.0, CAMERA_TRANSITION_DURATION
+		battle_camera, "position:y", -16.0, CAMERA_TRANSITION_DURATION
 	).set_delay(CAMERA_DELAY_DURATION).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
 	await _transition_tween.finished
@@ -146,8 +152,8 @@ func show_damage_text(amount: int, duration: float = 2.0) -> void:
 func _reset_battle_view() -> void:
 	battle_actors_party.position.y   = 0.0
 	battle_actors_enemies.position.y = 0.0
-	bonfire.position.y       = 188.0
-	battle_camera.position.y = 180
+	bonfire.position.y       = 100.0
+	battle_camera.position.y = 0.0
 	_set_shader_progress(0.0)
 
 func _on_button_pressed() -> void:

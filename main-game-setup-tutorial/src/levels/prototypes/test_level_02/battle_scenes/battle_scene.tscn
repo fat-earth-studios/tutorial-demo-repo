@@ -81,23 +81,25 @@ outline_color = Color(0, 0, 0, 1)
 [node name="BattleScene" type="Node2D" unique_id=283374901]
 y_sort_enabled = true
 script = ExtResource("1_umlov")
-metadata/_edit_horizontal_guides_ = [180.0]
-metadata/_edit_vertical_guides_ = [320.0]
+metadata/_edit_horizontal_guides_ = [180.0, 254.0, 98.0]
+metadata/_edit_vertical_guides_ = [320.0, 160.0]
 
 [node name="Backdrop" type="Node2D" parent="." unique_id=606939796]
 
 [node name="Skybox" type="TextureRect" parent="Backdrop" unique_id=1478935066]
 light_mask = 7
 texture_filter = 2
-offset_right = 640.0
-offset_bottom = 360.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 480.0
+offset_bottom = 270.0
 texture = ExtResource("1_dxd7o")
 
 [node name="Sun" type="Polygon2D" parent="Backdrop" unique_id=1309481537]
 self_modulate = Color(1.8247963, 1.8247963, 0, 1)
 light_mask = 0
 texture_filter = 1
-position = Vector2(231, 129)
+position = Vector2(71, 39)
 antialiased = true
 polygon = PackedVector2Array(-7, 9, -14, 3, -13, -1, -12, -3, -10, -6, -7, -8, -4, -9, 0, -9.5, 4, -9, 7, -8, 10, -6, 12, -3, 13, -1, 14, 3, 10, 9)
 
@@ -121,7 +123,7 @@ height = 1.0
 [node name="BackgroundWater" type="Sprite2D" parent="Backdrop" unique_id=1636220281]
 light_mask = 6
 material = SubResource("ShaderMaterial_xcxhn")
-position = Vector2(0, 122)
+position = Vector2(-160, 32)
 texture = SubResource("CanvasTexture_bk36e")
 centered = false
 region_enabled = true
@@ -129,18 +131,19 @@ region_rect = Rect2(0, 0, 656, 254)
 
 [node name="Floor" type="TextureRect" parent="Backdrop" unique_id=1684942494]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 480.0
+offset_bottom = 270.0
 texture = ExtResource("5_umlov")
 
 [node name="BattleArena" type="Node2D" parent="." unique_id=1352551114]
 
 [node name="MainBattleArena" type="TextureRect" parent="BattleArena" unique_id=1607241256]
 material = ExtResource("7_i2lgo")
-offset_left = 160.0
-offset_top = 90.0
-offset_right = 480.0
-offset_bottom = 270.0
+clip_contents = true
+offset_right = 320.0
+offset_bottom = 180.0
 mouse_filter = 2
 texture = ExtResource("7_dxd7o")
 expand_mode = 1
@@ -149,10 +152,9 @@ stretch_mode = 3
 [node name="MainBattleArena2" type="TextureRect" parent="BattleArena" unique_id=1732326512]
 visible = false
 material = ExtResource("7_i2lgo")
-offset_left = 160.0
-offset_top = 90.0
-offset_right = 480.0
-offset_bottom = 270.0
+clip_contents = true
+offset_right = 320.0
+offset_bottom = 180.0
 mouse_filter = 2
 texture = ExtResource("9_bk36e")
 expand_mode = 1
@@ -170,27 +172,27 @@ hframes = 9
 frame = 3
 
 [node name="BattleActor2" type="Sprite2D" parent="BattleActorsParty" unique_id=627641816]
-position = Vector2(228, 224)
+position = Vector2(68, 131)
 texture = ExtResource("4_1p6mr")
 hframes = 9
 frame = 4
 
 [node name="BattleActor3" type="Sprite2D" parent="BattleActorsParty" unique_id=393963190]
-position = Vector2(412, 224)
+position = Vector2(252, 131)
 texture = ExtResource("4_1p6mr")
 flip_h = true
 hframes = 9
 frame = 5
 
 [node name="BattleActorParty1" parent="BattleActorsParty" unique_id=845992210 instance=ExtResource("11_i2lgo")]
-position = Vector2(320, 253)
+position = Vector2(160, 160)
 
 [node name="BattleActorsEnemies" type="Node2D" parent="." unique_id=874563004]
 y_sort_enabled = true
 
 [node name="InndourSheet" type="Sprite2D" parent="BattleActorsEnemies" unique_id=1538951286]
 self_modulate = Color(0.86663747, 0.827222, 0.78517264, 1)
-position = Vector2(320, 122)
+position = Vector2(159.99998, 31.999998)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_xcxhn")
 hframes = 3
@@ -198,16 +200,16 @@ vframes = 3
 frame = 7
 
 [node name="MarkerEnemyActor1" type="Marker2D" parent="BattleActorsEnemies" unique_id=481901105]
-position = Vector2(319, 140)
+position = Vector2(148, 44)
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1945664659]
 y_sort_enabled = true
 
 [node name="Bonfire" parent="Decorations" unique_id=290071149 instance=ExtResource("13_bk36e")]
-position = Vector2(320, 188)
+position = Vector2(160, 100)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=201706541]
-position = Vector2(320, 180)
+[node name="BattleCamera" type="Camera2D" parent="." unique_id=201706541]
+anchor_mode = 0
 zoom = Vector2(2, 2)
 editor_draw_limits = true
 editor_draw_drag_margin = true
@@ -226,43 +228,45 @@ follow_viewport_enabled = true
 [node name="EffectRoot" type="Node2D" parent="EffectLayer" unique_id=1596927301]
 
 [node name="HighBlaze" parent="EffectLayer/EffectRoot" unique_id=2101529883 instance=ExtResource("12_bk36e")]
-position = Vector2(320, 144)
+position = Vector2(160, 58)
 
 [node name="IceSpell" parent="EffectLayer/EffectRoot" unique_id=174385664 instance=ExtResource("14_u3tai")]
-position = Vector2(320, 144)
+position = Vector2(160, 58)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1971302592]
 
-[node name="ButtonPlay" type="Button" parent="CanvasLayer" unique_id=1951941891]
-offset_left = 592.0
-offset_top = 18.0
-offset_right = 685.0
-offset_bottom = 49.0
-scale = Vector2(0.5, 0.5)
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=768671466]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=634187505]
+layout_mode = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=27939836]
+layout_mode = 2
+
+[node name="ButtonPlay" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1951941891]
+unique_name_in_owner = true
+layout_mode = 2
 text = "Do It Again"
 
-[node name="ButtonReset" type="Button" parent="CanvasLayer" unique_id=1333820063]
-offset_left = 593.0
-offset_top = 1.0
-offset_right = 683.0
-offset_bottom = 32.0
-scale = Vector2(0.5, 0.5)
+[node name="ButtonReset" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1333820063]
+unique_name_in_owner = true
+layout_mode = 2
 text = "RESET"
 
-[node name="ButtonFire" type="Button" parent="CanvasLayer" unique_id=76585349]
-offset_left = 594.0
-offset_top = 36.0
-offset_right = 684.0
-offset_bottom = 67.0
-scale = Vector2(0.5, 0.5)
+[node name="ButtonFire" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=76585349]
+unique_name_in_owner = true
+layout_mode = 2
 text = "Explosion"
 
-[node name="ButtonIce" type="Button" parent="CanvasLayer" unique_id=385391369]
-offset_left = 594.0
-offset_top = 53.0
-offset_right = 684.0
-offset_bottom = 84.0
-scale = Vector2(0.5, 0.5)
+[node name="ButtonIce" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=385391369]
+unique_name_in_owner = true
+layout_mode = 2
 text = "Chill
 "
 
@@ -273,9 +277,9 @@ follow_viewport_enabled = true
 
 [node name="LabelDamageText" type="Label" parent="BattleUI" unique_id=530676480]
 modulate = Color(1, 1, 1, 0)
-offset_left = 308.0
-offset_top = 123.0
-offset_right = 360.0
-offset_bottom = 147.0
+offset_left = 134.0
+offset_top = 46.0
+offset_right = 186.0
+offset_bottom = 70.0
 text = "9,001"
 label_settings = SubResource("LabelSettings_uviv1")
