@@ -90,7 +90,7 @@ func play_battle_start_animation() -> void:
 
 	# BONFIRE - Moving the Bonfire in the Middle
 	_transition_tween.tween_property(
-		bonfire, "position:y", 84.0, WORLD_TRANSITION_DURATION
+		bonfire, "position:y", 86.0, WORLD_TRANSITION_DURATION
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 
@@ -152,7 +152,7 @@ func show_damage_text(amount: int, duration: float = 2.0) -> void:
 func _reset_battle_view() -> void:
 	battle_actors_party.position.y   = 0.0
 	battle_actors_enemies.position.y = 0.0
-	bonfire.position.y       = 100.0
+	bonfire.position.y       = 102.0
 	battle_camera.position.y = 0.0
 	_set_shader_progress(0.0)
 

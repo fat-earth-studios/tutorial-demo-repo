@@ -81,24 +81,23 @@ outline_color = Color(0, 0, 0, 1)
 [node name="BattleScene" type="Node2D" unique_id=283374901]
 y_sort_enabled = true
 script = ExtResource("1_umlov")
-metadata/_edit_horizontal_guides_ = [180.0, 254.0, 98.0]
-metadata/_edit_vertical_guides_ = [320.0, 160.0]
 
 [node name="Backdrop" type="Node2D" parent="." unique_id=606939796]
 
 [node name="Skybox" type="TextureRect" parent="Backdrop" unique_id=1478935066]
 light_mask = 7
 texture_filter = 2
-offset_left = -160.0
+clip_contents = true
 offset_top = -90.0
-offset_right = 480.0
-offset_bottom = 270.0
+offset_right = 320.0
+offset_bottom = 184.0
 texture = ExtResource("1_dxd7o")
+expand_mode = 1
+stretch_mode = 2
 
 [node name="Sun" type="Polygon2D" parent="Backdrop" unique_id=1309481537]
 self_modulate = Color(1.8247963, 1.8247963, 0, 1)
 light_mask = 0
-texture_filter = 1
 position = Vector2(71, 39)
 antialiased = true
 polygon = PackedVector2Array(-7, 9, -14, 3, -13, -1, -12, -3, -10, -6, -7, -8, -4, -9, 0, -9.5, 4, -9, 7, -8, 10, -6, 12, -3, 13, -1, 14, 3, 10, 9)
@@ -171,6 +170,9 @@ flip_h = true
 hframes = 9
 frame = 3
 
+[node name="BattleActorParty1" parent="BattleActorsParty" unique_id=845992210 instance=ExtResource("11_i2lgo")]
+position = Vector2(160, 160)
+
 [node name="BattleActor2" type="Sprite2D" parent="BattleActorsParty" unique_id=627641816]
 position = Vector2(68, 131)
 texture = ExtResource("4_1p6mr")
@@ -183,9 +185,6 @@ texture = ExtResource("4_1p6mr")
 flip_h = true
 hframes = 9
 frame = 5
-
-[node name="BattleActorParty1" parent="BattleActorsParty" unique_id=845992210 instance=ExtResource("11_i2lgo")]
-position = Vector2(160, 160)
 
 [node name="BattleActorsEnemies" type="Node2D" parent="." unique_id=874563004]
 y_sort_enabled = true
@@ -206,7 +205,7 @@ position = Vector2(148, 44)
 y_sort_enabled = true
 
 [node name="Bonfire" parent="Decorations" unique_id=290071149 instance=ExtResource("13_bk36e")]
-position = Vector2(160, 100)
+position = Vector2(160, 102)
 
 [node name="BattleCamera" type="Camera2D" parent="." unique_id=201706541]
 anchor_mode = 0
@@ -228,19 +227,24 @@ follow_viewport_enabled = true
 [node name="EffectRoot" type="Node2D" parent="EffectLayer" unique_id=1596927301]
 
 [node name="HighBlaze" parent="EffectLayer/EffectRoot" unique_id=2101529883 instance=ExtResource("12_bk36e")]
-position = Vector2(160, 58)
+position = Vector2(160, 55)
 
 [node name="IceSpell" parent="EffectLayer/EffectRoot" unique_id=174385664 instance=ExtResource("14_u3tai")]
-position = Vector2(160, 58)
+position = Vector2(160, 56)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1971302592]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=768671466]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 640.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=634187505]
 layout_mode = 2
