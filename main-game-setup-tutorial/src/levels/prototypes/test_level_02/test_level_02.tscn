@@ -226,8 +226,7 @@ adjustment_contrast = 1.1
 [node name="TestLevel_02" type="Node2D" unique_id=1412663455]
 y_sort_enabled = true
 script = ExtResource("1_80iu8")
-metadata/_edit_horizontal_guides_ = [270.0, -55.0, 90.0]
-metadata/_edit_vertical_guides_ = [160.0]
+metadata/_edit_horizontal_guides_ = [-55.0]
 
 [node name="BackBackground" type="CanvasLayer" parent="." unique_id=1053035492]
 layer = -100
@@ -370,14 +369,14 @@ y_sort_enabled = true
 position = Vector2(320, 192)
 
 [node name="PlayerCamera" parent="LevelObjects" unique_id=1250976206 instance=ExtResource("11_vax7a")]
-position = Vector2(320, 180)
+position = Vector2(320, 270)
 limit_left = 160
 limit_top = 90
 limit_right = 480
-limit_bottom = 270
+limit_bottom = 360
 
 [node name="PlayerSpawn" parent="LevelObjects" unique_id=1487922808 instance=ExtResource("13_80iu8")]
-position = Vector2(419, 187)
+position = Vector2(461, 338)
 
 [node name="Marker2D" type="Marker2D" parent="LevelObjects" unique_id=1048705464]
 visible = false

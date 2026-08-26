@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://c425sakfk8uw6" path="res://assets/art/characters/player/ghost_player_walking.png" id="4_1p6mr"]
 [ext_resource type="Texture2D" uid="uid://bur5bhpbtwici" path="res://assets/art/world/backgrounds/water_canvas_texture.tres" id="4_u3tai"]
 [ext_resource type="Shader" uid="uid://bhq0cor1xktqi" path="res://src/shaders/water/water_wavy.gdshader" id="4_xcxhn"]
-[ext_resource type="Texture2D" uid="uid://bi5n4uvjru2g2" path="res://assets/art/world/battle_scenes/mountaintop_battleground_ground.png" id="5_umlov"]
 [ext_resource type="Texture2D" uid="uid://qsfdn2r31eme" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff.png" id="7_dxd7o"]
 [ext_resource type="Material" uid="uid://c7qp2lblqpptu" path="res://src/levels/prototypes/test_level_02/battle_scenes/mountain_battle_transition_material.tres" id="7_i2lgo"]
 [ext_resource type="Texture2D" uid="uid://bon5bbdlt24ql" path="res://assets/remove_TEMPORARY/mountaintop_battle_ground_after_fire.png" id="9_bk36e"]
@@ -124,14 +123,6 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 656, 254)
 
-[node name="Floor" type="TextureRect" parent="Backdrop" unique_id=1684942494]
-visible = false
-offset_left = -160.0
-offset_top = -90.0
-offset_right = 480.0
-offset_bottom = 270.0
-texture = ExtResource("5_umlov")
-
 [node name="BattleArena" type="Node2D" parent="." unique_id=1352551114]
 
 [node name="MainBattleArena" type="TextureRect" parent="BattleArena" unique_id=1607241256]
@@ -159,26 +150,20 @@ stretch_mode = 3
 [node name="BattleActorsParty" type="Node2D" parent="." unique_id=232738802]
 y_sort_enabled = true
 
-[node name="BattleActor1" type="Sprite2D" parent="BattleActorsParty" unique_id=466231980]
-visible = false
-position = Vector2(320, 240)
-texture = ExtResource("4_1p6mr")
-flip_h = true
-hframes = 9
-frame = 3
-
 [node name="BattleActorParty1" parent="BattleActorsParty" unique_id=845992210 instance=ExtResource("11_i2lgo")]
 position = Vector2(160, 160)
 
 [node name="BattleActor2" type="Sprite2D" parent="BattleActorsParty" unique_id=627641816]
-position = Vector2(68, 131)
+position = Vector2(68, 143)
 texture = ExtResource("4_1p6mr")
+offset = Vector2(0, -12)
 hframes = 9
 frame = 4
 
 [node name="BattleActor3" type="Sprite2D" parent="BattleActorsParty" unique_id=393963190]
-position = Vector2(252, 131)
+position = Vector2(252, 143)
 texture = ExtResource("4_1p6mr")
+offset = Vector2(0, -12)
 flip_h = true
 hframes = 9
 frame = 5

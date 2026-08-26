@@ -140,13 +140,11 @@ func _init_systems() -> void:
 	pass # FUTURE (systems): Will be called to set up high level systems
 
 
-func _level_transition_signaled(string_uid : String) -> void:
-	#load_level(string_uid)
-	print_debug("Main Game sees requested transition")
-	_load_battle(string_uid)
-
-
 func _load_battle(battle_scene_uid : String) -> void:
+	perform_load_battle.call_deferred(battle_scene_uid)
+
+
+func perform_load_battle(battle_scene_uid : String) -> void:
 	if is_instance_valid(_current_level):
 		_current_level.queue_free()
 		_current_level = null
@@ -179,3 +177,9 @@ func _load_battle(battle_scene_uid : String) -> void:
 	#_current_level.signal_level_transition.connect(_level_transition_signaled)
 
 	level_root.add_child(_current_battle)
+
+
+func _level_transition_signaled(string_uid : String) -> void:
+	#load_level(string_uid)
+	print_debug("Main Game sees requested transition")
+	_load_battle(string_uid)
