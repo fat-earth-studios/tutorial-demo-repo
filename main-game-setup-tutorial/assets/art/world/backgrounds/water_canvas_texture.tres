@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://bur5bhpbtwici"]
+
+[ext_resource type="Texture2D" uid="uid://b2f2gf5nr6cpb" path="res://assets/art/world/backgrounds/water_background.png" id="1_ys5un"]
+[ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="2_vyk3n"]
+
+[resource]
+diffuse_texture = ExtResource("1_ys5un")
+normal_texture = ExtResource("2_vyk3n")

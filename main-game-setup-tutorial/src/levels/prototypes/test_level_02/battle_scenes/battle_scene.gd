@@ -13,9 +13,12 @@ const CAMERA_DELAY_DURATION      : float = WORLD_TRANSITION_DURATION * CAMERA_DE
 ## How long the camera transitin lasts (based on World transition time)
 const CAMERA_TRANSITION_DURATION : float = WORLD_TRANSITION_DURATION * CAMERA_DURATION_MULTIPLIER
 
+@export var arena_world_origin : Vector2 = Vector2.ZERO
+
 var _arena_shader_material : ShaderMaterial = null  ## Shader Material used to tild the battle scene
 
 var _transition_tween : Tween = null
+
 
 # DEBUG - temp to test impact
 var _DEBUG_dmg_tween : Tween = null
@@ -37,6 +40,7 @@ var _DEBUG_dmg_tween : Tween = null
 @onready var button_ice   : Button = %ButtonIce
 @onready var high_blaze  : HighBlaze = $EffectLayer/EffectRoot/HighBlaze
 @onready var chill_spell : IceSpell  = $EffectLayer/EffectRoot/IceSpell
+@onready var spell_layer : CanvasLayer = $EffectLayer
 
 # DEBUG
 @onready var main_battle_arena_2: TextureRect = $BattleArena/MainBattleArena2
@@ -46,6 +50,9 @@ var _DEBUG_dmg_tween : Tween = null
 @onready var marker_enemy_actor_1 : Marker2D = $BattleActorsEnemies/MarkerEnemyActor1
 
 func _ready() -> void:
+	# Set the location of the arena to the location in the world
+	self.global_position = arena_world_origin
+	align_spell_area() # Spell layer is a canvas layer and must be moved
 	_arena_shader_material = main_battle_arena.material
 	if _arena_shader_material == null:
 		push_error("Material was not found")
@@ -112,6 +119,12 @@ func play_battle_start_animation() -> void:
 	await _transition_tween.finished
 	_transition_tween = null
 
+
+
+func align_spell_area() -> void:
+	spell_layer.follow_viewport_enabled = true
+	spell_layer.follow_viewport_scale = 1.0
+	spell_layer.transform = global_transform
 
 
 func _set_shader_progress(progress : float) -> void:

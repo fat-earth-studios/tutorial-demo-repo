@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c30h5vs12dmlh" path="res://src/gameplay/camera/player_camera.tscn" id="11_vax7a"]
 [ext_resource type="TileSet" uid="uid://6hqjjt254g6r" path="res://assets/art/world/tilesets/data/ground_tiles.tres" id="12_t2okm"]
 [ext_resource type="PackedScene" uid="uid://pjrcbht7pr5a" path="res://src/levels/level_objects/markers/player_spawn/player_spawn.tscn" id="13_80iu8"]
+[ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="16_hdyqm"]
 [ext_resource type="PackedScene" uid="uid://ngtueyqgsujj" path="res://src/gameplay/transition/level_transition.tscn" id="16_rh4jv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ephit"]
@@ -225,8 +226,8 @@ adjustment_contrast = 1.1
 [node name="TestLevel_02" type="Node2D" unique_id=1412663455]
 y_sort_enabled = true
 script = ExtResource("1_80iu8")
-metadata/_edit_horizontal_guides_ = [270.0, -55.0]
-metadata/_edit_vertical_guides_ = [320.0]
+metadata/_edit_horizontal_guides_ = [270.0, -55.0, 90.0]
+metadata/_edit_vertical_guides_ = [160.0]
 
 [node name="BackBackground" type="CanvasLayer" parent="." unique_id=1053035492]
 layer = -100
@@ -389,6 +390,15 @@ offset_right = 480.0
 offset_bottom = 270.0
 border_color = Color(0, 1, 0, 1)
 
+[node name="InndourSheet" type="Sprite2D" parent="LevelObjects" unique_id=286960021]
+self_modulate = Color(0.86663747, 0.827222, 0.78517264, 1)
+position = Vector2(320.00003, 122.00001)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("16_hdyqm")
+hframes = 3
+vframes = 3
+frame = 7
+
 [node name="Environment" type="Node2D" parent="." unique_id=1922590553]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=254247546]
@@ -402,7 +412,7 @@ visible = false
 color = Color(0.42672014, 0.42672014, 0.42672014, 1)
 
 [node name="LevelTransition" parent="Environment" unique_id=181036827 instance=ExtResource("16_rh4jv")]
-position = Vector2(320, 202)
+position = Vector2(320, 133)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/LevelTransition" unique_id=1988770662]
 shape = SubResource("RectangleShape2D_uviv1")

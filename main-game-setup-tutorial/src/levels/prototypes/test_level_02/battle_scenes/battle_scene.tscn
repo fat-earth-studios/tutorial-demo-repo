@@ -3,10 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c6diady764nkh" path="res://assets/art/world/battle_scenes/mountaintop_battleground_sky.png" id="1_dxd7o"]
 [ext_resource type="Script" uid="uid://bvt6rxuajj5ap" path="res://src/levels/prototypes/test_level_02/battle_scenes/battle_scene.gd" id="1_umlov"]
 [ext_resource type="Texture2D" uid="uid://c425sakfk8uw6" path="res://assets/art/characters/player/ghost_player_walking.png" id="4_1p6mr"]
+[ext_resource type="Texture2D" uid="uid://bur5bhpbtwici" path="res://assets/art/world/backgrounds/water_canvas_texture.tres" id="4_u3tai"]
 [ext_resource type="Shader" uid="uid://bhq0cor1xktqi" path="res://src/shaders/water/water_wavy.gdshader" id="4_xcxhn"]
-[ext_resource type="Texture2D" uid="uid://b2f2gf5nr6cpb" path="res://assets/art/world/backgrounds/water_background.png" id="5_bk36e"]
 [ext_resource type="Texture2D" uid="uid://bi5n4uvjru2g2" path="res://assets/art/world/battle_scenes/mountaintop_battleground_ground.png" id="5_umlov"]
-[ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="6_u3tai"]
 [ext_resource type="Texture2D" uid="uid://qsfdn2r31eme" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff.png" id="7_dxd7o"]
 [ext_resource type="Material" uid="uid://c7qp2lblqpptu" path="res://src/levels/prototypes/test_level_02/battle_scenes/mountain_battle_transition_material.tres" id="7_i2lgo"]
 [ext_resource type="Texture2D" uid="uid://bon5bbdlt24ql" path="res://assets/remove_TEMPORARY/mountaintop_battle_ground_after_fire.png" id="9_bk36e"]
@@ -61,10 +60,6 @@ shader_parameter/ripple_speed = 0.18000000855
 shader_parameter/ripple_scale = 24.0
 shader_parameter/softness = 1.0
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_bk36e"]
-diffuse_texture = ExtResource("5_bk36e")
-normal_texture = ExtResource("6_u3tai")
-
 [sub_resource type="Environment" id="Environment_m7pbj"]
 background_mode = 3
 ambient_light_source = 1
@@ -81,6 +76,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="BattleScene" type="Node2D" unique_id=283374901]
 y_sort_enabled = true
 script = ExtResource("1_umlov")
+arena_world_origin = Vector2(160, 90)
 
 [node name="Backdrop" type="Node2D" parent="." unique_id=606939796]
 
@@ -123,7 +119,7 @@ height = 1.0
 light_mask = 6
 material = SubResource("ShaderMaterial_xcxhn")
 position = Vector2(-160, 32)
-texture = SubResource("CanvasTexture_bk36e")
+texture = ExtResource("4_u3tai")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 656, 254)
@@ -139,6 +135,7 @@ texture = ExtResource("5_umlov")
 [node name="BattleArena" type="Node2D" parent="." unique_id=1352551114]
 
 [node name="MainBattleArena" type="TextureRect" parent="BattleArena" unique_id=1607241256]
+light_mask = 33
 material = ExtResource("7_i2lgo")
 clip_contents = true
 offset_right = 320.0
@@ -232,11 +229,11 @@ position = Vector2(160, 55)
 [node name="IceSpell" parent="EffectLayer/EffectRoot" unique_id=174385664 instance=ExtResource("14_u3tai")]
 position = Vector2(160, 56)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1971302592]
+[node name="DebugUI" type="CanvasLayer" parent="." unique_id=1971302592]
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=768671466]
+[node name="MarginContainer" type="MarginContainer" parent="DebugUI" unique_id=768671466]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -246,29 +243,29 @@ grow_vertical = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=634187505]
+[node name="HBoxContainer" type="HBoxContainer" parent="DebugUI/MarginContainer" unique_id=634187505]
 layout_mode = 2
 alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=27939836]
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugUI/MarginContainer/HBoxContainer" unique_id=27939836]
 layout_mode = 2
 
-[node name="ButtonPlay" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1951941891]
+[node name="ButtonPlay" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1951941891]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Do It Again"
 
-[node name="ButtonReset" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1333820063]
+[node name="ButtonReset" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1333820063]
 unique_name_in_owner = true
 layout_mode = 2
 text = "RESET"
 
-[node name="ButtonFire" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=76585349]
+[node name="ButtonFire" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=76585349]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Explosion"
+text = "High Blaze"
 
-[node name="ButtonIce" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=385391369]
+[node name="ButtonIce" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=385391369]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Chill

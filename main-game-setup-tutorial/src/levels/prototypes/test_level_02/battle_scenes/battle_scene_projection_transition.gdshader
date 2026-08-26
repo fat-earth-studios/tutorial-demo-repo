@@ -266,5 +266,7 @@ void fragment() {
 
 		cliff_color.a *= source_bounds_alpha * top_alpha * bottom_alpha;
 		COLOR = cliff_color * item_color;
+
+		//NORMAL_MAP = texture(NORMAL_TEXTURE, lookup_px / texture_size_px).rgb;
 	}
 }
