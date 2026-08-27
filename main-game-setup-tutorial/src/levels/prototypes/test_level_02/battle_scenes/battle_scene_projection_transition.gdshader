@@ -102,7 +102,7 @@ void fragment() {
 	if (transition <= 0.0) {
 		COLOR = texture(TEXTURE, UV) * item_color;
 	} else {
-		float t = smoothstep(0.0, 1.0, transition);
+		float transition_progress = smoothstep(0.0, 1.0, transition);
 
 		vec2 safe_rect_size_px = max(rect_size_px, vec2(1.0));
 		vec2 texture_size_px = vec2(1.0) / TEXTURE_PIXEL_SIZE;
@@ -139,28 +139,28 @@ void fragment() {
 		float current_source_far_y_px = mix(
 			0.0,
 			safe_source_far_y_px,
-			t
+			transition_progress
 		);
 		float current_target_far_y_px = mix(
 			0.0,
 			safe_target_far_y_px,
-			t
+			transition_progress
 		);
 		float current_target_near_y_px = mix(
 			safe_source_near_y_px,
 			safe_target_near_y_px,
-			t
+			transition_progress
 		);
 		float current_target_bottom_y_px = mix(
 			source_bottom_y_px,
 			safe_target_bottom_y_px,
-			t
+			transition_progress
 		);
 
-		float current_depth_curve = mix(1.0, depth_curve, t);
-		float current_far_width = mix(1.0, far_width_scale, t);
-		float current_near_width = mix(1.0, near_width_scale, t);
-		float current_bottom_width = mix(1.0, bottom_width_scale, t);
+		float current_depth_curve  = mix(1.0, depth_curve,        transition_progress);
+		float current_far_width    = mix(1.0, far_width_scale,    transition_progress);
+		float current_near_width   = mix(1.0, near_width_scale,   transition_progress);
+		float current_bottom_width = mix(1.0, bottom_width_scale, transition_progress);
 
 		float source_y_px;
 		float row_width_scale;
@@ -225,7 +225,7 @@ void fragment() {
 		float current_center_x_px = center_x_px + mix(
 			0.0,
 			target_center_offset_x_px,
-			t
+			transition_progress
 		);
 		float sample_x_px = center_x_px;
 		sample_x_px += (

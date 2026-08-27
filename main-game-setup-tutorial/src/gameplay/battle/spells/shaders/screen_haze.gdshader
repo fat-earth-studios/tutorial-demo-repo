@@ -6,27 +6,27 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_l
 
 // Animate these two parameters.
 uniform float progress : hint_range(0.0, 1.0, 0.001) = 0.0;
-uniform float opacity : hint_range(0.0, 1.0, 0.001) = 1.0;
+uniform float opacity  : hint_range(0.0, 1.0, 0.001) = 1.0;
 
 // Normalized viewport position of the collapsing ball: (0, 0) to (1, 1).
 uniform vec2 origin_uv = vec2(0.5, 0.29);
 
 // Shape of the expanding circular reveal.
 uniform float edge_softness_px : hint_range(0.5, 32.0, 0.5) = 5.0;
-uniform float rim_width_px : hint_range(1.0, 48.0, 1.0) = 12.0;
+uniform float rim_width_px     : hint_range(1.0, 48.0, 1.0) = 12.0;
 
 // Blue wash and hazy refraction.
-uniform vec4 haze_color : source_color = vec4(0.10, 0.38, 1.0, 1.0);
-uniform float blue_strength : hint_range(0.0, 1.0, 0.01) = 0.58;
-uniform float haze_variation : hint_range(0.0, 0.5, 0.01) = 0.12;
+uniform vec4 haze_color       : source_color = vec4(0.10, 0.38, 1.0, 1.0);
+uniform float blue_strength   : hint_range(0.0, 1.0, 0.01) = 0.58;
+uniform float haze_variation  : hint_range(0.0, 0.5, 0.01) = 0.12;
 uniform float haze_brightness : hint_range(0.0, 1.0, 0.01) = 0.08;
-uniform float blur_lod : hint_range(0.0, 3.0, 0.05) = 0.55;
+uniform float blur_lod        : hint_range(0.0, 3.0, 0.05) = 0.55;
 
-uniform float distortion_pixels : hint_range(0.0, 12.0, 0.1) = 1.8;
-uniform float edge_warp_pixels : hint_range(0.0, 16.0, 0.1) = 2.5;
-uniform float haze_scale : hint_range(1.0, 30.0, 0.25) = 7.0;
-uniform float haze_speed : hint_range(-4.0, 4.0, 0.05) = 0.65;
-uniform float rim_brightness : hint_range(0.0, 2.0, 0.01) = 0.16;
+uniform float distortion_pixels : hint_range(0.0, 12.0,  0.1) =  1.8;
+uniform float edge_warp_pixels  : hint_range(0.0, 16.0,  0.1) =  2.5;
+uniform float haze_scale        : hint_range(1.0, 30.0, 0.25) =  7.0;
+uniform float haze_speed        : hint_range(-4.0, 4.0, 0.05) = 0.65;
+uniform float rim_brightness    : hint_range(0.0,  2.0, 0.01) = 0.16;
 
 
 vec2 gradient_hash(vec2 point) {

@@ -5,43 +5,43 @@ render_mode unshaded, blend_premul_alpha;
 // set aspect_ratio to width / height so the ball remains circular.
 
 group_uniforms shape;
-uniform float aspect_ratio : hint_range(0.1, 4.0, 0.01) = 1.0;
-uniform float radius : hint_range(0.01, 0.5, 0.001) = 0.31;
+uniform float aspect_ratio     : hint_range( 0.1,   4.0, 0.01)  = 1.0;
+uniform float radius           : hint_range( 0.01,  0.5, 0.001) = 0.31;
 uniform float collapsed_radius : hint_range(0.001, 0.25, 0.001) = 0.035;
-uniform float collapse : hint_range(0.0, 1.0, 0.001) = 0.0;
-uniform float edge_softness : hint_range(0.001, 0.08, 0.001) = 0.012;
-uniform float edge_turbulence : hint_range(0.0, 0.15, 0.001) = 0.018;
-uniform float opacity : hint_range(0.0, 1.0, 0.001) = 1.0;
+uniform float collapse         : hint_range(  0.0,  1.0, 0.001) = 0.0;
+uniform float edge_softness    : hint_range(0.001, 0.08, 0.001) = 0.012;
+uniform float edge_turbulence  : hint_range(  0.0, 0.15, 0.001) = 0.018;
+uniform float opacity          : hint_range(  0.0,  1.0, 0.001) = 1.0;
 
 group_uniforms motion;
 // Positive rotation appears clockwise in CanvasItem screen coordinates.
-uniform float surface_rotation : hint_range(-6.283, 6.283, 0.001) = 0.0;
-uniform float rotation_speed : hint_range(-3.0, 3.0, 0.01) = 0.22;
-uniform float flow_speed : hint_range(0.0, 3.0, 0.01) = 0.24;
-uniform float surface_scale : hint_range(0.5, 12.0, 0.01) = 3.1;
-uniform float warp_strength : hint_range(0.0, 0.8, 0.01) = 0.20;
+uniform float surface_rotation : hint_range(-6.283, 6.283, 0.001) =  0.0;
+uniform float rotation_speed   : hint_range(-3.0,     3.0, 0.01)  = 0.22;
+uniform float flow_speed       : hint_range( 0.0,     3.0, 0.01)  = 0.24;
+uniform float surface_scale    : hint_range( 0.5,    12.0, 0.01)  =  3.1;
+uniform float warp_strength    : hint_range( 0.0,     0.8, 0.01)  = 0.20;
 
 group_uniforms appearance;
-uniform float heat : hint_range(0.0, 1.0, 0.001) = 0.62;
-uniform float center_heat : hint_range(0.0, 0.8, 0.001) = 0.29;
-uniform float brightness : hint_range(0.0, 4.0, 0.01) = 1.18;
+uniform float heat         : hint_range(0.0, 1.0, 0.001) = 0.62;
+uniform float center_heat  : hint_range(0.0, 0.8, 0.001) = 0.29;
+uniform float brightness   : hint_range(0.0, 4.0,  0.01) = 1.18;
 uniform float rim_strength : hint_range(0.0, 1.0, 0.001) = 0.30;
 
-uniform vec4 deep_color : source_color = vec4(0.18, 0.005, 0.002, 1.0);
-uniform vec4 red_color : source_color = vec4(0.82, 0.035, 0.006, 1.0);
-uniform vec4 orange_color : source_color = vec4(1.0, 0.20, 0.008, 1.0);
-uniform vec4 yellow_color : source_color = vec4(1.0, 0.73, 0.055, 1.0);
-uniform vec4 white_hot_color : source_color = vec4(1.0, 0.97, 0.72, 1.0);
-uniform vec4 rim_color : source_color = vec4(1.0, 0.50, 0.035, 1.0);
+uniform vec4 deep_color      : source_color = vec4(0.18, 0.005, 0.002, 1.0);
+uniform vec4 red_color       : source_color = vec4(0.82, 0.035, 0.006, 1.0);
+uniform vec4 orange_color    : source_color = vec4( 1.0,  0.20, 0.008, 1.0);
+uniform vec4 yellow_color    : source_color = vec4( 1.0,  0.73, 0.055, 1.0);
+uniform vec4 white_hot_color : source_color = vec4( 1.0,  0.97,  0.72, 1.0);
+uniform vec4 rim_color       : source_color = vec4( 1.0,  0.50, 0.035, 1.0);
 
 group_uniforms glow;
-uniform float glow_width : hint_range(0.001, 0.20, 0.001) = 0.025;
-uniform float glow_strength : hint_range(0.0, 2.0, 0.001) = 0.28;
+uniform float glow_width    : hint_range(0.001, 0.20, 0.001) = 0.025;
+uniform float glow_strength : hint_range(0.0,   2.0, 0.001)   = 0.28;
 uniform vec4 glow_color : source_color = vec4(1.0, 0.32, 0.015, 1.0);
 
 group_uniforms decay;
-uniform float dissolve : hint_range(0.0, 1.0, 0.001) = 0.0;
-uniform float dissolve_edge_heat : hint_range(0.0, 3.0, 0.01) = 0.90;
+uniform float dissolve           : hint_range(0.0, 1.0, 0.001) =  0.0;
+uniform float dissolve_edge_heat : hint_range(0.0, 3.0,  0.01) = 0.90;
 
 
 float hash_21(vec2 point) {

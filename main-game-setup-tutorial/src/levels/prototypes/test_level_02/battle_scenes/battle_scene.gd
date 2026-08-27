@@ -128,7 +128,7 @@ func align_spell_area() -> void:
 
 
 func _set_shader_progress(progress : float) -> void:
-	_arena_shader_material.set_shader_parameter("transition", progress)
+	_arena_shader_material.set_shader_parameter(&"transition", progress)
 
 
 # FUTURE (battle scene completion): Save - may be used for how actors work in final version

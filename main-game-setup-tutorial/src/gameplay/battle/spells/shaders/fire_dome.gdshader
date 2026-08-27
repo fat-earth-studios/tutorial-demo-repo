@@ -9,16 +9,10 @@ uniform float extent_at_one : hint_range(0.1, 1.0) = 0.8;
 uniform float speed_px = 24.0;
 uniform float phase_px = 0.0;
 
-//uniform float expansion : hint_range(0.0, 1.0) = 1.0;
 uniform float lower_curve : hint_range(0.01, 0.4) = 0.15;
 uniform float opacity     : hint_range(0.0, 1.0) = 1.0;
 uniform float edge_softness = 1.0;
 
-//varying vec2 local_px;
-//
-//void vertex() {
-	//local_px = VERTEX;
-//}
 
 varying vec2 world_px;
 varying vec4 item_color;
@@ -34,7 +28,6 @@ void vertex() {
 
 void fragment() {
 	// floor() keeps movement aligned to whole source pixels.
-	//float pixel_scroll = floor(scroll_offset_px);
 	vec2 pixel_scroll = floor(TIME * scroll_speed_px + phase_px);
 
 	// floor(world_px) keeps it locked to the game-pixel grid.
