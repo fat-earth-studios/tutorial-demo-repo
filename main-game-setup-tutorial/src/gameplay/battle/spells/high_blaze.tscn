@@ -3,7 +3,6 @@
 [ext_resource type="Shader" uid="uid://ct4vjfhgh8s02" path="res://src/gameplay/battle/spells/shaders/core_fireball.gdshader" id="1_7bhjk"]
 [ext_resource type="Script" uid="uid://ctjnyy80kqmqa" path="res://src/gameplay/battle/spells/high_blaze.gd" id="1_55drs"]
 [ext_resource type="Shader" uid="uid://iv8hehtaism3" path="res://src/gameplay/battle/spells/shaders/fireball_corona.gdshader" id="1_ibq74"]
-[ext_resource type="Texture2D" uid="uid://bwoeltdx7rfou" path="res://assets/remove_TEMPORARY/Screenshot 2026-08-15 191447.png" id="2_2mgjs"]
 [ext_resource type="Shader" uid="uid://c8aa2q21r7y11" path="res://src/gameplay/battle/spells/shaders/screen_haze.gdshader" id="3_pnnph"]
 [ext_resource type="Shader" uid="uid://dtae6d3iqmh6q" path="res://src/gameplay/battle/spells/shaders/compression_ring.gdshader" id="4_55drs"]
 [ext_resource type="Shader" uid="uid://drw2y7dditjm8" path="res://src/gameplay/battle/spells/shaders/fire_dome.gdshader" id="6_en2rx"]
@@ -833,40 +832,6 @@ _data = {
 
 [node name="HighBlaze" type="Node2D" unique_id=2101529883]
 script = ExtResource("1_55drs")
-metadata/_edit_vertical_guides_ = [160.0, -160.0]
-
-[node name="DELETEME_Debug_Stuff" type="Node2D" parent="." unique_id=1134368943]
-visible = false
-position = Vector2(0, 109.055)
-
-[node name="ColorRect" type="ColorRect" parent="DELETEME_Debug_Stuff" unique_id=403688632]
-light_mask = 7
-offset_left = -160.0
-offset_top = -184.0
-offset_right = 160.0
-color = Color(0.12437358, 0.13571739, 0.20068827, 1)
-metadata/_edit_lock_ = true
-
-[node name="DELETEME_Debug_Camera" type="Camera2D" parent="DELETEME_Debug_Stuff" unique_id=821479567]
-position = Vector2(-160, -180)
-anchor_mode = 0
-zoom = Vector2(2, 2)
-metadata/_edit_lock_ = true
-
-[node name="TextureRect" type="TextureRect" parent="DELETEME_Debug_Stuff" unique_id=1861994075]
-custom_minimum_size = Vector2(320, 180)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -180.0
-offset_right = 160.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("2_2mgjs")
-expand_mode = 2
 
 [node name="Background" type="Node2D" parent="." unique_id=1721051771]
 

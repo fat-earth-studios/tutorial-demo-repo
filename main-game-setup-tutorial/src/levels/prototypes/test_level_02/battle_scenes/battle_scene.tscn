@@ -128,6 +128,7 @@ region_rect = Rect2(0, 0, 656, 254)
 [node name="MainBattleArena" type="TextureRect" parent="BattleArena" unique_id=1607241256]
 light_mask = 33
 material = ExtResource("7_i2lgo")
+clip_contents = true
 offset_right = 320.0
 offset_bottom = 180.0
 mouse_filter = 2
@@ -153,7 +154,6 @@ y_sort_enabled = true
 position = Vector2(160, 160)
 
 [node name="BattleActor2" type="Sprite2D" parent="BattleActorsParty" unique_id=627641816]
-visible = false
 position = Vector2(68, 143)
 texture = ExtResource("4_1p6mr")
 offset = Vector2(0, -12)
@@ -161,7 +161,6 @@ hframes = 9
 frame = 4
 
 [node name="BattleActor3" type="Sprite2D" parent="BattleActorsParty" unique_id=393963190]
-visible = false
 position = Vector2(252, 143)
 texture = ExtResource("4_1p6mr")
 offset = Vector2(0, -12)
