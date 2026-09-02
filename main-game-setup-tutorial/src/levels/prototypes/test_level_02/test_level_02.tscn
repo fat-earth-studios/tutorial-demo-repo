@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dblrh4gk44531" path="res://assets/art/world/backgrounds/Clouds_Only_Night.png" id="5_4sype"]
 [ext_resource type="Texture2D" uid="uid://d3l78v2260dnm" path="res://assets/art/world/backgrounds/NORMAL_water_backgroundv2.png" id="6_4sype"]
 [ext_resource type="Texture2D" uid="uid://bwehac8qlixsd" path="res://assets/art/world/tilesets/Decoration_Layer_Tiles.png" id="7_507rp"]
+[ext_resource type="Shader" uid="uid://dx4pj6apcsu2i" path="res://src/shaders/water/water_wavy_tiled.gdshader" id="9_8qnx8"]
+[ext_resource type="Texture2D" uid="uid://dlnf6duqikapi" path="res://assets/art/world/tilesets/water_tile.png" id="10_5gdp1"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="10_80iu8"]
+[ext_resource type="Texture2D" uid="uid://rj7nojm6htpd" path="res://assets/art/world/tilesets/water_tile_NORMAL.png" id="11_amspf"]
 [ext_resource type="PackedScene" uid="uid://c30h5vs12dmlh" path="res://src/gameplay/camera/player_camera.tscn" id="11_vax7a"]
 [ext_resource type="TileSet" uid="uid://6hqjjt254g6r" path="res://assets/art/world/tilesets/data/ground_tiles.tres" id="12_t2okm"]
 [ext_resource type="PackedScene" uid="uid://pjrcbht7pr5a" path="res://src/levels/level_objects/markers/player_spawn/player_spawn.tscn" id="13_80iu8"]
@@ -92,6 +95,30 @@ shader_parameter/softness = 1.0
 [sub_resource type="CanvasTexture" id="CanvasTexture_vax7a"]
 diffuse_texture = ExtResource("1_5sg3a")
 normal_texture = ExtResource("6_4sype")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5gdp1"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8qnx8"]
+noise = SubResource("FastNoiseLite_5gdp1")
+seamless = true
+normalize = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h42d7"]
+shader = ExtResource("9_8qnx8")
+shader_parameter/rect_size_px = Vector2(640, 246)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_8qnx8")
+shader_parameter/distortion_strength = 0.0030000001425
+shader_parameter/distortion_speed = 0.02000000095
+shader_parameter/noise_scale = 4.0
+shader_parameter/ripple_strength = 0.003
+shader_parameter/ripple_speed = 0.18000000855
+shader_parameter/ripple_scale = 24.0
+shader_parameter/softness = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_uviv1"]
+diffuse_texture = ExtResource("10_5gdp1")
+normal_texture = ExtResource("11_amspf")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jl5xe"]
 texture = ExtResource("3_dc1ga")
@@ -328,13 +355,23 @@ texture = ExtResource("5_4sype")
 centered = false
 
 [node name="BackgroundWater" type="Sprite2D" parent="Background" unique_id=791984425]
+visible = false
 light_mask = 6
 material = SubResource("ShaderMaterial_ephit")
-position = Vector2(0, 122)
+position = Vector2(-32, 138)
 texture = SubResource("CanvasTexture_vax7a")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 656, 254)
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1076754451]
+light_mask = 6
+texture_repeat = 2
+material = SubResource("ShaderMaterial_h42d7")
+offset_top = 122.0
+offset_right = 640.0
+offset_bottom = 368.0
+texture = SubResource("CanvasTexture_uviv1")
 
 [node name="Tilemaps" type="Node2D" parent="." unique_id=2126065508]
 

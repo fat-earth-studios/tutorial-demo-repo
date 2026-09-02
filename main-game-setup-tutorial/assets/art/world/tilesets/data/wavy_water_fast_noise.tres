@@ -1,0 +1,6 @@
+[gd_resource type="FastNoiseLite" format=3 uid="uid://c25fj7qfu8x3h"]
+
+[resource]
+noise_type = 3
+seed = 13
+offset = Vector3(-208.84, 145.84, 0)

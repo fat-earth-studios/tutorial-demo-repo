@@ -193,6 +193,7 @@ autoplay = &"idle_down"
 
 [node name="PlayerDebugLabel" type="Label" parent="." unique_id=790361186]
 unique_name_in_owner = true
+visible = false
 light_mask = 0
 z_index = 100
 z_as_relative = false

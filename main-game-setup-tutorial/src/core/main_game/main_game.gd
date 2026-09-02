@@ -26,7 +26,7 @@ var _current_battle : Node2D
 func _ready() -> void:
 	_init_player()
 
-	load_level(TEST_LEVEL_02)
+	load_level(TEST_LEVEL_03)
 
 
 func _input(event: InputEvent) -> void:
@@ -34,6 +34,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed(&"debug_quit"):
+		print_orphan_nodes() # <- just to check if any orphan nodes exist while testing
 		quit_game()
 
 
@@ -52,10 +53,13 @@ func load_level(level_scene : String) -> void:
 
 func _perform_level_load(level_scene_uid : String) -> void:
 	if is_instance_valid(_current_level):
-		_current_level.queue_free()
+		# Passing reference to local variable allows for cleanly removing from tree
+		#  while using _current_level to load the new scene
+		var outgoing_level : Node = _current_level
 		_current_level = null
-		# Wait to allow the queued deletion to process so it is out of the scene tree
-		await get_tree().process_frame
+
+		level_root.remove_child(outgoing_level)
+		outgoing_level.queue_free()
 
 
 	var new_level_packed : PackedScene = (
@@ -180,6 +184,6 @@ func perform_load_battle(battle_scene_uid : String) -> void:
 
 
 func _level_transition_signaled(string_uid : String) -> void:
-	#load_level(string_uid)
-	print_debug("Main Game sees requested transition")
-	_load_battle(string_uid)
+	load_level(string_uid)
+	#print_debug("Main Game sees requested transition")
+	#_load_battle(string_uid)

@@ -26,4 +26,4 @@ func _on_body_entered(body : Node2D) -> void:
 	set_deferred(&"monitoring", false)
 
 	print_debug("Player requested transition to: " + BATTLE_SCENE)
-	transition_requested.emit(BATTLE_SCENE)
+	transition_requested.emit(TEST_LEVEL_02)

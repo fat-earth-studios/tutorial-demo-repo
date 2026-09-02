@@ -70,6 +70,7 @@ mouse_filter = 2
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=1082170147]
 process_mode = 3
 layer = 128
+visible = false
 
 [node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=67028178]
 layout_mode = 3
