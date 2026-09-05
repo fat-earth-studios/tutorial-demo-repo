@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ddbkupnqlkigu"]
+
+[ext_resource type="Script" uid="uid://civt1at668n7w" path="res://src/gameplay/battle/battle_session.gd" id="1_nh1gq"]
+
+[node name="BattleSession" type="Node" unique_id=2006502528]
+script = ExtResource("1_nh1gq")

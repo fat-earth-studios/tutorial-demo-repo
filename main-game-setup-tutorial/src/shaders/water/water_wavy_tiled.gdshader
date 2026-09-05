@@ -14,12 +14,12 @@ group_uniforms Motion;
 
 uniform sampler2D noise_texture : repeat_enable;
 
-uniform float distortion_strength : hint_range(0.0, 0.05) = 0.006;
-uniform float distortion_speed : hint_range(0.0, 2.0) = 0.08;
-uniform float noise_scale : hint_range(0.1, 20.0) = 4.0;
+uniform float distortion_strength : hint_range(0.0, 0.05) = 0.003;
+uniform float distortion_speed    : hint_range(0.0,  2.0) = 0.02;
+uniform float noise_scale         : hint_range(0.1, 20.0) = 4.0;
 
 uniform float ripple_strength : hint_range(0.0, 0.05) = 0.003;
-uniform float ripple_speed : hint_range(0.0, 5.0) = 0.5;
+uniform float ripple_speed : hint_range(0.0, 5.0) = 0.18;
 uniform float ripple_scale : hint_range(1.0, 100.0) = 24.0;
 
 group_uniforms Sampling;
@@ -28,7 +28,7 @@ group_uniforms Sampling;
  * Softness applied to the normal map.
  * The color texture remains nearest-filtered.
  */
-uniform float softness : hint_range(0.0, 1.0) = 0.25;
+uniform float softness : hint_range(0.0, 1.0) = 1.0;
 
 group_uniforms;
 

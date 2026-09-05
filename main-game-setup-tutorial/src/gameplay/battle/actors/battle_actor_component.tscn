@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://jwfldqoqwhtp"]
+
+[ext_resource type="Script" uid="uid://b4phm6jhhnvmx" path="res://src/gameplay/battle/actors/battle_actor_component.gd" id="1_wocq7"]
+
+[node name="BattleActor" type="Node" unique_id=701689933]
+script = ExtResource("1_wocq7")

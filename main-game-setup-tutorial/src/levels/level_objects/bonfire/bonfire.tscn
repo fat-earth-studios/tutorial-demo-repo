@@ -168,7 +168,7 @@ scale_max = 0.02
 script = ExtResource("1_plhh5")
 
 [node name="Base" type="Sprite2D" parent="." unique_id=1689230243]
-light_mask = 32
+light_mask = 4
 texture = ExtResource("2_n0kan")
 centered = false
 offset = Vector2(-12, -12)
@@ -194,7 +194,7 @@ position = Vector2(-1, -7)
 scale = Vector2(1, 0.59375)
 color = Color(1.5720325, 0.38059896, 0, 1)
 energy = 2.5
-range_item_cull_mask = 32
+range_item_cull_mask = 4
 texture = SubResource("GradientTexture2D_n0kan")
 texture_scale = 0.7
 

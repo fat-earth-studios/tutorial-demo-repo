@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3q2qcdv7c15m" path="res://src/gameplay/player/player.gd" id="1_k2146"]
 [ext_resource type="Texture2D" uid="uid://cplu1syhqrvml" path="res://assets/art/characters/player/ghost_player_sprite_sheet.png" id="2_64h4j"]
+[ext_resource type="PackedScene" uid="uid://jwfldqoqwhtp" path="res://src/gameplay/battle/actors/battle_actor_component.tscn" id="3_k2146"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_erlm8"]
 radius = 4.0
@@ -11,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -20,23 +21,153 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/CastGlow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/CastGlow:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/PlayerSprite2D:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -26)]
+}
 
 [sub_resource type="Animation" id="Animation_kjyqo"]
 resource_name = "battle_won"
-length = 0.5333350278155878
+length = 0.800001708390005
 loop_mode = 1
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [9, 3]
+}
+
+[sub_resource type="Animation" id="Animation_rdc6l"]
+resource_name = "cast_spell_end"
+length = 0.2666683472411707
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(0, 0, 0),
+"update": 1,
+"values": [9, 5, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -8), Vector2(0, -4), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uia4o"]
+resource_name = "cast_spell_start"
+length = 1.1666683941798286
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(0, 0, 0),
+"update": 1,
+"values": [4, 5, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/CastGlow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1.1666666),
+"transitions": PackedFloat32Array(0, 0, 0),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/CastGlow:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.46666667, 1.0666667, 1.1666666),
+"transitions": PackedFloat32Array(1, 2, 1, 0.5, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_to11t"]
@@ -47,7 +178,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -65,7 +196,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +214,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -91,6 +222,35 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_xdbtd"]
+resource_name = "jump_to_battle"
+length = 1.0000033854875714
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [9, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/PlayerSprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.93333334),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(-8, -26), Vector2(-8, -98), Vector2(-8, -26)]
 }
 
 [sub_resource type="Animation" id="Animation_d3trc"]
@@ -101,7 +261,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -119,7 +279,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -137,7 +297,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/path = NodePath("Visuals/PlayerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -151,9 +311,12 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_470h1"),
 &"battle_won": SubResource("Animation_kjyqo"),
+&"cast_spell_end": SubResource("Animation_rdc6l"),
+&"cast_spell_start": SubResource("Animation_uia4o"),
 &"idle_down": SubResource("Animation_to11t"),
 &"idle_side": SubResource("Animation_k2146"),
 &"idle_up": SubResource("Animation_64h4j"),
+&"jump_to_battle": SubResource("Animation_xdbtd"),
 &"walk_down": SubResource("Animation_d3trc"),
 &"walk_side": SubResource("Animation_sjr3t"),
 &"walk_up": SubResource("Animation_dxsvo")
@@ -166,6 +329,16 @@ light_mode = 1
 font_size = 8
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_3jubu"]
+offsets = PackedFloat32Array(0, 0.67484665)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_64h4j"]
+gradient = SubResource("Gradient_3jubu")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=2029180576]
 y_sort_enabled = true
@@ -180,12 +353,6 @@ light_mask = 0
 z_index = 1
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_erlm8")
-
-[node name="PlayerSprite2D" type="Sprite2D" parent="." unique_id=1828022754]
-texture = ExtResource("2_64h4j")
-centered = false
-offset = Vector2(-8, -26)
-hframes = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1453791433]
 libraries/ = SubResource("AnimationLibrary_pd6o7")
@@ -206,3 +373,27 @@ text = "Debug Info"
 label_settings = SubResource("LabelSettings_64h4j")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1767603188]
+
+[node name="CastGlow" type="Sprite2D" parent="Visuals" unique_id=384533576]
+visible = false
+self_modulate = Color(1.6201918, 1.358662, 0.9476866, 1)
+light_mask = 0
+texture_filter = 2
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("GradientTexture2D_64h4j")
+centered = false
+offset = Vector2(-32, -54)
+
+[node name="PlayerSprite2D" type="Sprite2D" parent="Visuals" unique_id=1828022754]
+texture = ExtResource("2_64h4j")
+centered = false
+offset = Vector2(-8, -26)
+hframes = 10
+
+[node name="Components" type="Node" parent="." unique_id=2030741580]
+
+[node name="BattleActor" parent="Components" unique_id=701689933 node_paths=PackedStringArray("body", "animation_controller") instance=ExtResource("3_k2146")]
+body = NodePath("../..")
+animation_controller = NodePath("../../AnimationPlayer")

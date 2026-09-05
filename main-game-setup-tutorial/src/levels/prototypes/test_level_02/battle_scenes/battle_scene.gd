@@ -1,5 +1,7 @@
-class_name BattleScene
+class_name BattleArena
 extends Node2D
+
+signal arena_intro_finished
 
 const WORLD_TRANSITION_DURATION : float = 0.75
 
@@ -29,6 +31,8 @@ var _DEBUG_dmg_tween : Tween = null
 @onready var battle_actors_enemies : Node2D = $BattleActorsEnemies
 
 @onready var battle_actor_party_1 : BattleActorParty = $BattleActorsParty/BattleActorParty1
+
+@onready var actot_party_marker_1 : Marker2D = $BattleActorsParty/ActotPartyMarker
 
 @onready var bonfire       : Bonfire  = $Decorations/Bonfire
 @onready var battle_camera : Camera2D = $BattleCamera
@@ -67,9 +71,9 @@ func _ready() -> void:
 	high_blaze.impact_moment. connect(_on_fire_impact )
 	chill_spell.impact_moment.connect(_on_chill_impact)
 
-	await get_tree().create_timer(1.0).timeout
-
-	play_battle_start_animation()
+	#await get_tree().create_timer(1.0).timeout
+#
+	#play_battle_start_animation()
 
 
 func play_battle_start_animation() -> void:
@@ -91,9 +95,9 @@ func play_battle_start_animation() -> void:
 	var target_party_position_y  : float = current_party_position_y - 28.0
 
 	# Moving the party, closest to camera
-	_transition_tween.tween_property(
-		battle_actors_party, "position:y", target_party_position_y, WORLD_TRANSITION_DURATION
-	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	#_transition_tween.tween_property(
+		#battle_actors_party, "position:y", target_party_position_y, WORLD_TRANSITION_DURATION
+	#).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	# BONFIRE - Moving the Bonfire in the Middle
 	_transition_tween.tween_property(
@@ -119,12 +123,17 @@ func play_battle_start_animation() -> void:
 	await _transition_tween.finished
 	_transition_tween = null
 
+	arena_intro_finished.emit()
+
 
 
 func align_spell_area() -> void:
 	spell_layer.follow_viewport_enabled = true
 	spell_layer.follow_viewport_scale = 1.0
 	spell_layer.transform = global_transform
+
+func get_party_actor_position() -> Vector2:
+	return actot_party_marker_1.global_position
 
 
 func _set_shader_progress(progress : float) -> void:

@@ -1,10 +1,10 @@
-class_name LevelTransition
+class_name BattleTransition
 extends Area2D
 
 @export_file("*.tscn")
-var level_scene_uid : String
+var battle_scene_uid : String
 
-signal transition_requested(scene_uid : String)
+signal battle_transition_requested(scene_uid : String)
 
 var _has_triggered : bool = false
 
@@ -25,5 +25,5 @@ func _on_body_entered(body : Node2D) -> void:
 	_has_triggered = true
 	set_deferred(&"monitoring", false)
 
-	print_debug("Player requested transition to: " + level_scene_uid)
-	transition_requested.emit(level_scene_uid)
+	print_debug("Player requested transition to: " + battle_scene_uid)
+	battle_transition_requested.emit(battle_scene_uid)

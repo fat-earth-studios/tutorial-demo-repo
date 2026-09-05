@@ -18,28 +18,34 @@ var camera_look_direction : Vector2 = Vector2.ZERO
 
 var _facing_direction : FacingDirection = FacingDirection.DOWN
 
-@onready var sprite_2d        : Sprite2D        = $PlayerSprite2D
+var locked : bool = false
+
+@onready var sprite_2d: Sprite2D = $Visuals/PlayerSprite2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
+
+@onready var battle_actor_component : BattleActorComponent = $Components/BattleActor
 
 # TESTING: Debug label to be used for testing
 @onready var player_debug_label: Label = %PlayerDebugLabel
 
 func _physics_process(_delta: float) -> void:
-	var input_direction : Vector2 = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
+	if not locked:
 
-	var speed_multiplier : float = 1.0 if not Input.is_action_pressed(&"sprint") else SPRINT_MULTIPLIER_VALUE
+		var input_direction : Vector2 = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
 
-	velocity = input_direction * SPEED * speed_multiplier
+		var speed_multiplier : float = 1.0 if not Input.is_action_pressed(&"sprint") else SPRINT_MULTIPLIER_VALUE
 
-	# Add ability to look around using right stick
-	# FUTURE (player): This is very fragile, need to add clear communication from player to camera
-	camera_look_direction = Input.get_vector(&"look_left", &"look_right", &"look_up", &"look_down")
+		velocity = input_direction * SPEED * speed_multiplier
 
-	_update_animation(input_direction)
+		# Add ability to look around using right stick
+		# FUTURE (player): This is very fragile, need to add clear communication from player to camera
+		camera_look_direction = Input.get_vector(&"look_left", &"look_right", &"look_up", &"look_down")
 
-	player_debug_label.text = FacingDirection.find_key(_facing_direction)
+		_update_animation(input_direction)
 
-	move_and_slide()
+		player_debug_label.text = FacingDirection.find_key(_facing_direction)
+
+		move_and_slide()
 
 func _handle_horizontal_flip() -> void:
 	if absf(velocity.x) > 0.1:

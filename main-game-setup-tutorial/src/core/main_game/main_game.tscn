@@ -25,11 +25,11 @@ y_sort_enabled = true
 [node name="EffectRoot" type="Node2D" parent="World" unique_id=1018165254]
 unique_name_in_owner = true
 
-[node name="HudLayer" type="CanvasLayer" parent="." unique_id=560793207]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=560793207]
 process_mode = 1
 layer = 10
 
-[node name="HudRoot" type="Control" parent="HudLayer" unique_id=819024193]
+[node name="UIRoot" type="Control" parent="UILayer" unique_id=819024193]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -70,7 +70,6 @@ mouse_filter = 2
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=1082170147]
 process_mode = 3
 layer = 128
-visible = false
 
 [node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=67028178]
 layout_mode = 3

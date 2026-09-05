@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://dsnchysiscrgh"]
+
+[ext_resource type="Script" uid="uid://cdvifqlsx0icu" path="res://src/ui/battle_menu/ability_icon.gd" id="1_7i228"]
+[ext_resource type="Texture2D" uid="uid://snlie1gahxt2" path="res://assets/art/spells/icons/High_Blaze.png" id="2_fsqmm"]
+
+[sub_resource type="Gradient" id="Gradient_fsqmm"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uviv1"]
+gradient = SubResource("Gradient_fsqmm")
+width = 24
+height = 24
+
+[node name="AbilityIcon" type="Control" unique_id=1703913412]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 3
+anchor_right = 0.037
+anchor_bottom = 0.067
+offset_right = 0.3199997
+offset_bottom = -0.12000084
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7i228")
+
+[node name="Panel" type="Panel" parent="." unique_id=1972173025]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=241783861]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="AbilityIcon" type="TextureRect" parent="MarginContainer" unique_id=2008307315]
+layout_mode = 2
+texture = ExtResource("2_fsqmm")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="AbilityUseFlash" type="ColorRect" parent="MarginContainer" unique_id=815249868]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="." unique_id=1377590756]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_behavior_recursive = 1
+step = 0.1
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_uviv1")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(0.078431375, 0.078431375, 0.078431375, 0.8509804)
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1562911034]
+wait_time = 5.0
+one_shot = true

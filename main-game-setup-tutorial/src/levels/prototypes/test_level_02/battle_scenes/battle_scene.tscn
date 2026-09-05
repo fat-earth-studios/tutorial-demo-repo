@@ -2,9 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://c6diady764nkh" path="res://assets/art/world/battle_scenes/mountaintop_battleground_sky.png" id="1_dxd7o"]
 [ext_resource type="Script" uid="uid://bvt6rxuajj5ap" path="res://src/levels/prototypes/test_level_02/battle_scenes/battle_scene.gd" id="1_umlov"]
+[ext_resource type="Shader" uid="uid://dx4pj6apcsu2i" path="res://src/shaders/water/water_wavy_tiled.gdshader" id="3_i2lgo"]
 [ext_resource type="Texture2D" uid="uid://c425sakfk8uw6" path="res://assets/art/characters/player/ghost_player_walking.png" id="4_1p6mr"]
-[ext_resource type="Texture2D" uid="uid://bur5bhpbtwici" path="res://assets/art/world/backgrounds/water_canvas_texture.tres" id="4_u3tai"]
-[ext_resource type="Shader" uid="uid://bhq0cor1xktqi" path="res://src/shaders/water/water_wavy.gdshader" id="4_xcxhn"]
+[ext_resource type="Texture2D" uid="uid://b01gaadcm75bf" path="res://assets/art/world/tilesets/data/water_noise_texture.tres" id="4_oy5e4"]
+[ext_resource type="Texture2D" uid="uid://dlnf6duqikapi" path="res://assets/art/world/tilesets/water_tile.png" id="5_xy4iv"]
+[ext_resource type="Texture2D" uid="uid://rj7nojm6htpd" path="res://assets/art/world/tilesets/water_tile_NORMAL.png" id="6_qw6rh"]
 [ext_resource type="Texture2D" uid="uid://qsfdn2r31eme" path="res://assets/art/world/battle_scenes/mountaintop_battle_ground_cliff.png" id="7_dxd7o"]
 [ext_resource type="Material" uid="uid://c7qp2lblqpptu" path="res://src/levels/prototypes/test_level_02/battle_scenes/mountain_battle_transition_material.tres" id="7_i2lgo"]
 [ext_resource type="Texture2D" uid="uid://bon5bbdlt24ql" path="res://assets/remove_TEMPORARY/mountaintop_battle_ground_after_fire.png" id="9_bk36e"]
@@ -13,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
 [ext_resource type="PackedScene" uid="uid://dffhodi2knh0e" path="res://src/gameplay/battle/spells/ice_spell.tscn" id="14_u3tai"]
+[ext_resource type="Texture2D" uid="uid://snlie1gahxt2" path="res://assets/art/spells/icons/High_Blaze.png" id="16_oy5e4"]
+[ext_resource type="PackedScene" uid="uid://crwgde4f1udwl" path="res://src/ui/battle_menu/battle_ui.tscn" id="17_xy4iv"]
 
 [sub_resource type="Gradient" id="Gradient_t2okm"]
 offsets = PackedFloat32Array(0.19620253, 0.33966243, 0.6772152)
@@ -38,26 +42,21 @@ height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_umlov"]
-noise_type = 3
-seed = 13
-offset = Vector3(-208.84, 145.84, 0)
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hdyqm"]
-noise = SubResource("FastNoiseLite_umlov")
-seamless = true
-normalize = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xcxhn"]
-shader = ExtResource("4_xcxhn")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_hdyqm")
-shader_parameter/distortion_strength = 0.0030000001425
-shader_parameter/distortion_speed = 0.02000000095
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uviv1"]
+shader = ExtResource("3_i2lgo")
+shader_parameter/rect_size_px = Vector2(352, 160)
+shader_parameter/noise_texture = ExtResource("4_oy5e4")
+shader_parameter/distortion_strength = 0.003
+shader_parameter/distortion_speed = 0.02
 shader_parameter/noise_scale = 4.0
 shader_parameter/ripple_strength = 0.003
-shader_parameter/ripple_speed = 0.18000000855
+shader_parameter/ripple_speed = 0.18
 shader_parameter/ripple_scale = 24.0
 shader_parameter/softness = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_v1lrw"]
+diffuse_texture = ExtResource("5_xy4iv")
+normal_texture = ExtResource("6_qw6rh")
 
 [sub_resource type="Environment" id="Environment_m7pbj"]
 background_mode = 3
@@ -114,14 +113,15 @@ range_item_cull_mask = 4
 texture = SubResource("GradientTexture2D_dxd7o")
 height = 1.0
 
-[node name="BackgroundWater" type="Sprite2D" parent="Backdrop" unique_id=1636220281]
+[node name="WaterTexture" type="TextureRect" parent="Backdrop" unique_id=1179351540]
 light_mask = 6
-material = SubResource("ShaderMaterial_xcxhn")
-position = Vector2(-160, 32)
-texture = ExtResource("4_u3tai")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 656, 254)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_uviv1")
+offset_left = -16.0
+offset_top = 32.0
+offset_right = 336.0
+offset_bottom = 192.0
+texture = SubResource("CanvasTexture_v1lrw")
 
 [node name="BattleArena" type="Node2D" parent="." unique_id=1352551114]
 
@@ -151,9 +151,11 @@ stretch_mode = 3
 y_sort_enabled = true
 
 [node name="BattleActorParty1" parent="BattleActorsParty" unique_id=845992210 instance=ExtResource("11_i2lgo")]
+visible = false
 position = Vector2(160, 160)
 
 [node name="BattleActor2" type="Sprite2D" parent="BattleActorsParty" unique_id=627641816]
+visible = false
 position = Vector2(68, 143)
 texture = ExtResource("4_1p6mr")
 offset = Vector2(0, -12)
@@ -161,12 +163,16 @@ hframes = 9
 frame = 4
 
 [node name="BattleActor3" type="Sprite2D" parent="BattleActorsParty" unique_id=393963190]
+visible = false
 position = Vector2(252, 143)
 texture = ExtResource("4_1p6mr")
 offset = Vector2(0, -12)
 flip_h = true
 hframes = 9
 frame = 5
+
+[node name="ActotPartyMarker" type="Marker2D" parent="BattleActorsParty" unique_id=921135830]
+position = Vector2(160, 132)
 
 [node name="BattleActorsEnemies" type="Node2D" parent="." unique_id=874563004]
 y_sort_enabled = true
@@ -215,16 +221,16 @@ position = Vector2(160, 55)
 position = Vector2(160, 56)
 
 [node name="DebugUI" type="CanvasLayer" parent="." unique_id=1971302592]
-scale = Vector2(0.5, 0.5)
-transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="MarginContainer" type="MarginContainer" parent="DebugUI" unique_id=768671466]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 640.0
+offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 
@@ -249,12 +255,23 @@ text = "RESET"
 unique_name_in_owner = true
 layout_mode = 2
 text = "High Blaze"
+icon = ExtResource("16_oy5e4")
 
 [node name="ButtonIce" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=385391369]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Chill
 "
+
+[node name="Control" type="Control" parent="DebugUI" unique_id=373368918]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AbilitySelectMenu" parent="DebugUI/Control" unique_id=1986297990 instance=ExtResource("17_xy4iv")]
+layout_mode = 1
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=1330440346]
 follow_viewport_enabled = true
