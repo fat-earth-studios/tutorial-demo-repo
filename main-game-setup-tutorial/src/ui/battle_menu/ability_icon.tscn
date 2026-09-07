@@ -13,18 +13,16 @@ width = 24
 height = 24
 
 [node name="AbilityIcon" type="Control" unique_id=1703913412]
-custom_minimum_size = Vector2(24, 24)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 3
-anchor_right = 0.037
-anchor_bottom = 0.067
-offset_right = 0.3199997
-offset_bottom = -0.12000084
+anchor_right = 0.025
+anchor_bottom = 0.044000003
+offset_bottom = 0.1599989
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7i228")
 
 [node name="Panel" type="Panel" parent="." unique_id=1972173025]
-custom_minimum_size = Vector2(24, 24)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,13 +53,8 @@ visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="CooldownProgress" type="TextureProgressBar" parent="." unique_id=1377590756]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer" unique_id=1377590756]
+layout_mode = 2
 focus_behavior_recursive = 1
 step = 0.1
 fill_mode = 5

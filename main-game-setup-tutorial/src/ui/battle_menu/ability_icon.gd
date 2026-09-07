@@ -8,7 +8,7 @@ var _is_on_cooldown : bool = false
 var _ability_flash_tween : Tween = null
 
 @onready var ability_icon: TextureRect = $MarginContainer/AbilityIcon
-@onready var cooldown_progress: TextureProgressBar = $CooldownProgress
+@onready var cooldown_progress: TextureProgressBar = $MarginContainer/CooldownProgress
 
 @onready var ability_use_flash: ColorRect = $MarginContainer/AbilityUseFlash
 

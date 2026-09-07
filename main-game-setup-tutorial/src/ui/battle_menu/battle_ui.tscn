@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bwoeltdx7rfou" path="res://assets/remove_TEMPORARY/Screenshot 2026-08-15 191447.png" id="1_f4qv6"]
 [ext_resource type="Script" uid="uid://cegtlypt15vxe" path="res://src/ui/battle_menu/battle_ui.gd" id="1_vl4or"]
 [ext_resource type="StyleBox" uid="uid://qs7j14g2kqhj" path="res://src/ui/battle_menu/battle_ui_panel.tres" id="2_5t1e8"]
+[ext_resource type="PackedScene" uid="uid://dsnchysiscrgh" path="res://src/ui/battle_menu/ability_icon.tscn" id="4_0suqo"]
+[ext_resource type="Texture2D" uid="uid://cp0mbd1r7rraa" path="res://assets/art/spells/icons/High_Blaze_v3.png" id="5_tcrl1"]
 
 [node name="BattleUI" type="Control" unique_id=1986297990]
 layout_mode = 3
@@ -16,7 +18,6 @@ script = ExtResource("1_vl4or")
 
 [node name="DEBUG_DELETE" type="CanvasLayer" parent="." unique_id=1289997129]
 layer = -2
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="DEBUG_DELETE" unique_id=1402011715]
 anchors_preset = 15
@@ -28,7 +29,8 @@ texture = ExtResource("1_f4qv6")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=897196087]
+[node name="AbilitySelectMenu" type="PanelContainer" parent="." unique_id=897196087]
+visible = false
 layout_mode = 0
 offset_left = 349.0
 offset_top = 242.0
@@ -36,35 +38,35 @@ offset_right = 408.0
 offset_bottom = 318.0
 theme_override_styles/panel = ExtResource("2_5t1e8")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=168416812]
+[node name="MarginContainer" type="MarginContainer" parent="AbilitySelectMenu" unique_id=168416812]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=153614682]
+[node name="VBoxContainer" type="VBoxContainer" parent="AbilitySelectMenu/MarginContainer" unique_id=153614682]
 layout_mode = 2
 
-[node name="AttackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1764305969]
+[node name="AttackButton" type="Button" parent="AbilitySelectMenu/MarginContainer/VBoxContainer" unique_id=1764305969]
 custom_maximum_size = Vector2(52, 16)
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Attack"
 
-[node name="HighBlazeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=17470003]
+[node name="HighBlazeButton" type="Button" parent="AbilitySelectMenu/MarginContainer/VBoxContainer" unique_id=17470003]
 custom_maximum_size = Vector2(52, 16)
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "High Blaze"
 
-[node name="ChillButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1234385112]
+[node name="ChillButton" type="Button" parent="AbilitySelectMenu/MarginContainer/VBoxContainer" unique_id=1234385112]
 custom_maximum_size = Vector2(52, 16)
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Chill"
 
-[node name="ItemButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1851035423]
+[node name="ItemButton" type="Button" parent="AbilitySelectMenu/MarginContainer/VBoxContainer" unique_id=1851035423]
 custom_maximum_size = Vector2(52, 16)
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
@@ -105,3 +107,35 @@ text = "Shadow"
 [node name="PartyMember3" type="Label" parent="PartyInfo/VBoxContainer" unique_id=1048323639]
 layout_mode = 2
 text = "Void"
+
+[node name="AbilityIcon" parent="." unique_id=1703913412 instance=ExtResource("4_0suqo")]
+layout_mode = 1
+offset_left = 312.0
+offset_top = 302.0
+offset_right = 312.32
+offset_bottom = 302.16
+ability_texture = ExtResource("5_tcrl1")
+
+[node name="AbilityIcon2" parent="." unique_id=843529091 instance=ExtResource("4_0suqo")]
+layout_mode = 1
+offset_left = 295.0
+offset_top = 311.0
+offset_right = 295.32
+offset_bottom = 311.16
+ability_texture = ExtResource("5_tcrl1")
+
+[node name="AbilityIcon3" parent="." unique_id=1953281563 instance=ExtResource("4_0suqo")]
+layout_mode = 1
+offset_left = 330.0
+offset_top = 312.0
+offset_right = 330.32
+offset_bottom = 312.16
+ability_texture = ExtResource("5_tcrl1")
+
+[node name="AbilityIcon4" parent="." unique_id=236954463 instance=ExtResource("4_0suqo")]
+layout_mode = 1
+offset_left = 312.0
+offset_top = 319.0
+offset_right = 312.32
+offset_bottom = 319.16
+ability_texture = ExtResource("5_tcrl1")
