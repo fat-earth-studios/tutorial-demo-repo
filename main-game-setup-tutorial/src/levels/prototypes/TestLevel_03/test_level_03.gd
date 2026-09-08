@@ -8,7 +8,7 @@ extends BaseLevel
 
 func _ready() -> void:
 	# Relay this transition volume's request through the BaseLevel request signal
-	level_transition.transition_requested.connect(_request_level_transition)
+	level_transition.transition_requested.connect(_on_level_transition_requested)
 
 
 func get_default_player_spawn() -> Vector2:

@@ -151,7 +151,6 @@ stretch_mode = 3
 y_sort_enabled = true
 
 [node name="BattleActorParty1" parent="BattleActorsParty" unique_id=845992210 instance=ExtResource("11_i2lgo")]
-visible = false
 position = Vector2(160, 160)
 
 [node name="BattleActor2" type="Sprite2D" parent="BattleActorsParty" unique_id=627641816]
@@ -256,6 +255,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "High Blaze"
 icon = ExtResource("16_oy5e4")
+expand_icon = true
 
 [node name="ButtonIce" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=385391369]
 unique_name_in_owner = true

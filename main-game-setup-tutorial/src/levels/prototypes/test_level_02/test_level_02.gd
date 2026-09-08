@@ -14,7 +14,7 @@ extends BaseLevel
 @onready var battle_transition : BattleTransition = $Transitions/BattleTransition
 
 func _ready() -> void:
-	level_transition.transition_requested.connect(_request_level_transition)
+	level_transition.transition_requested.connect(_on_level_transition_requested)
 	battle_transition.transition_to_battle.connect(_request_battle_transition)
 
 func get_default_player_spawn() -> Vector2:
