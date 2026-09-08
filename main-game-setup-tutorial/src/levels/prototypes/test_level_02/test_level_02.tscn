@@ -376,14 +376,14 @@ y_sort_enabled = true
 position = Vector2(320, 192)
 
 [node name="PlayerCamera" parent="LevelObjects" unique_id=1250976206 instance=ExtResource("11_vax7a")]
-position = Vector2(320, 270)
+position = Vector2(284.79697, 160.89459)
 limit_left = 160
 limit_top = 90
 limit_right = 480
 limit_bottom = 360
 
 [node name="PlayerSpawn" parent="LevelObjects" unique_id=1487922808 instance=ExtResource("13_80iu8")]
-position = Vector2(448, 354)
+position = Vector2(284.79697, 160.89459)
 
 [node name="Marker2D" type="Marker2D" parent="LevelObjects" unique_id=1048705464]
 position = Vector2(320, 180)

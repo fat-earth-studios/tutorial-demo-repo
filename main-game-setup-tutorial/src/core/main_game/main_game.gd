@@ -7,7 +7,7 @@ extends Node
 const TEST_LEVEL_02    : String =  "uid://kikf44gko1yv"
 const TEST_LEVEL_03    : String = "uid://be8ai3x7gg6h4"
 const PLAYER_SCENE_UID : String =  "uid://bk2cu2ameptuy"
-const BATTLE_UI : String        = "uid://crwgde4f1udwl"
+const BATTLE_UI        : String = "uid://crwgde4f1udwl"
 
 var player : Player = null
 
@@ -16,12 +16,12 @@ var _current_ui    : Control = null
 var _current_battle : BattleArena
 
 # Game World root nodes
-@onready var level_root  : Node2D = %LevelRoot
-@onready var entity_root : Node2D = %EntityRoot
-@onready var effect_root : Node2D = %EffectRoot
+@onready var _level_root  : Node2D = %LevelRoot
+@onready var _entity_root : Node2D = %EntityRoot
+@onready var _effect_root : Node2D = %EffectRoot
 
 # UI Root Nodes (FUTURE)
-@onready var ui_root         : Control = %UIRoot
+@onready var _ui_root         : Control = %UIRoot
 @onready var pause_root      : Control = %PauseRoot
 @onready var transition_root : Control = %TransitionRoot
 
@@ -62,7 +62,7 @@ func _perform_level_load(level_scene_uid : String) -> void:
 		var outgoing_level : Node = _current_level
 		_current_level = null
 
-		level_root.remove_child(outgoing_level)
+		_level_root.remove_child(outgoing_level)
 		outgoing_level.queue_free()
 
 
@@ -91,7 +91,7 @@ func _perform_level_load(level_scene_uid : String) -> void:
 	_current_level.signal_level_transition.connect(_level_transition_signaled)
 	_current_level.request_battle_transition.connect(_battle_transition_signaled)
 
-	level_root.add_child(_current_level)
+	_level_root.add_child(_current_level)
 
 	_place_player_at_level_spawn()
 	_setup_level_camera()
@@ -116,7 +116,7 @@ func _init_player() -> void:
 
 	player = player_instance as Player
 
-	entity_root.add_child(player)
+	_entity_root.add_child(player)
 
 
 ## Finds the default spawn location in currently loaded level, and places
@@ -155,7 +155,7 @@ func _perform_load_ui_scene(ui_scene_uid : String) -> void:
 		var outgoing_ui : Node = _current_ui
 		_current_ui = null
 
-		ui_root.remove_child(outgoing_ui)
+		_ui_root.remove_child(outgoing_ui)
 		outgoing_ui.queue_free()
 
 
@@ -179,7 +179,7 @@ func _perform_load_ui_scene(ui_scene_uid : String) -> void:
 	#_current_level.signal_level_transition.connect(_level_transition_signaled)
 	#_current_level.request_battle_transition.connect(_battle_transition_signaled)
 
-	ui_root.add_child(_current_ui)
+	_ui_root.add_child(_current_ui)
 
 
 func _init_systems() -> void:
@@ -218,7 +218,7 @@ func perform_load_battle(battle_scene_uid : String) -> void:
 	if is_instance_valid(_current_level):
 		var outgoing_level : Node = _current_level
 		_current_level = null
-		level_root.remove_child(outgoing_level)
+		_level_root.remove_child(outgoing_level)
 		outgoing_level.queue_free()
 
 	var new_battle_packed : PackedScene = (
@@ -237,7 +237,7 @@ func perform_load_battle(battle_scene_uid : String) -> void:
 
 	_current_battle = new_battle
 
-	level_root.add_child(_current_battle)
+	_level_root.add_child(_current_battle)
 
 
 func _level_transition_signaled(string_uid : String) -> void:
