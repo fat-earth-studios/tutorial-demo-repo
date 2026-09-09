@@ -50,16 +50,14 @@ func _play_use_ability_flash() -> void:
 	if _ability_flash_tween:
 		_ability_flash_tween.kill()
 
-	ability_use_flash.self_modulate = Color(1.0, 1.0, 1.0, 0.0)
-
 	_ability_flash_tween = create_tween()
 
 	_ability_flash_tween.tween_property(
-		ability_use_flash, "self_modulate", Color(1.0, 1.0, 1.0, 1.0), 0.667
+		ability_use_flash, "self_modulate", Color(1.0, 1.0, 1.0, 1.0), 0.133
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 
 	_ability_flash_tween.tween_property(
-		ability_use_flash, "self_modulate", Color(1.0, 1.0, 1.0, 0.0), 0.667
+		ability_use_flash, "self_modulate", Color(1.0, 1.0, 1.0, 0.0), 0.133
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 	await _ability_flash_tween.finished
