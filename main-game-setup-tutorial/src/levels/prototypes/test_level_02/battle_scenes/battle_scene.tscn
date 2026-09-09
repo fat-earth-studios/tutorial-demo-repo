@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
 [ext_resource type="PackedScene" uid="uid://dffhodi2knh0e" path="res://src/gameplay/battle/spells/ice_spell.tscn" id="14_u3tai"]
-[ext_resource type="Texture2D" uid="uid://snlie1gahxt2" path="res://assets/art/spells/icons/High_Blaze.png" id="16_oy5e4"]
 [ext_resource type="PackedScene" uid="uid://crwgde4f1udwl" path="res://src/ui/battle_menu/battle_ui.tscn" id="17_xy4iv"]
 
 [sub_resource type="Gradient" id="Gradient_t2okm"]
@@ -151,6 +150,7 @@ stretch_mode = 3
 y_sort_enabled = true
 
 [node name="BattleActorParty1" parent="BattleActorsParty" unique_id=845992210 instance=ExtResource("11_i2lgo")]
+visible = false
 position = Vector2(160, 160)
 
 [node name="BattleActor2" type="Sprite2D" parent="BattleActorsParty" unique_id=627641816]
@@ -254,7 +254,6 @@ text = "RESET"
 unique_name_in_owner = true
 layout_mode = 2
 text = "High Blaze"
-icon = ExtResource("16_oy5e4")
 expand_icon = true
 
 [node name="ButtonIce" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=385391369]

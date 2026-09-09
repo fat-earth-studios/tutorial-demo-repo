@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyo3gip7pky77"
-path="res://.godot/imported/spell_chill_icon.png-22931b1c27196ebceb2c4e36e8fdb3b9.ctex"
+uid="uid://cdie3m08uum5d"
+path="res://.godot/imported/spell_icon_high_blaze.png-33dfac4e5d57f999f4e457ba60c19a1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/spells/icons/spell_chill_icon.png"
-dest_files=["res://.godot/imported/spell_chill_icon.png-22931b1c27196ebceb2c4e36e8fdb3b9.ctex"]
+source_file="res://assets/art/spells/icons/spell_icon_high_blaze.png"
+dest_files=["res://.godot/imported/spell_icon_high_blaze.png-33dfac4e5d57f999f4e457ba60c19a1a.ctex"]
 
 [params]
 

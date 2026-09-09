@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp0mbd1r7rraa"
-path="res://.godot/imported/High_Blaze_v3.png-bfaaf60ab9f3c9155af48d101a397cdc.ctex"
+uid="uid://bxji6d27bvnha"
+path="res://.godot/imported/spelll_icon_chill.png-f18d37e26106c47295bd9007b55bbb26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/spells/icons/High_Blaze_v3.png"
-dest_files=["res://.godot/imported/High_Blaze_v3.png-bfaaf60ab9f3c9155af48d101a397cdc.ctex"]
+source_file="res://assets/art/spells/icons/spelll_icon_chill.png"
+dest_files=["res://.godot/imported/spelll_icon_chill.png-f18d37e26106c47295bd9007b55bbb26.ctex"]
 
 [params]
 

@@ -3,9 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bwoeltdx7rfou" path="res://assets/remove_TEMPORARY/Screenshot 2026-08-15 191447.png" id="1_f4qv6"]
 [ext_resource type="Script" uid="uid://cegtlypt15vxe" path="res://src/ui/battle_menu/battle_ui.gd" id="1_vl4or"]
 [ext_resource type="StyleBox" uid="uid://qs7j14g2kqhj" path="res://src/ui/battle_menu/battle_ui_panel.tres" id="2_5t1e8"]
-[ext_resource type="PackedScene" uid="uid://dsnchysiscrgh" path="res://src/ui/battle_menu/ability_icon.tscn" id="4_tcrl1"]
-[ext_resource type="Texture2D" uid="uid://cp0mbd1r7rraa" path="res://assets/art/spells/icons/High_Blaze_v3.png" id="5_mgig0"]
-[ext_resource type="Texture2D" uid="uid://cyo3gip7pky77" path="res://assets/art/spells/icons/spell_chill_icon.png" id="6_mgig0"]
+[ext_resource type="PackedScene" uid="uid://dke1f8x2llj2t" path="res://src/ui/battle_menu/diamond_hotbar.tscn" id="4_0suqo"]
 
 [node name="BattleUI" type="Control" unique_id=1986297990]
 layout_mode = 3
@@ -145,43 +143,9 @@ size_flags_horizontal = 10
 text = "170/175  45/75"
 horizontal_alignment = 2
 
-[node name="Control" type="Control" parent="." unique_id=1217119670]
-anchors_preset = 0
-offset_left = 340.0
-offset_top = 251.0
-offset_right = 409.0
-offset_bottom = 314.0
-
-[node name="AbilityIcon" parent="Control" unique_id=1703913412 instance=ExtResource("4_tcrl1")]
-texture_filter = 2
-layout_mode = 1
-offset_left = -5.0
-offset_top = 13.0
-offset_right = 12.4470005
-offset_bottom = 28.779
-
-[node name="AbilityIcon2" parent="Control" unique_id=2126515161 instance=ExtResource("4_tcrl1")]
-texture_filter = 2
-layout_mode = 1
-offset_left = 14.0
-offset_top = 4.0
-offset_right = 31.446997
-offset_bottom = 19.779
-ability_texture = ExtResource("5_mgig0")
-
-[node name="AbilityIcon3" parent="Control" unique_id=1171348646 instance=ExtResource("4_tcrl1")]
-texture_filter = 2
-layout_mode = 1
-offset_left = 33.0
-offset_top = 13.0
-offset_right = 50.447
-offset_bottom = 28.779
-ability_texture = ExtResource("6_mgig0")
-
-[node name="AbilityIcon4" parent="Control" unique_id=1061477749 instance=ExtResource("4_tcrl1")]
-texture_filter = 2
-layout_mode = 1
-offset_left = 14.0
-offset_top = 23.0
-offset_right = 31.446997
-offset_bottom = 38.779
+[node name="DiamondHotbar" parent="." unique_id=1822887946 instance=ExtResource("4_0suqo")]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 259.0
+offset_right = 335.0
+offset_bottom = 259.0

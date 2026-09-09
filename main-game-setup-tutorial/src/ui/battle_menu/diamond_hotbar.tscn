@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dke1f8x2llj2t"]
+
+[ext_resource type="Script" uid="uid://c7ce7h4q0hvrf" path="res://src/ui/battle_menu/diamond_hotbar.gd" id="1_ajanc"]
+[ext_resource type="PackedScene" uid="uid://dsnchysiscrgh" path="res://src/ui/battle_menu/ability_icon.tscn" id="1_npj2h"]
+[ext_resource type="Texture2D" uid="uid://cdie3m08uum5d" path="res://assets/art/spells/icons/spell_icon_high_blaze.png" id="2_rkc2l"]
+[ext_resource type="Texture2D" uid="uid://bxji6d27bvnha" path="res://assets/art/spells/icons/spelll_icon_chill.png" id="3_rkc2l"]
+
+[node name="DiamondHotbar" type="Control" unique_id=1822887946]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ajanc")
+
+[node name="AbilityIcon" parent="." unique_id=1703913412 instance=ExtResource("1_npj2h")]
+layout_mode = 0
+offset_top = 9.0
+offset_bottom = 25.0
+
+[node name="AbilityIcon2" parent="." unique_id=1806822235 instance=ExtResource("1_npj2h")]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 32.0
+ability_texture = ExtResource("2_rkc2l")
+
+[node name="AbilityIcon3" parent="." unique_id=1903676768 instance=ExtResource("1_npj2h")]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 9.0
+offset_right = 48.0
+offset_bottom = 25.0
+ability_texture = ExtResource("3_rkc2l")
+
+[node name="AbilityIcon4" parent="." unique_id=148474625 instance=ExtResource("1_npj2h")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 32.0
+offset_bottom = 33.0

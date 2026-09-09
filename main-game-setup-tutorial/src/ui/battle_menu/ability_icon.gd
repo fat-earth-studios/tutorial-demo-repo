@@ -1,16 +1,19 @@
 class_name AbilityIcon
 extends Control
 
+signal action_started
+
 @export var ability_texture : Texture2D = null
 @export var cooldown_time   : float = 5.0
 
 var _is_on_cooldown : bool = false
 var _ability_flash_tween : Tween = null
 
-@onready var ability_icon: TextureRect = $MarginContainer/AbilityIcon
-@onready var cooldown_progress: TextureProgressBar = $MarginContainer/CooldownProgress
 
-@onready var ability_use_flash: ColorRect = $MarginContainer/AbilityUseFlash
+@onready var ability_icon: TextureRect = %AbilityIcon
+@onready var cooldown_progress: TextureProgressBar = %CooldownProgress
+
+@onready var ability_use_flash: ColorRect = %AbilityUseFlash
 
 @onready var cooldown_timer: Timer = $CooldownTimer
 
@@ -39,11 +42,14 @@ func _gui_input(event: InputEvent) -> void:
 func try_start_action() -> void:
 	if not _is_on_cooldown:
 		start_action()
+		action_started.emit()
 
 func start_action() -> void:
 	_play_use_ability_flash()
+	# _execute_action()
+
+func start_cooldown() -> void:
 	_is_on_cooldown = true
-	#time_text.visible = true
 	cooldown_timer.start()
 
 func _play_use_ability_flash() -> void:
