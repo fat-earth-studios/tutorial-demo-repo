@@ -3,14 +3,14 @@ class_name BaseLevel
 extends Node2D
 ## Abstract class for levels
 
-signal level_transition_requested(scene_uid : String)
-signal request_battle_transition(scene_uid : String)
+signal level_transition_requested(level_scene_uid : String)
+signal battle_transition_requested(battle_scene_uid : String)
 
-func _on_level_transition_requested(scene_uid : String) -> void:
-	level_transition_requested.emit(scene_uid)
+func _on_level_transition_requested(level_scene_uid : String) -> void:
+	level_transition_requested.emit(level_scene_uid)
 
-func _request_battle_transition(scene_uid : String) -> void:
-	request_battle_transition.emit(scene_uid)
+func _on_battle_transition_requested(battle_scene_uid : String) -> void:
+	battle_transition_requested.emit(battle_scene_uid)
 
 ## Provides default global position for player to be placed in level
 @abstract func get_default_player_spawn() -> Vector2

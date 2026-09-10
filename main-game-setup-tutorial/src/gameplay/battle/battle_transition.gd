@@ -5,7 +5,7 @@ extends Area2D
 var battle_scene_uid : String
 
 ## Emitted when a battle is triggered requiring the transition into batttle
-signal transition_to_battle(scene_uid : String)
+signal transition_requested(battle_scene_uid : String)
 
 var _has_triggered : bool = false
 
@@ -27,4 +27,4 @@ func _on_body_entered(body : Node2D) -> void:
 	set_deferred(&"monitoring", false)
 
 	print_debug("Player requested transition to: " + battle_scene_uid)
-	transition_to_battle.emit(battle_scene_uid)
+	transition_requested.emit(battle_scene_uid)

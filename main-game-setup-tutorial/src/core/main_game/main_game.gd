@@ -30,7 +30,7 @@ var _current_battle : BattleArena
 func _ready() -> void:
 	_init_player()
 
-	load_level(TEST_LEVEL_02)
+	load_level(TEST_LEVEL_03)
 
 
 func _input(event: InputEvent) -> void:
@@ -77,11 +77,7 @@ func _init_systems() -> void:
 
 ## Loads a level scene that must extend BaseLevel
 func load_level(level_scene_uid : String) -> void:
-	if is_instance_valid(_current_level):
-		var outgoing_level : Node = _current_level
-		_current_level = null
-		_level_root.remove_child(outgoing_level)
-		outgoing_level.queue_free()
+	_unload_current_level()
 
 	var new_level : Node = _instantiate_scene_from_uid(level_scene_uid)
 
@@ -98,26 +94,19 @@ func load_level(level_scene_uid : String) -> void:
 	_current_level = new_level
 
 	_current_level.level_transition_requested.connect(_on_current_level_transition_requested)
-	_current_level.request_battle_transition.connect(_battle_transition_signaled)
+	_current_level.battle_transition_requested.connect(_on_current_level_battle_transition_requested)
 
 	_level_root.add_child(_current_level)
 
 	_place_player_at_level_spawn()
 	_setup_level_camera()
 
-
-## Returns an instantiated Node that has not been added to the scene tree.
-## The caller owns the returned Node and must either add or free it
-func _instantiate_scene_from_uid(scene_uid : String) -> Node:
-	var scene_packed : PackedScene = (
-			ResourceLoader.load(scene_uid, "PackedScene") as PackedScene
-	)
-
-	if scene_packed == null:
-		return null
-
-	# The caller owns this node and is responsible to check if it is valid
-	return scene_packed.instantiate()
+func _unload_current_level() -> void:
+	if is_instance_valid(_current_level):
+		var outgoing_level : Node = _current_level
+		_current_level = null
+		_level_root.remove_child(outgoing_level)
+		outgoing_level.queue_free()
 
 
 ## Finds the default spawn location in currently loaded level, and places
@@ -150,19 +139,9 @@ func _setup_level_camera() -> void:
 
 #region UI Functions
 
+
 func load_ui(ui_scene_uid : String) -> void:
-	_perform_load_ui_scene(ui_scene_uid)
-
-
-func _perform_load_ui_scene(ui_scene_uid : String) -> void:
-	if is_instance_valid(_current_ui):
-		# Passing reference to local variable allows for cleanly removing from tree
-		#  while using _current_level to load the new scene
-		var outgoing_ui : Node = _current_ui
-		_current_ui = null
-
-		_ui_root.remove_child(outgoing_ui)
-		outgoing_ui.queue_free()
+	_unload_current_ui()
 
 	var new_ui : Node = _instantiate_scene_from_uid(ui_scene_uid)
 
@@ -174,23 +153,27 @@ func _perform_load_ui_scene(ui_scene_uid : String) -> void:
 
 	_ui_root.add_child(_current_ui)
 
+func _unload_current_ui() -> void:
+	if is_instance_valid(_current_ui):
+		var outgoing_ui : Node = _current_ui
+		_current_ui = null
+		_ui_root.remove_child(outgoing_ui)
+		outgoing_ui.queue_free()
+
 #endregion
 
 
 
 #region battle functions
 
-func _load_battle(battle_scene_uid : String) -> void:
-	_begin_battle.call_deferred(battle_scene_uid)
 
-
-func _begin_battle(battle_scene_uid : String) -> void:
-	perform_load_battle(battle_scene_uid)
+func start_battle(battle_scene_uid : String) -> void:
+	load_battle_scene(battle_scene_uid)
 	if not is_instance_valid(_current_battle):
 		push_error("Battle Instance not valid after loading")
 		return
 
-	_perform_load_ui_scene(BATTLE_UI)
+	load_ui(BATTLE_UI) # FUTURE: Remove Hard Coding
 	if not is_instance_valid(_current_ui):
 		push_error("Battle UI invalid after loading")
 
@@ -208,30 +191,49 @@ func _begin_battle(battle_scene_uid : String) -> void:
 	battle_session.start()
 
 
-func perform_load_battle(battle_scene_uid : String) -> void:
+func load_battle_scene(battle_scene_uid : String) -> void:
+	# For now treat as loading a level
+	# FUTURE: (retain pre-battle state) Save reference to level and remove from tree
+	#          to re-enter tree once battle has completed
 	if is_instance_valid(_current_level):
 		var outgoing_level : Node = _current_level
 		_current_level = null
 		_level_root.remove_child(outgoing_level)
 		outgoing_level.queue_free()
 
-	var new_battle_packed : PackedScene = (
-			ResourceLoader.load(battle_scene_uid, "PackedScene") as PackedScene
-	)
 
-	if new_battle_packed == null:
-		push_error("Could not load level as a packed scene: " + battle_scene_uid)
-		return
+	var new_battle_instance : Node = _instantiate_scene_from_uid(battle_scene_uid)
 
-	var new_battle : Node = new_battle_packed.instantiate()
-
-	if not new_battle:
+	if new_battle_instance == null:
 		push_error("Could not instantiate new level " + battle_scene_uid)
 		return
 
-	_current_battle = new_battle
+	_current_battle = new_battle_instance as BattleArena
+
+	# TODO: Connect any pre-battle markers (players to jump to)
 
 	_level_root.add_child(_current_battle)
+
+	#TODO: Should this have a return code for success, fail, other possible outcomes??
+
+#endregion
+
+
+#region helper functions
+
+## Returns an instantiated Node that has not been added to the scene tree.
+## The caller owns the returned Node and must either add or free it
+func _instantiate_scene_from_uid(scene_uid : String) -> Node:
+	var scene_packed : PackedScene = (
+			ResourceLoader.load(scene_uid, "PackedScene") as PackedScene
+	)
+
+	if scene_packed == null:
+		return null
+
+	# The caller owns this node and is responsible to check if it is valid
+	return scene_packed.instantiate()
+
 
 #endregion
 
@@ -241,11 +243,8 @@ func _on_current_level_transition_requested(new_level_uid : String) -> void:
 	load_level.call_deferred(new_level_uid)
 
 
-func _battle_transition_signaled(string_uid : String) -> void:
-	print_debug("Main game got the battle transition signal")
-	_load_battle(string_uid)
-	#_load_battle(string_uid)
-	#load_ui(ABILITY_SELECT_MENU)
+func _on_current_level_battle_transition_requested(new_battle_uid : String) -> void:
+	start_battle.call_deferred(new_battle_uid)
 
 
 func _on_battle_finished(session : BattleSession) -> void:

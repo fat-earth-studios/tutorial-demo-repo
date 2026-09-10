@@ -15,7 +15,7 @@ extends BaseLevel
 
 func _ready() -> void:
 	level_transition.transition_requested.connect(_on_level_transition_requested)
-	battle_transition.transition_to_battle.connect(_request_battle_transition)
+	battle_transition.transition_requested.connect(_on_battle_transition_requested)
 
 func get_default_player_spawn() -> Vector2:
 	return player_spawn_marker.global_position

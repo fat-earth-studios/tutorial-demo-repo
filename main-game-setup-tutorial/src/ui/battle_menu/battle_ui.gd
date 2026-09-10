@@ -13,8 +13,6 @@ func _ready() -> void:
 	high_blaze_button.pressed.connect(_on_high_blaze_pressed)
 	chill_button.pressed.connect(_on_chill_pressed)
 
-	battle_start()
-
 func battle_start() -> void:
 	self.visible = true
 	# TODO: Add sound effects and intro pop in
