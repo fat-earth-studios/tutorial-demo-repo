@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dsnchysiscrgh"]
 
 [ext_resource type="Script" uid="uid://cdvifqlsx0icu" path="res://src/ui/battle_menu/ability_icon.gd" id="1_7i228"]
+[ext_resource type="Texture2D" uid="uid://c6tjteaj33sc8" path="res://assets/art/spells/icons/ability_icon_sword.png" id="2_fsqmm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uviv1"]
 bg_color = Color(0.8, 0.8, 0.8, 1)
@@ -43,6 +44,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_uviv1")
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
+texture = ExtResource("2_fsqmm")
 expand_mode = 1
 
 [node name="CooldownProgress" type="TextureProgressBar" parent="PanelContainer" unique_id=1377590756]

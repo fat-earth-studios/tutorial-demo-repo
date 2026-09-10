@@ -4,11 +4,25 @@ extends Node
 signal battle_finished
 signal show_battle_ui
 
+enum BattleState {
+	ADVANCING,
+	SLOWED,
+	WAITING
+}
+
 # TODO: More hard coding for now
 const HIGH_BLAZE_UID  : String = "uid://d12jrqqe5xuu8"
 const SPELL_CHILL_UID : String = "uid://dffhodi2knh0e"
 
+const PLAYER_TIME_BETWEEN_TURNS : float = 2.0
+
 var _selected_spell_uid : String = ""
+
+var _battle_state : BattleState = BattleState.WAITING
+var _battle_timer : float = 0.0
+
+var _player_is_ready : bool = true
+var _next_player_turn_time : float = 0.0
 
 var _main_game    : MainGame    = null
 var _battle_arena : BattleArena = null
@@ -59,12 +73,25 @@ func start() -> void:
 
 	_battle_arena.play_battle_start_animation()
 
-func _try_open_ui() -> void:
+
+func _process(delta: float) -> void:
+	if _battle_state == BattleState.WAITING:
+		return
+
+	_battle_timer += delta
+
+	if not _player_is_ready:
+		if _battle_timer >= _next_player_turn_time:
+			pass
+			#
+
+func _start_battle_processing() -> void:
 	await get_tree().create_timer(0.5).timeout
 	_battle_ui.battle_start()
+	_battle_state = BattleState.ADVANCING
 
 func _on_arena_intro_finished() -> void:
-	_try_open_ui()
+	_start_battle_processing()
 
 func _on_ability_selected(ability_name : StringName) -> void:
 	match ability_name:

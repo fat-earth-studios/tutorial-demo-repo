@@ -41,7 +41,7 @@ func _gui_input(event: InputEvent) -> void:
 
 func try_start_action() -> void:
 	if not _is_on_cooldown:
-		start_action()
+		#start_action()
 		action_started.emit()
 
 func start_action() -> void:

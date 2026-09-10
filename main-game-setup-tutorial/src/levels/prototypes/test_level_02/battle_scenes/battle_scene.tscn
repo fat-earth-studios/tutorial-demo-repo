@@ -188,6 +188,9 @@ frame = 7
 [node name="MarkerEnemyActor1" type="Marker2D" parent="BattleActorsEnemies" unique_id=481901105]
 position = Vector2(148, 44)
 
+[node name="AoeOnEnemyMarker" type="Marker2D" parent="BattleActorsEnemies" unique_id=709937824]
+position = Vector2(160, 58)
+
 [node name="Decorations" type="Node2D" parent="." unique_id=1945664659]
 y_sort_enabled = true
 

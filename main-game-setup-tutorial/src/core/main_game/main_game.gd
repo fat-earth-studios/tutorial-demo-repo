@@ -4,9 +4,10 @@ extends Node
 ## Responsible for setting up the World layers and coordinating high-level systems.
 
 # FUTURE (main menu): Load test level for prototype
-const TEST_LEVEL_02    : String =  "uid://kikf44gko1yv"
+# FUTURE (scene organization): Remove hard coded scene list in main
+const TEST_LEVEL_02    : String = "uid://kikf44gko1yv"
 const TEST_LEVEL_03    : String = "uid://be8ai3x7gg6h4"
-const PLAYER_SCENE_UID : String =  "uid://bk2cu2ameptuy"
+const PLAYER_SCENE_UID : String = "uid://bk2cu2ameptuy"
 const BATTLE_UI        : String = "uid://crwgde4f1udwl"
 
 var player : Player = null
@@ -30,7 +31,7 @@ var _current_battle : BattleArena
 func _ready() -> void:
 	_init_player()
 
-	load_level(TEST_LEVEL_03)
+	load_level(TEST_LEVEL_02)
 
 
 func _input(event: InputEvent) -> void:
@@ -51,13 +52,9 @@ func quit_game() -> void:
 
 ## Instantiates the player and adds it to the entity layer
 func _init_player() -> void:
-	var player_scene : PackedScene = ResourceLoader.load(PLAYER_SCENE_UID) as PackedScene
-	if player_scene == null:
-		push_error("Could not load player scene: " + PLAYER_SCENE_UID)
-		return
+	var player_instance : Node = _instantiate_scene_from_uid(PLAYER_SCENE_UID)
 
-	var player_instance : Node = player_scene.instantiate()
-	if not player_instance:
+	if player_instance == null:
 		push_error("Could not instantiate player scene " + PLAYER_SCENE_UID)
 		return
 
@@ -94,13 +91,18 @@ func load_level(level_scene_uid : String) -> void:
 	_current_level = new_level
 
 	_current_level.level_transition_requested.connect(_on_current_level_transition_requested)
-	_current_level.battle_transition_requested.connect(_on_current_level_battle_transition_requested)
+	_current_level.battle_transition_requested.connect(
+			_on_current_level_battle_transition_requested
+	)
 
 	_level_root.add_child(_current_level)
 
 	_place_player_at_level_spawn()
 	_setup_level_camera()
 
+
+## Checks if valid instance of _current_level exists and
+##  removes it from scene tree and queues it to free
 func _unload_current_level() -> void:
 	if is_instance_valid(_current_level):
 		var outgoing_level : Node = _current_level
@@ -121,6 +123,7 @@ func _place_player_at_level_spawn() -> void:
 
 	player.global_position = _current_level.get_default_player_spawn()
 
+
 ## Attaches player to the current camera as the target
 func _setup_level_camera() -> void:
 	if player == null or _current_level == null:
@@ -139,7 +142,7 @@ func _setup_level_camera() -> void:
 
 #region UI Functions
 
-
+## Loads, instantiates, and adds input UI scene to UI root
 func load_ui(ui_scene_uid : String) -> void:
 	_unload_current_ui()
 
@@ -166,10 +169,10 @@ func _unload_current_ui() -> void:
 
 #region battle functions
 
-
+## Called to enter a battle scene, will load the necessray scenes and start a battle session
 func start_battle(battle_scene_uid : String) -> void:
 	load_battle_scene(battle_scene_uid)
-	if not is_instance_valid(_current_battle):
+	if not is_instance_valid(_current_battle): #TODO: Look into load_battle_scene returning status
 		push_error("Battle Instance not valid after loading")
 		return
 
@@ -177,8 +180,8 @@ func start_battle(battle_scene_uid : String) -> void:
 	if not is_instance_valid(_current_ui):
 		push_error("Battle UI invalid after loading")
 
+	# FUTURE: (battle actor components) - Add other party members and enemies
 	var party_actors : Array[BattleActorComponent] = [player.battle_actor_component]
-
 
 	var battle_session : BattleSession = BattleSession.new()
 	battle_session.setup(self, _current_battle, _current_ui, party_actors)
@@ -192,15 +195,10 @@ func start_battle(battle_scene_uid : String) -> void:
 
 
 func load_battle_scene(battle_scene_uid : String) -> void:
-	# For now treat as loading a level
+	# Battle scene will load into the level root
 	# FUTURE: (retain pre-battle state) Save reference to level and remove from tree
 	#          to re-enter tree once battle has completed
-	if is_instance_valid(_current_level):
-		var outgoing_level : Node = _current_level
-		_current_level = null
-		_level_root.remove_child(outgoing_level)
-		outgoing_level.queue_free()
-
+	_unload_current_level()
 
 	var new_battle_instance : Node = _instantiate_scene_from_uid(battle_scene_uid)
 

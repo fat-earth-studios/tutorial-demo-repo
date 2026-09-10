@@ -1,0 +1,23 @@
+[gd_resource type="TileSet" format=3 uid="uid://ce0l5s607r8lr"]
+
+[ext_resource type="Texture2D" uid="uid://boe5rd6648mbb" path="res://assets/art/world/tilesets/collider_textures.png" id="1_3bcam"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mj2us"]
+texture = ExtResource("1_3bcam")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, 6, -8, 6)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, 6, 8, 6, -8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, 6, 6, 6, 6, -8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(6, 8, 8, 8, 8, 6, -6, -8, -8, -8, -8, -6)
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_mj2us")

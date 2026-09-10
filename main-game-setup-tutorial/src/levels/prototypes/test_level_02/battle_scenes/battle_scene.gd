@@ -53,6 +53,9 @@ var _DEBUG_dmg_tween : Tween = null
 @onready var label_damage_text    : Label    = $BattleUI/LabelDamageText
 @onready var marker_enemy_actor_1 : Marker2D = $BattleActorsEnemies/MarkerEnemyActor1
 
+
+@onready var aoe_on_enemy_marker: Marker2D = $BattleActorsEnemies/AoeOnEnemyMarker
+
 func _ready() -> void:
 	# Set the location of the arena to the location in the world
 	self.global_position = arena_world_origin
@@ -167,6 +170,10 @@ func show_damage_text(amount: int, duration: float = 2.0) -> void:
 	_DEBUG_dmg_tween.tween_property(
 		label_damage_text, 'modulate:a', 0.0, duration).set_delay(0.5)
 
+
+
+func get_aoe_enemy_position() -> Vector2:
+	return aoe_on_enemy_marker.global_position
 
 
 # END DEBUG damage text

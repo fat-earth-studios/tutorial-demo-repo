@@ -383,7 +383,7 @@ limit_right = 480
 limit_bottom = 360
 
 [node name="PlayerSpawn" parent="LevelObjects" unique_id=1487922808 instance=ExtResource("13_80iu8")]
-position = Vector2(284.79697, 160.89459)
+position = Vector2(278, 172)
 
 [node name="Marker2D" type="Marker2D" parent="LevelObjects" unique_id=1048705464]
 position = Vector2(320, 180)

@@ -348,7 +348,6 @@ platform_on_leave = 2
 script = ExtResource("1_k2146")
 
 [node name="WorldCollider" type="CollisionShape2D" parent="." unique_id=279207566]
-visible = false
 light_mask = 0
 z_index = 1
 position = Vector2(0, -4)
