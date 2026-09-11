@@ -26,5 +26,4 @@ func _on_body_entered(body : Node2D) -> void:
 	_has_triggered = true
 	set_deferred(&"monitoring", false)
 
-	print_debug("Player requested transition to: " + battle_scene_uid)
 	transition_requested.emit(battle_scene_uid)

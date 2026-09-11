@@ -189,7 +189,7 @@ frame = 7
 position = Vector2(148, 44)
 
 [node name="AoeOnEnemyMarker" type="Marker2D" parent="BattleActorsEnemies" unique_id=709937824]
-position = Vector2(160, 58)
+position = Vector2(160, 55)
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1945664659]
 y_sort_enabled = true
@@ -212,14 +212,18 @@ color = Color(0.7254902, 0.7254902, 0.49019608, 1)
 environment = SubResource("Environment_m7pbj")
 
 [node name="EffectLayer" type="CanvasLayer" parent="." unique_id=733418369]
+visible = false
 follow_viewport_enabled = true
 
 [node name="EffectRoot" type="Node2D" parent="EffectLayer" unique_id=1596927301]
+visible = false
 
 [node name="HighBlaze" parent="EffectLayer/EffectRoot" unique_id=2101529883 instance=ExtResource("12_bk36e")]
+visible = false
 position = Vector2(160, 55)
 
 [node name="IceSpell" parent="EffectLayer/EffectRoot" unique_id=174385664 instance=ExtResource("14_u3tai")]
+visible = false
 position = Vector2(160, 56)
 
 [node name="DebugUI" type="CanvasLayer" parent="." unique_id=1971302592]

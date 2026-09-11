@@ -3,6 +3,7 @@ extends Control
 
 signal action_started
 
+@export var ability_name : StringName
 @export var ability_texture : Texture2D = null
 @export var cooldown_time   : float = 5.0
 

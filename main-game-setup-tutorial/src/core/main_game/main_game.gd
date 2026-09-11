@@ -13,13 +13,14 @@ const BATTLE_UI        : String = "uid://crwgde4f1udwl"
 var player : Player = null
 
 var _current_level : BaseLevel = null
+var _current_effect : Node = null
 var _current_ui    : Control = null
 var _current_battle : BattleArena
 
 # Game World root nodes
 @onready var _level_root  : Node2D = %LevelRoot
 @onready var _entity_root : Node2D = %EntityRoot
-#@onready var _effect_root : Node2D = %EffectRoot  # FUTURE: Effects
+@onready var _effect_root : Node2D = %EffectRoot
 
 # UI Root Nodes (FUTURE)
 @onready var _ui_root         : Control = %UIRoot
@@ -138,6 +139,28 @@ func _setup_level_camera() -> void:
 	level_camera.target = player
 
 #endregion
+
+func load_effect(effect_scene_uid : String) -> Node:
+	if is_instance_valid(_current_effect):
+		var outgoing_effect : Node = _current_effect
+		_current_effect = null
+		_effect_root.remove_child(outgoing_effect)
+		outgoing_effect.queue_free()
+
+	var effect_instance : Node = _instantiate_scene_from_uid(effect_scene_uid)
+	if effect_instance == null:
+		push_error("Effect instance failed to instantiate " + effect_scene_uid)
+
+	_current_effect = effect_instance
+
+	_effect_root.add_child(_current_effect)
+
+	return effect_instance
+
+func unload_effect() -> void:
+	if is_instance_valid(_current_effect):
+		_current_effect.queue_free()
+		_current_effect = null
 
 
 #region UI Functions

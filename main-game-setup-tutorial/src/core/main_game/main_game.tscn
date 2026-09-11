@@ -22,7 +22,11 @@ y_sort_enabled = true
 unique_name_in_owner = true
 y_sort_enabled = true
 
-[node name="EffectRoot" type="Node2D" parent="World" unique_id=1018165254]
+[node name="EffectLayer" type="CanvasLayer" parent="World" unique_id=1374277578]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="EffectRoot" type="Node2D" parent="World/EffectLayer" unique_id=1018165254]
 unique_name_in_owner = true
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=560793207]

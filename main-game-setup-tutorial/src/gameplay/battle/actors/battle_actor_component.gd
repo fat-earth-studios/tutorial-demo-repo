@@ -22,10 +22,10 @@ func enter_battle(destination: Vector2) -> void:
 	await tween.finished
 
 func play_start_spell_animation() -> void:
-	animation_controller.play_start_spell_animation()
+	animation_controller.play(&"cast_spell_start") # TODO: This is fragile (need to have clear signal to owner)
 
 func play_end_spell_animation() -> void:
-	animation_controller.play_end_spell_animation()
+	animation_controller.play(&"cast_spell_end")
 
 func take_damage(amount: int) -> void:
 	pass
