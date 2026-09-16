@@ -1,6 +1,12 @@
-# Fat Earth Studios - Godot Tutorial Project
+# FAT Earth Studios - Godot Tutorial Project
 
-This repository contains the public companion project for the Godot development tutorials on [**Fat Earth Studios**](https://www.youtube.com/@FatEarthStudios).
+> **IMPORTANT: Work-in-progress video snapshot**
+>
+> This contains the experimental battle prototype shown in
+> [Ability System: Spells That Affect the World](https://youtu.be/KwZ5mH_p0pQ). It is intentionally unfinished,
+> is not a reference implementation, and is not ready to merge into `master`.
+
+This repository contains the public companion project for the Godot development tutorials on [**FAT Earth Studios**](https://www.youtube.com/@FatEarthStudios).
 
 The project is updated alongside the video series so that you can explore the scripts, project structure, and examples shown in each tutorial.
 
