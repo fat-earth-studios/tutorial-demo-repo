@@ -4,19 +4,19 @@ extends RefCounted
 signal action_completed
 
 var _caster : BattleActorComponent
-var _target_position : Vector2 # TODO: Add target as well for damage calculation
-var _ability : SpellBase # TODO: Update for non-spells
+var _target_position : Vector2      # TODO: Update to target for damage calc.
+var _ability : AbilityBase
 
 func _init(
 		caster_in : BattleActorComponent,
 		target_position_in : Vector2,
-		ability_in : SpellBase
+		ability_in : AbilityBase
 ) -> void:
 	_caster = caster_in
 	_target_position = target_position_in
 	_ability = ability_in
 
-	# FUTURE: Clean this up a bit
+	# FUTURE: Will be more complex when picking Actor as target
 	_ability.global_position = _target_position
 
 func execute() -> void:

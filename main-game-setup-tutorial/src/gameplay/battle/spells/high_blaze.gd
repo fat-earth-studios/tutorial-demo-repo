@@ -1,5 +1,5 @@
 class_name HighBlaze
-extends SpellBase
+extends AbilityBase
 
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
 

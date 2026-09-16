@@ -1,5 +1,5 @@
 @abstract
-class_name SpellBase
+class_name AbilityBase
 extends Node2D
 
 ## Emitted when effect impact occurs, for aligning damage (or anything else) to that frame

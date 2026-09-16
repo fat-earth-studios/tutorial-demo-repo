@@ -948,4 +948,3 @@ grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1798243626]
 libraries/ = SubResource("AnimationLibrary_en2rx")
-autoplay = &"RESET"

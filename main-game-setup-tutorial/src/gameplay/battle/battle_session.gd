@@ -91,7 +91,7 @@ func _process(_delta: float) -> void:
 func _create_battle_action(ability_scene_uid : StringName) -> void:
 	var effect_instance : Node = _main_game.load_effect(ability_scene_uid)
 
-	var ability : SpellBase = effect_instance as SpellBase
+	var ability : AbilityBase = effect_instance as AbilityBase
 
 	ability.impact_moment.connect(_on_ability_impact_moment.bind(ability))
 
@@ -120,7 +120,7 @@ func _start_battle_processing() -> void:
 func _on_arena_intro_finished() -> void:
 	_start_battle_processing()
 
-func _on_ability_impact_moment(spell_used : SpellBase) -> void:
+func _on_ability_impact_moment(spell_used : AbilityBase) -> void:
 	if spell_used is HighBlaze:          # TODO: Need to unwire from old object
 		_battle_arena._on_fire_impact()
 	if spell_used is IceSpell:

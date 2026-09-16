@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://cwj8jck6n8rlg"]
+
+[ext_resource type="Texture2D" uid="uid://ib10n4tem8sr" path="res://assets/art/characters/player/ghost_player.png" id="1_hr4oq"]
+[ext_resource type="Shader" uid="uid://cg2sy0ucodlqv" path="res://src/debug/ghost_aura.gdshader" id="1_k4x5f"]
+[ext_resource type="Texture2D" uid="uid://ban4x2lmtdw5q" path="res://assets/art/characters/player/ghost_player_NORMAL.png" id="2_k4x5f"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ilixn"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vscrf"]
+noise = SubResource("FastNoiseLite_ilixn")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uviv1"]
+resource_local_to_scene = true
+shader = ExtResource("1_k4x5f")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_vscrf")
+shader_parameter/inner_color = Color(0.7607843, 0.72156864, 0.99607843, 0.72156864)
+shader_parameter/rim_color = Color(0.43527165, 0.60447526, 1, 0.29803923)
+shader_parameter/field_radius = 0.12800000608
+shader_parameter/edge_softness = 0.01200000056999999
+shader_parameter/distortion = 0.10000000149012
+shader_parameter/visibility = 1.0
+shader_parameter/energy = 1.0
+shader_parameter/shockwave_radius = 0.0
+shader_parameter/shockwave_strength = 0.0
+
+[sub_resource type="Gradient" id="Gradient_k4x5f"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uviv1"]
+gradient = SubResource("Gradient_k4x5f")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_uviv1"]
+diffuse_texture = ExtResource("1_hr4oq")
+normal_texture = ExtResource("2_k4x5f")
+
+[sub_resource type="Gradient" id="Gradient_vscrf"]
+offsets = PackedFloat32Array(0, 0.41095892, 0.543379)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.7137255, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h42d7"]
+gradient = SubResource("Gradient_vscrf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_hr4oq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-28.0]
+}
+
+[sub_resource type="Animation" id="Animation_k4x5f"]
+resource_name = "float"
+length = 8.000002083899266
+loop_mode = 1
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-28.0, -29.0, -28.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vscrf"]
+_data = {
+&"RESET": SubResource("Animation_hr4oq"),
+&"float": SubResource("Animation_k4x5f")
+}
+
+[node name="GhostCharacter" type="Node2D" unique_id=1589210162]
+
+[node name="EffectRoot" type="Node2D" parent="." unique_id=1786570717]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="EffectRoot" unique_id=1925575525]
+material = SubResource("ShaderMaterial_uviv1")
+offset_left = -323.0
+offset_top = -380.0
+offset_right = 317.0
+offset_bottom = 260.0
+
+[node name="PointLight2D" type="PointLight2D" parent="EffectRoot" unique_id=267269971]
+energy = 2.32
+range_item_cull_mask = 512
+texture = SubResource("GradientTexture2D_uviv1")
+offset = Vector2(0, -32.215)
+height = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1731371918]
+light_mask = 513
+texture = SubResource("CanvasTexture_uviv1")
+centered = false
+offset = Vector2(-7, -28)
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1209669166]
+position = Vector2(2.682209e-07, 0)
+scale = Vector2(0.21875, 0.125)
+texture = SubResource("GradientTexture2D_h42d7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1440194971]
+libraries/ = SubResource("AnimationLibrary_vscrf")
+autoplay = &"float"

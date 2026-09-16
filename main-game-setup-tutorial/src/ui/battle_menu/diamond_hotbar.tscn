@@ -36,6 +36,7 @@ ability_name = &"spell_chill"
 ability_texture = ExtResource("3_rkc2l")
 
 [node name="AbilityIcon4" parent="." unique_id=148474625 instance=ExtResource("1_npj2h")]
+visible = false
 layout_mode = 0
 offset_left = 25.0
 offset_top = 25.0

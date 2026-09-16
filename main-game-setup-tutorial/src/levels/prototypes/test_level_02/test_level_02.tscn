@@ -46,12 +46,12 @@ shader_parameter/wave_speed = 0.08
 shader_parameter/wave_scale = 8.0
 shader_parameter/darken = false
 
-[sub_resource type="Gradient" id="Gradient_jl5xe"]
+[sub_resource type="Gradient" id="Gradient_8qnx8"]
 offsets = PackedFloat32Array(0.19620253, 0.33966243, 0.6772152)
 colors = PackedColorArray(1, 1, 1, 1, 0.13157904, 0.13157904, 0.13157904, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vax7a"]
-gradient = SubResource("Gradient_jl5xe")
+gradient = SubResource("Gradient_8qnx8")
 width = 256
 height = 128
 use_hdr = true
@@ -59,12 +59,12 @@ fill = 1
 fill_from = Vector2(0.5131579, 0)
 fill_to = Vector2(1, 0.55263156)
 
-[sub_resource type="Gradient" id="Gradient_t2okm"]
+[sub_resource type="Gradient" id="Gradient_5gdp1"]
 offsets = PackedFloat32Array(0, 0.6740506)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8abq8"]
-gradient = SubResource("Gradient_t2okm")
+gradient = SubResource("Gradient_5gdp1")
 width = 160
 height = 128
 fill = 1
@@ -376,14 +376,14 @@ y_sort_enabled = true
 position = Vector2(320, 192)
 
 [node name="PlayerCamera" parent="LevelObjects" unique_id=1250976206 instance=ExtResource("11_vax7a")]
-position = Vector2(284.79697, 160.89459)
+position = Vector2(461.39746, 354.04965)
 limit_left = 160
 limit_top = 90
 limit_right = 480
 limit_bottom = 360
 
 [node name="PlayerSpawn" parent="LevelObjects" unique_id=1487922808 instance=ExtResource("13_80iu8")]
-position = Vector2(278, 172)
+position = Vector2(454, 357)
 
 [node name="Marker2D" type="Marker2D" parent="LevelObjects" unique_id=1048705464]
 position = Vector2(320, 180)
@@ -397,6 +397,7 @@ offset_bottom = 270.0
 border_color = Color(0, 1, 0, 1)
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="LevelObjects" unique_id=642914158]
+visible = false
 offset_right = 640.0
 offset_bottom = 360.0
 border_color = Color(0, 1, 0, 1)

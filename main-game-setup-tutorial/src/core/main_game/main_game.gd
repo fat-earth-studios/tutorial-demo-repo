@@ -32,7 +32,7 @@ var _current_battle : BattleArena
 func _ready() -> void:
 	_init_player()
 
-	load_level(TEST_LEVEL_02)
+	load_level(TEST_LEVEL_03)
 
 
 func _input(event: InputEvent) -> void:
@@ -270,6 +270,6 @@ func _on_current_level_battle_transition_requested(new_battle_uid : String) -> v
 
 func _on_battle_finished(session : BattleSession) -> void:
 	session.queue_free()
-	# TODO: Probably needs more things
+	# TODO: More cleanup will be required
 
 #endregion

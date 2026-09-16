@@ -1,5 +1,5 @@
 class_name IceSpell
-extends SpellBase
+extends AbilityBase
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 

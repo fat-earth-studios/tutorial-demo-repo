@@ -1,5 +1,8 @@
 class_name BattleArena
 extends Node2D
+## NOTE: This Battle Arena is the result of prototype testing and still contains a lot of
+##       test/debug code. The final design is meant to contain the world textures and markers
+##       to be used actor and ability locations
 
 signal arena_intro_finished
 
@@ -42,12 +45,12 @@ var _DEBUG_dmg_tween : Tween = null
 @onready var button_reset : Button = %ButtonReset
 @onready var button_fire  : Button = %ButtonFire
 @onready var button_ice   : Button = %ButtonIce
-@onready var high_blaze  : HighBlaze = $EffectLayer/EffectRoot/HighBlaze
-@onready var chill_spell : IceSpell  = $EffectLayer/EffectRoot/IceSpell
-@onready var spell_layer : CanvasLayer = $EffectLayer
+#@onready var high_blaze  : HighBlaze = $EffectLayer/EffectRoot/HighBlaze
+#@onready var chill_spell : IceSpell  = $EffectLayer/EffectRoot/IceSpell
+#@onready var spell_layer : CanvasLayer = $EffectLayer
 
 # DEBUG
-@onready var main_battle_arena_2: TextureRect = $BattleArena/MainBattleArena2
+@onready var main_battle_arena_2: TextureRect = $BattleArena/MainBattleArenaScorched
 
 # DEBUG Hard coded label, need to separate out
 @onready var label_damage_text    : Label    = $BattleUI/LabelDamageText
@@ -59,7 +62,7 @@ var _DEBUG_dmg_tween : Tween = null
 func _ready() -> void:
 	# Set the location of the arena to the location in the world
 	self.global_position = arena_world_origin
-	align_spell_area() # Spell layer is a canvas layer and must be moved
+	#align_spell_area() # Spell layer is a canvas layer and must be moved
 	_arena_shader_material = main_battle_arena.material
 	if _arena_shader_material == null:
 		push_error("Material was not found")
@@ -71,8 +74,8 @@ func _ready() -> void:
 	button_fire.pressed. connect(_on_button_fire_pressed )
 	button_ice.pressed.  connect(_on_button_chill_pressed)
 
-	high_blaze.impact_moment. connect(_on_fire_impact )
-	chill_spell.impact_moment.connect(_on_chill_impact)
+	#high_blaze.impact_moment. connect(_on_fire_impact )
+	#chill_spell.impact_moment.connect(_on_chill_impact)
 
 	#await get_tree().create_timer(1.0).timeout
 #
@@ -130,10 +133,10 @@ func play_battle_start_animation() -> void:
 
 
 
-func align_spell_area() -> void:
-	spell_layer.follow_viewport_enabled = true
-	spell_layer.follow_viewport_scale = 1.0
-	spell_layer.transform = global_transform
+#func align_spell_area() -> void:
+#w	spell_layer.follow_viewport_enabled = true
+	#spell_layer.follow_viewport_scale = 1.0
+	#spell_layer.transform = global_transform
 
 func get_party_actor_position() -> Vector2:
 	return actot_party_marker_1.global_position
@@ -216,20 +219,21 @@ func _on_chill_impact() -> void:
 
 
 func _perform_spell_action(spell_name : StringName) -> void:
-	battle_actor_party_1.play_start_spell_animation()
-	await battle_actor_party_1.start_spell_complete
-
-	var selected_spell : SpellBase
-	match spell_name:
-		&"spell_blaze":
-			selected_spell = high_blaze
-		&"spell_chill":
-			selected_spell = chill_spell
-		_:
-			selected_spell = null
-
-	if selected_spell:
-		selected_spell.play_spell_animation()
-		await selected_spell.spell_animation_finished
-
-	battle_actor_party_1.play_end_spell_animation()
+	pass
+	#battle_actor_party_1.play_start_spell_animation()
+	#await battle_actor_party_1.start_spell_complete
+#
+	#var selected_spell : AbilityBase
+	#match spell_name:
+		#&"spell_blaze":
+			#selected_spell = high_blaze
+		#&"spell_chill":
+			#selected_spell = chill_spell
+		#_:
+			#selected_spell = null
+#
+	#if selected_spell:
+		#selected_spell.play_spell_animation()
+		#await selected_spell.spell_animation_finished
+#
+	#battle_actor_party_1.play_end_spell_animation()

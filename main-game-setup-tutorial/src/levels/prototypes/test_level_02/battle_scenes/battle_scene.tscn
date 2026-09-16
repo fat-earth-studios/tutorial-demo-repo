@@ -11,10 +11,8 @@
 [ext_resource type="Material" uid="uid://c7qp2lblqpptu" path="res://src/levels/prototypes/test_level_02/battle_scenes/mountain_battle_transition_material.tres" id="7_i2lgo"]
 [ext_resource type="Texture2D" uid="uid://bon5bbdlt24ql" path="res://assets/remove_TEMPORARY/mountaintop_battle_ground_after_fire.png" id="9_bk36e"]
 [ext_resource type="PackedScene" uid="uid://dorauxdy2itut" path="res://src/gameplay/battle/actors/battle_actor_party.tscn" id="11_i2lgo"]
-[ext_resource type="PackedScene" uid="uid://d12jrqqe5xuu8" path="res://src/gameplay/battle/spells/high_blaze.tscn" id="12_bk36e"]
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="12_xcxhn"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="13_bk36e"]
-[ext_resource type="PackedScene" uid="uid://dffhodi2knh0e" path="res://src/gameplay/battle/spells/ice_spell.tscn" id="14_u3tai"]
 [ext_resource type="PackedScene" uid="uid://crwgde4f1udwl" path="res://src/ui/battle_menu/battle_ui.tscn" id="17_xy4iv"]
 
 [sub_resource type="Gradient" id="Gradient_t2okm"]
@@ -135,7 +133,7 @@ texture = ExtResource("7_dxd7o")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="MainBattleArena2" type="TextureRect" parent="BattleArena" unique_id=1732326512]
+[node name="MainBattleArenaScorched" type="TextureRect" parent="BattleArena" unique_id=1732326512]
 visible = false
 material = ExtResource("7_i2lgo")
 clip_contents = true
@@ -189,7 +187,7 @@ frame = 7
 position = Vector2(148, 44)
 
 [node name="AoeOnEnemyMarker" type="Marker2D" parent="BattleActorsEnemies" unique_id=709937824]
-position = Vector2(160, 55)
+position = Vector2(160, 58)
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1945664659]
 y_sort_enabled = true
@@ -201,7 +199,6 @@ position = Vector2(160, 102)
 anchor_mode = 0
 zoom = Vector2(2, 2)
 editor_draw_limits = true
-editor_draw_drag_margin = true
 
 [node name="Environment" type="Node2D" parent="." unique_id=2007936752]
 
@@ -210,21 +207,6 @@ color = Color(0.7254902, 0.7254902, 0.49019608, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1577943360]
 environment = SubResource("Environment_m7pbj")
-
-[node name="EffectLayer" type="CanvasLayer" parent="." unique_id=733418369]
-visible = false
-follow_viewport_enabled = true
-
-[node name="EffectRoot" type="Node2D" parent="EffectLayer" unique_id=1596927301]
-visible = false
-
-[node name="HighBlaze" parent="EffectLayer/EffectRoot" unique_id=2101529883 instance=ExtResource("12_bk36e")]
-visible = false
-position = Vector2(160, 55)
-
-[node name="IceSpell" parent="EffectLayer/EffectRoot" unique_id=174385664 instance=ExtResource("14_u3tai")]
-visible = false
-position = Vector2(160, 56)
 
 [node name="DebugUI" type="CanvasLayer" parent="." unique_id=1971302592]
 
@@ -246,6 +228,7 @@ alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugUI/MarginContainer/HBoxContainer" unique_id=27939836]
 layout_mode = 2
+size_flags_vertical = 8
 
 [node name="ButtonPlay" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1951941891]
 unique_name_in_owner = true
@@ -259,12 +242,14 @@ text = "RESET"
 
 [node name="ButtonFire" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=76585349]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "High Blaze"
 expand_icon = true
 
 [node name="ButtonIce" type="Button" parent="DebugUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=385391369]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Chill
 "
@@ -280,6 +265,7 @@ offset_bottom = 40.0
 layout_mode = 1
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=1330440346]
+layer = 5
 follow_viewport_enabled = true
 
 [node name="DamageNumberRoot" type="Node2D" parent="BattleUI" unique_id=1032776495]

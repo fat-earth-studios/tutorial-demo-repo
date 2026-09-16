@@ -147,3 +147,4 @@ debug_quit={
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 viewport/hdr_2d=true
+viewport/transparent_background=true
