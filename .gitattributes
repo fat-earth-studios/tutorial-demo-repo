@@ -13,6 +13,7 @@
 # Images
 *.png filter=lfs diff=lfs merge=lfs -text
 *.svg filter=lfs diff=lfs merge=lfs -text
+docs/diagrams/battle_encounter_design.drawio.svg !filter !diff !merge !text
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *.jpeg filter=lfs diff=lfs merge=lfs -text
 *.gif filter=lfs diff=lfs merge=lfs -text
