@@ -1,8 +1,13 @@
 extends Node
 
-const CAPTURE_SIZE : Vector2i = Vector2i(640, 360)
-const OUTPUT_PATH  : String   = "user://mountaintop_battle_ground.png"
+const CAPTURE_SIZE_DEFAULT : Vector2i = Vector2i(640, 360)
+const OUTPUT_PATH_DEFAULT  : String   = "user://battle_ground.png"
 
+@export_category("Output Settings")
+@export var capture_size : Vector2i = CAPTURE_SIZE_DEFAULT
+@export var output_path  : String   = OUTPUT_PATH_DEFAULT
+
+@export_category("Scene Reference")
 @export var battle_area_center  : Marker2D
 @export var hide_during_capture : Array[CanvasItem]
 
@@ -25,7 +30,7 @@ func _capture_battle_ground() -> void:
 	# Render the currently loaded level from a second camera.
 	_capture_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
 	_capture_viewport.world_2d = get_viewport().world_2d
-	_capture_viewport.size = CAPTURE_SIZE
+	_capture_viewport.size = capture_size
 	_capture_viewport.disable_3d = true
 	_capture_viewport.use_hdr_2d = true
 	_capture_viewport.transparent_bg = true
@@ -50,7 +55,7 @@ func _capture_battle_ground() -> void:
 		image.convert(Image.FORMAT_RGBA8)
 		image.linear_to_srgb()
 
-	var error: Error = image.save_png(OUTPUT_PATH)
+	var error: Error = image.save_png(output_path)
 
 	# Restore the exploration scene.
 	for index: int in hide_during_capture.size():
@@ -60,6 +65,6 @@ func _capture_battle_ground() -> void:
 		push_error("Battle-ground capture failed: %s" % error_string(error))
 		return
 
-	var absolute_path : String = ProjectSettings.globalize_path(OUTPUT_PATH)
+	var absolute_path : String = ProjectSettings.globalize_path(output_path)
 	print("Battle ground saved to: ", absolute_path)
 	OS.shell_show_in_file_manager(absolute_path)

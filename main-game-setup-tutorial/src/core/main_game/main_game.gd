@@ -12,9 +12,9 @@ const BATTLE_UI        : String = "uid://crwgde4f1udwl"
 
 var player : Player = null
 
-var _current_level : BaseLevel = null
-var _current_effect : Node = null
-var _current_ui    : Control = null
+var _current_level  : BaseLevel   = null
+var _current_effect : Node        = null
+var _current_ui     : Control     = null
 var _current_battle : BattleArena
 
 # Game World root nodes
@@ -32,7 +32,7 @@ var _current_battle : BattleArena
 func _ready() -> void:
 	_init_player()
 
-	load_level(TEST_LEVEL_03)
+	load_level(TEST_LEVEL_02)
 
 
 func _input(event: InputEvent) -> void:

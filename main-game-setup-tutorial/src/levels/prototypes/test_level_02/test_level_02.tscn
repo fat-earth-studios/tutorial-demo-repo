@@ -389,7 +389,6 @@ position = Vector2(454, 357)
 position = Vector2(320, 180)
 
 [node name="ReferenceRect" type="ReferenceRect" parent="LevelObjects" unique_id=394684171]
-visible = false
 offset_left = 160.0
 offset_top = 90.0
 offset_right = 480.0
@@ -426,7 +425,7 @@ color = Color(0.42672014, 0.42672014, 0.42672014, 1)
 [node name="Transitions" type="Node2D" parent="." unique_id=1218412911]
 
 [node name="BattleTransition" parent="Transitions" unique_id=1125730806 instance=ExtResource("18_kg63s")]
-position = Vector2(319.03305, 135.41124)
+position = Vector2(320, 138)
 battle_scene_uid = "uid://b144aly8fprew"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/BattleTransition" unique_id=224035421]
@@ -439,3 +438,13 @@ level_scene_uid = "uid://be8ai3x7gg6h4"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/LevelTransition" unique_id=1395050685]
 position = Vector2(-5.880066, 12.098846)
 shape = SubResource("RectangleShape2D_uviv1")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=607312299]
+visible = false
+z_index = 4
+offset_left = 160.0
+offset_top = 90.0
+offset_right = 480.0
+offset_bottom = 270.0
+border_color = Color(1, 0.36666667, 0, 1)
+border_width = 2.0

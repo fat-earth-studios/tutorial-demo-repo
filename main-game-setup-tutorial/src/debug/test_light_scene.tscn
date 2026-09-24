@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://20xc2h6fgovb"]
+
+[sub_resource type="GDScript" id="GDScript_v84pw"]
+script/source = "extends Node2D
+
+@onready var test_sprite_2d: Sprite2D = $TestSprite2D
+
+const GHOST_PLAYER : CompressedTexture2D = preload(\"uid://ib10n4tem8sr\")
+const GHOST_PLAYER_NORMAL : CompressedTexture2D = preload(\"uid://ban4x2lmtdw5q\")
+
+func _ready() -> void:
+	_direct_canvas_texture_add()
+
+
+func _direct_canvas_texture_add() -> void:
+	var canvas_texture : CanvasTexture = CanvasTexture.new()
+	canvas_texture.diffuse_texture = GHOST_PLAYER
+	canvas_texture.normal_texture = GHOST_PLAYER_NORMAL
+
+	test_sprite_2d.texture = canvas_texture
+"
+
+[sub_resource type="Gradient" id="Gradient_5rn4t"]
+offsets = PackedFloat32Array(0, 0.6613546)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uviv1"]
+gradient = SubResource("Gradient_5rn4t")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="TestLightScene" type="Node2D" unique_id=1190258517]
+script = SubResource("GDScript_v84pw")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1289107536]
+offset_right = 1164.0
+offset_bottom = 682.0
+color = Color(0.14823696, 0.15301046, 0.23921576, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1001047610]
+position = Vector2(231, 205)
+color = Color(0.88, 0.79200006, 0, 1)
+energy = 4.22
+texture = SubResource("GradientTexture2D_uviv1")
+height = 10.0
+
+[node name="TestSprite2D" type="Sprite2D" parent="." unique_id=1420172808]
+position = Vector2(254, 193)
