@@ -89,7 +89,7 @@ stretch_mode = 2
 [node name="Sun" type="Polygon2D" parent="Backdrop" unique_id=1309481537]
 self_modulate = Color(1.8247963, 1.8247963, 0, 1)
 light_mask = 0
-position = Vector2(71, 39)
+position = Vector2(74, 39)
 antialiased = true
 polygon = PackedVector2Array(-7, 9, -14, 3, -13, -1, -12, -3, -10, -6, -7, -8, -4, -9, 0, -9.5, 4, -9, 7, -8, 10, -6, 12, -3, 13, -1, 14, 3, 10, 9)
 

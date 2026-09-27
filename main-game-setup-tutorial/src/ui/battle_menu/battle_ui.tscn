@@ -73,7 +73,6 @@ theme_override_font_sizes/font_size = 8
 text = "Item"
 
 [node name="AbilityNamePanel" type="PanelContainer" parent="." unique_id=255577433]
-visible = false
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0

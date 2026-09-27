@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ujy6oai7k12d"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qtwn0"]
+light_mode = 1
+
+[node name="ArenaZoneMarker" type="Marker2D" unique_id=1656278999]
+material = SubResource("CanvasItemMaterial_qtwn0")
+gizmo_extents = 84.0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=1843769480]
+use_parent_material = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0, 0.83, 0.31816655, 1)

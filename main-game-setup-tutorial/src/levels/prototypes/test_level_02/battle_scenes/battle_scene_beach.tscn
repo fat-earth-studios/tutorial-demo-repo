@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bfvej3a70k5dd"]
+
+[ext_resource type="Texture2D" uid="uid://c6diady764nkh" path="res://assets/art/world/battle_scenes/mountaintop_battleground_sky.png" id="1_ysqx2"]
+[ext_resource type="Shader" uid="uid://bfkx21s1mu6wb" path="res://src/levels/prototypes/test_level_02/battle_scenes/battle_scene_projection_transition.gdshader" id="2_6g2ti"]
+[ext_resource type="Texture2D" uid="uid://cag8b48iq6gh7" path="res://assets/art/world/battle_scenes/beach_zone/battle_ground_beach_v2.png" id="3_neshf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cotls"]
+shader = ExtResource("2_6g2ti")
+shader_parameter/rect_size_px = Vector2(480, 224)
+shader_parameter/center_x_px = 240.0
+shader_parameter/source_far_y_px = 24.0
+shader_parameter/source_near_y_px = 224.0
+shader_parameter/pixel_snap = true
+shader_parameter/transition = 1.0
+shader_parameter/target_far_y_px = 58.0
+shader_parameter/target_near_y_px = 212.0
+shader_parameter/target_bottom_y_px = 360.0
+shader_parameter/far_width_scale = 0.6999999899416001
+shader_parameter/near_width_scale = 1.13999998010672
+shader_parameter/bottom_width_scale = 1.2
+shader_parameter/depth_curve = 0.9
+shader_parameter/target_center_offset_x_px = 0.0
+shader_parameter/edge_softness_px = 6.25
+
+[sub_resource type="Environment" id="Environment_6g2ti"]
+background_mode = 3
+ambient_light_source = 1
+reflected_light_source = 1
+glow_enabled = true
+adjustment_enabled = true
+adjustment_contrast = 1.1
+
+[node name="BattleSceneBeach" type="Node2D" unique_id=950893968]
+
+[node name="Backdrop" type="Node2D" parent="." unique_id=1324813630]
+
+[node name="Skybox" type="TextureRect" parent="Backdrop" unique_id=756635945]
+light_mask = 7
+texture_filter = 2
+clip_contents = true
+offset_top = -90.0
+offset_right = 320.0
+offset_bottom = 184.0
+texture = ExtResource("1_ysqx2")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="BattleArena" type="Node2D" parent="." unique_id=581316059]
+
+[node name="ArenaGround" type="TextureRect" parent="BattleArena" unique_id=1976121400]
+material = SubResource("ShaderMaterial_cotls")
+clip_contents = true
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("3_neshf")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Environment" type="Node2D" parent="." unique_id=1911012775]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Environment" unique_id=1636686843]
+color = Color(0.7254902, 0.7254902, 0.49019608, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=220762974]
+environment = SubResource("Environment_6g2ti")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=1627676741]
+offset_top = -16.0
+offset_right = 320.0
+offset_bottom = 164.0
+border_color = Color(0, 1, 0.16666651, 1)

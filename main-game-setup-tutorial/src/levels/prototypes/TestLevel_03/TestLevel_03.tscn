@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://ngtueyqgsujj" path="res://src/gameplay/transition/level_transition.tscn" id="8_rm1r4"]
 [ext_resource type="PackedScene" uid="uid://bmmdnypq2jn02" path="res://src/levels/level_objects/bonfire/bonfire.tscn" id="9_1tfd6"]
 [ext_resource type="Texture2D" uid="uid://d3uk7k6o7r1cl" path="res://assets/art/enemies/inndour_sheet.png" id="10_4ku8y"]
+[ext_resource type="PackedScene" uid="uid://ujy6oai7k12d" path="res://tools/arena_zone_marker.tscn" id="12_vrqkl"]
+[ext_resource type="PackedScene" uid="uid://c4qdi5yye4aeq" path="res://src/debug/tools/battleground_capture.tscn" id="13_cotls"]
 
 [sub_resource type="Gradient" id="Gradient_507rp"]
 offsets = PackedFloat32Array(0.19620253, 0.56299216, 0.71653545)
@@ -126,6 +128,7 @@ region_rect = Rect2(0, 0, 656, 376)
 [node name="TileMaps" type="Node2D" parent="." unique_id=1180305158]
 
 [node name="ReferenceRect" type="ReferenceRect" parent="TileMaps" unique_id=2078598560]
+visible = false
 z_index = 4
 offset_left = 70.0
 offset_top = 49.0
@@ -135,6 +138,7 @@ border_color = Color(1, 0.36666667, 0, 1)
 border_width = 2.0
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="TileMaps" unique_id=375792992]
+visible = false
 z_index = 100
 z_as_relative = false
 offset_left = 70.0
@@ -167,10 +171,10 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="PlayerSpawn" parent="LevelObjects" unique_id=1487922808 instance=ExtResource("2_8pfgo")]
-position = Vector2(342, 113)
+position = Vector2(82.63898, 281.43036)
 
 [node name="PlayerCamera" parent="LevelObjects" unique_id=1250976206 instance=ExtResource("3_8pfgo")]
-position = Vector2(91, 282)
+position = Vector2(83.15213, 283.48297)
 limit_left = 0
 limit_top = 0
 limit_right = 640
@@ -180,6 +184,7 @@ limit_bottom = 360
 position = Vector2(472, 87)
 
 [node name="InndourSheet" type="Sprite2D" parent="LevelObjects" unique_id=579089645]
+visible = false
 self_modulate = Color(0.86663747, 0.827222, 0.78517264, 1)
 position = Vector2(351, 87)
 scale = Vector2(0.8, 0.8)
@@ -221,3 +226,12 @@ offset = Vector2(0, 64)
 [node name="CanvasModulateNight" type="CanvasModulate" parent="Environment" unique_id=1212074093]
 visible = false
 color = Color(0.42672014, 0.42672014, 0.42672014, 1)
+
+[node name="ArenaZoneMarker" parent="." unique_id=1656278999 instance=ExtResource("12_vrqkl")]
+position = Vector2(224, 184)
+
+[node name="BattlegroundCapture" parent="." unique_id=1558490770 node_paths=PackedStringArray("battle_area_center", "hide_during_capture") instance=ExtResource("13_cotls")]
+capture_size = Vector2i(480, 224)
+output_path = "user://battle_ground_beach.png"
+battle_area_center = NodePath("../ArenaZoneMarker")
+hide_during_capture = [NodePath("../LevelObjects"), NodePath("../Environment")]
