@@ -27,7 +27,7 @@ func play_start_spell_animation() -> void:
 func play_end_spell_animation() -> void:
 	animation_controller.play(&"cast_spell_end")
 
-func take_damage(amount: int) -> void:
+func take_damage(_amount: int) -> void:
 	pass
 
 func get_target_position() -> Vector2:

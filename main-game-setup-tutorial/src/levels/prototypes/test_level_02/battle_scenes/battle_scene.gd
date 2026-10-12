@@ -1,10 +1,9 @@
 class_name BattleArena
-extends Node2D
+extends BaseBattleArena
 ## NOTE: This Battle Arena is the result of prototype testing and still contains a lot of
 ##       test/debug code. The final design is meant to contain the world textures and markers
 ##       to be used actor and ability locations
 
-signal arena_intro_finished
 
 const WORLD_TRANSITION_DURATION : float = 0.75
 
@@ -17,6 +16,12 @@ const CAMERA_DURATION_MULTIPLIER : float = 1.5
 const CAMERA_DELAY_DURATION      : float = WORLD_TRANSITION_DURATION * CAMERA_DELAY_MULTIPLIER
 ## How long the camera transitin lasts (based on World transition time)
 const CAMERA_TRANSITION_DURATION : float = WORLD_TRANSITION_DURATION * CAMERA_DURATION_MULTIPLIER
+
+const CAMERA_FINAL_POSITION : float = -16.0
+
+# Used for moving the bonfire object when the scene transforms
+const BONFIRE_START_POSITION_Y : float = 102.0
+const BONFIRE_END_POSITION_Y   : float = 86.0
 
 @export var arena_world_origin : Vector2 = Vector2.ZERO
 
@@ -56,6 +61,7 @@ var _DEBUG_dmg_tween : Tween = null
 @onready var label_damage_text    : Label    = $BattleUI/LabelDamageText
 @onready var marker_enemy_actor_1 : Marker2D = $BattleActorsEnemies/MarkerEnemyActor1
 
+@onready var camera_label: Label = $BattleCamera/Label
 
 @onready var aoe_on_enemy_marker: Marker2D = $BattleActorsEnemies/AoeOnEnemyMarker
 
@@ -81,8 +87,11 @@ func _ready() -> void:
 #
 	#play_battle_start_animation()
 
+func _process(_delta: float) -> void:
+	camera_label.text = "Pos: " + str(battle_camera.global_position)
 
-func play_battle_start_animation() -> void:
+
+func _play_battle_intro_animation() -> Signal:
 	if _transition_tween:
 		_transition_tween.kill()
 
@@ -94,42 +103,41 @@ func play_battle_start_animation() -> void:
 
 	# Moving the world
 	_transition_tween.tween_method(
-		_set_shader_progress, 0.0, 1.0, WORLD_TRANSITION_DURATION
+			_set_shader_progress, 0.0, 1.0, WORLD_TRANSITION_DURATION
 	).set_trans(Tween.TRANS_LINEAR)
-
-	var current_party_position_y : float = battle_actors_party.position.y
-	var target_party_position_y  : float = current_party_position_y - 28.0
-
-	# Moving the party, closest to camera
-	#_transition_tween.tween_property(
-		#battle_actors_party, "position:y", target_party_position_y, WORLD_TRANSITION_DURATION
-	#).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	# BONFIRE - Moving the Bonfire in the Middle
 	_transition_tween.tween_property(
-		bonfire, "position:y", 86.0, WORLD_TRANSITION_DURATION
+			bonfire, "position:y", BONFIRE_END_POSITION_Y, WORLD_TRANSITION_DURATION
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
-
+#region Temp Enemies Animation
+	# ENEMIES - Moving the enemies at the end
 	var current_enemies_pos_y : float = battle_actors_enemies.position.y
 	var final_enemies_pos_y   : float = current_enemies_pos_y - 4.0
-
-	# ENEMIES - Moving the enemies at the end
 	_transition_tween.tween_property(
 		battle_actors_enemies, "position:y", final_enemies_pos_y, WORLD_TRANSITION_DURATION
 	).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT_IN)
-
+#endregion
 
 	# CAMERA - Delay set to avoid apparent object movement during start of transition
 	#          Duration is a bit longer for cinematic purposes
 	_transition_tween.tween_property(
-		battle_camera, "position:y", -16.0, CAMERA_TRANSITION_DURATION
+			battle_camera, "position:y", CAMERA_FINAL_POSITION, CAMERA_TRANSITION_DURATION
 	).set_delay(CAMERA_DELAY_DURATION).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
-	await _transition_tween.finished
-	_transition_tween = null
+	# Caller needs the finished signal,
+	# create a oneshot callback to clean up once it has finished
+	var finished: Signal = _transition_tween.finished
+	finished.connect(
+			func()->void: _transition_tween = null,
+			CONNECT_ONE_SHOT
+	)
 
-	arena_intro_finished.emit()
+	return finished
+
+
+
 
 
 
@@ -184,12 +192,12 @@ func get_aoe_enemy_position() -> Vector2:
 func _reset_battle_view() -> void:
 	battle_actors_party.position.y   = 0.0
 	battle_actors_enemies.position.y = 0.0
-	bonfire.position.y       = 102.0
+	bonfire.position.y       = BONFIRE_START_POSITION_Y
 	battle_camera.position.y = 0.0
 	_set_shader_progress(0.0)
 
 func _on_button_pressed() -> void:
-	play_battle_start_animation.call_deferred()
+	_play_battle_intro_animation.call_deferred()
 
 func _on_button_reset_pressed() -> void:
 	_reset_battle_view()
@@ -218,7 +226,7 @@ func _on_chill_impact() -> void:
 	show_damage_text(1006)
 
 
-func _perform_spell_action(spell_name : StringName) -> void:
+func _perform_spell_action(_spell_name : StringName) -> void:
 	pass
 	#battle_actor_party_1.play_start_spell_animation()
 	#await battle_actor_party_1.start_spell_complete

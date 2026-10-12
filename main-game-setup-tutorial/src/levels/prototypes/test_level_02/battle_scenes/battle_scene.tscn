@@ -55,6 +55,12 @@ shader_parameter/softness = 1.0
 diffuse_texture = ExtResource("5_xy4iv")
 normal_texture = ExtResource("6_qw6rh")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4nlp0"]
+light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_h42d7"]
+font_size = 8
+
 [sub_resource type="Environment" id="Environment_m7pbj"]
 background_mode = 3
 ambient_light_source = 1
@@ -72,6 +78,7 @@ outline_color = Color(0, 0, 0, 1)
 y_sort_enabled = true
 script = ExtResource("1_umlov")
 arena_world_origin = Vector2(160, 90)
+metadata/_edit_horizontal_guides_ = [90.0]
 
 [node name="Backdrop" type="Node2D" parent="." unique_id=606939796]
 
@@ -199,6 +206,18 @@ position = Vector2(160, 102)
 anchor_mode = 0
 zoom = Vector2(2, 2)
 editor_draw_limits = true
+
+[node name="Label" type="Label" parent="BattleCamera" unique_id=896057566]
+visible = false
+z_index = 100
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_4nlp0")
+offset_left = 76.0
+offset_top = 79.0
+offset_right = 116.0
+offset_bottom = 102.0
+text = "Pos"
+label_settings = SubResource("LabelSettings_h42d7")
 
 [node name="Environment" type="Node2D" parent="." unique_id=2007936752]
 

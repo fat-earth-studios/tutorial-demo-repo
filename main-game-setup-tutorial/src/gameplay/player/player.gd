@@ -3,6 +3,10 @@ extends CharacterBody2D
 ## Still contains placeholder code, but has more of what the final Player class will be
 ## FUTURE (player): Replace with the actual player implementation.
 
+## A way for me (Danny) to still use the Ghost sprite when needed
+@export var use_ghost_sprite : bool = false
+
+
 enum FacingDirection {
 	UP,
 	DOWN,
@@ -27,6 +31,11 @@ var locked : bool = false
 
 # TESTING: Debug label to be used for testing
 @onready var player_debug_label: Label = %PlayerDebugLabel
+@onready var ghost_visuals: Node2D = $GhostVisuals
+
+func _ready() -> void:
+	sprite_2d.visible = not use_ghost_sprite
+	ghost_visuals.visible = use_ghost_sprite
 
 func _physics_process(_delta: float) -> void:
 	if not locked:
@@ -47,9 +56,9 @@ func _physics_process(_delta: float) -> void:
 
 		move_and_slide()
 
-func _handle_horizontal_flip() -> void:
-	if absf(velocity.x) > 0.1:
-		sprite_2d.flip_h = true if (velocity.x > 0.0 ) else false
+#func _handle_horizontal_flip() -> void:
+	#if absf(velocity.x) > 0.1:
+		#sprite_2d.flip_h = true if (velocity.x > 0.0 ) else false
 
 func _update_animation(direction : Vector2) -> void:
 	if direction == Vector2.ZERO:
@@ -59,23 +68,29 @@ func _update_animation(direction : Vector2) -> void:
 			FacingDirection.UP:
 				animation_player.play(&"idle_up")
 			FacingDirection.LEFT:
-				sprite_2d.flip_h = true
+				_flip_sprite_flip_h(true)
 				animation_player.play(&"idle_side")
 			FacingDirection.RIGHT:
-				sprite_2d.flip_h = false
+				_flip_sprite_flip_h(false)
 				animation_player.play(&"idle_side")
 		return
 
 	if absf(direction.x) > absf(direction.y):
 		var facing_right : bool = direction.x > 0.0
 		_facing_direction = FacingDirection.RIGHT if facing_right else FacingDirection.LEFT
-		sprite_2d.flip_h = not facing_right
+		_flip_sprite_flip_h(not facing_right)
 		animation_player.play(&"walk_side")
 	elif direction.y > 0.0:
 		_facing_direction = FacingDirection.DOWN
-		sprite_2d.flip_h = false
+		_flip_sprite_flip_h(false)
 		animation_player.play(&"walk_down")
 	elif direction.y < 0.0:
 		_facing_direction = FacingDirection.UP
-		sprite_2d.flip_h = false
+		_flip_sprite_flip_h(false)
 		animation_player.play(&"walk_up")
+
+func _flip_sprite_flip_h(flip : bool) -> void:
+	if not use_ghost_sprite:
+		sprite_2d.flip_h = flip
+	else:
+		$GhostVisuals/GhostSprite.flip_h = !flip # NOTE: Not the cleanest, but just for debug stuff

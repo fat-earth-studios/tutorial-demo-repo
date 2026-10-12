@@ -2,7 +2,7 @@ class_name BattleSession
 extends Node
 
 signal battle_finished
-signal player_turn_available
+#signal player_turn_available
 
 enum BattleState {
 	ADVANCING,
@@ -39,7 +39,7 @@ func _ready() -> void:
 
 func setup(
 		main_game : MainGame,
-		arena     : BattleArena,
+		arena     : BaseBattleArena,
 		battle_ui : BattleUi,
 		party     : Array[BattleActorComponent]
 		#enemies  : Array[BattleActorComponent]
@@ -66,12 +66,12 @@ func setup(
 func start() -> void:
 	assert(_is_setup, "BattleSession.start() called before setup")
 
-	_battle_arena.arena_intro_finished.connect(_on_arena_intro_finished, CONNECT_ONE_SHOT)
+	_battle_arena.intro_animation_finished.connect(_on_arena_intro_finished, CONNECT_ONE_SHOT)
 
 	for actor : BattleActorComponent in _party:
 		actor.enter_battle(_battle_arena.get_party_actor_position())
 
-	_battle_arena.play_battle_start_animation()
+	_battle_arena.play_battle_intro_animation()
 
 
 func _process(_delta: float) -> void:

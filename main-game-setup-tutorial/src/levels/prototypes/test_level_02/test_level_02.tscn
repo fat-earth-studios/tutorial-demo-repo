@@ -429,6 +429,7 @@ position = Vector2(320, 138)
 battle_scene_uid = "uid://b144aly8fprew"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/BattleTransition" unique_id=224035421]
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_uviv1")
 
 [node name="LevelTransition" parent="Transitions" unique_id=181036827 instance=ExtResource("19_qtwn0")]

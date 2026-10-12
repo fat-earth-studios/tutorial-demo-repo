@@ -32,7 +32,7 @@ var _current_battle : BattleArena
 func _ready() -> void:
 	_init_player()
 
-	load_level(TEST_LEVEL_02)
+	load_level(TEST_LEVEL_03)
 
 
 func _input(event: InputEvent) -> void:

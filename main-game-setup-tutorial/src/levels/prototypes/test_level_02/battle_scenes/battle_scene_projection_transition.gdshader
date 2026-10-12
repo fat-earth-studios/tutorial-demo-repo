@@ -84,7 +84,7 @@ varying vec4 item_color;
 
 
 void vertex() {
-	// Carry TextureRect modulate/self_modulate into our manual texture sample.
+	// Carry TextureRect modulate/self_modulate into the manual texture sample.
 	item_color = COLOR;
 }
 
@@ -99,9 +99,12 @@ float texture_bounds_mask(vec2 sample_px, vec2 texture_size_px) {
 void fragment() {
 	// This branch guarantees a genuinely untouched exploration pose regardless
 	// of the marker values used for the completed projection.
-	if (transition <= 0.0) {
+	if (transition <= 0.0)
+	{
 		COLOR = texture(TEXTURE, UV) * item_color;
-	} else {
+	}
+	else
+	{
 		float transition_progress = smoothstep(0.0, 1.0, transition);
 
 		vec2 safe_rect_size_px = max(rect_size_px, vec2(1.0));
@@ -268,5 +271,5 @@ void fragment() {
 		COLOR = cliff_color * item_color;
 
 		//NORMAL_MAP = texture(NORMAL_TEXTURE, lookup_px / texture_size_px).rgb;
-	}
+	}  // else (tranition is > 0)
 }
